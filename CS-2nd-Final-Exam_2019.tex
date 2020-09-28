@@ -1,0 +1,181 @@
+% subject: コンピュータサイエンス第一期末試験（雛形）
+% date:    16/11/2
+% LaTeX2e: Japanese
+
+\documentclass[12pt]{article}
+\pagestyle{empty}
+\usepackage{ascmac}
+\usepackage[dvips]{epsfig}
+\usepackage{listings}
+
+% local.mac
+\lstset{language=,%
+   basicstyle={\ttfamily\scriptsize},%
+   lineskip=-0.5zw,%
+   commentstyle=\textit,%
+   classoffset=1,%
+   keywordstyle=\bfseries,%
+   breaklines=true,
+   frame=lines,%
+   framesep=5pt,%
+   showstringspaces=false,%
+   numbers=left,%
+   numbersep=3pt,%
+   stepnumber=1,%
+   numberstyle={\ttfamily\scriptsize},%
+%   numberstyle={\tiny},%
+   numberblanklines=true,
+   morekeywords={def, end, while, if, for, in, else, then, return},%
+   escapechar=\@,
+}%
+
+%%% STYLE PARAM.s (for A4) %%%
+\textwidth=16cm
+\textheight=240mm
+
+\topmargin=0mm
+\headsep=0cm
+\headheight=0cm
+\oddsidemargin=0cm
+\evensidemargin=0cm
+\marginparwidth=0cm
+
+\footnotesep=15pt
+%\footheight=1.5cm
+%\footskip=1.5cm
+
+\itemsep=0.1pt
+\parindent=11pt
+
+\def\baselinestretch{1.15}
+
+%%% LOCAL MACRO DEF.s %%%
+
+
+% Print control (skips)
+%\newcommand{\bigskip}{\vskip12pt}
+%\newcommand{\medskip}{\vskip6pt}
+%\newcommand{\smallskip}{\vskip3pt}
+\newcommand{\paragraphskip}{\vskip\topsep}
+
+% Itemization, etc
+\newcommand{\nitem}[1]{%
+\par\noindent\hangindent20pt%
+\hskip20pt\llap{#1~}}
+\newcommand{\nnitem}[1]{%
+\par\noindent\hangindent30pt%
+\hskip30pt\llap{#1~}}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+\begin{document}
+\noindent
+\hfill{\small 29.Jan.2019}
+
+\noindent
+\hfil
+{\large\bf
+コンピュータサイエンス第 2\textemdash 期末試験 4b(CS)\textemdash}
+\hfil
+
+\paragraphskip\noindent
+※答案用紙は各問ごとに 1 枚使用して書くこと．\\
+※答案用紙には各枚ごとに学籍番号と氏名を書くこと．\\
+※計算の過程も解答用紙に残すこと．\\
+※問題は裏面にもあります．
+
+
+\paragraphskip
+\nitem{\bf 問 1.}（配点 10 点）\\
+プログラミング言語 Ruby で書かれたつぎの 2 つの関数 (a), (b) はどちらも引数を 1 増やす関数 succ と 1 減らす関数 pred を使って，
+ 2 つの自然数を足す方法を定義している．
+以下の各問に答えよ．
+  \begin{lstlisting}[name=add]
+def succ (x)
+  return x+1
+end
+def pred (x)
+  return x-1
+end
+######
+# (a) 
+######
+def add (a,b)
+  if (a==0) then
+    return b
+  else
+    return succ(add(pred(a),b))
+  end
+end
+######
+# (b)
+######
+def add_iter (a,b)
+  if (a==0) then
+    return b
+  else
+    return add_iter(pred(a),succ(b))
+  end
+end
+  \end{lstlisting}
+  \begin{enumerate}
+\item add(4,5) あるいは add\_iter(4,5) としたときの (a),(b) それぞれの生成プロセスを講義スライド 36 ページのようにして示せ．
+\item 2 つの方法の違いについて``計算状態''の用語を用いて説明せよ．
+  \end{enumerate}
+\paragraphskip
+\nitem{\bf 問 2.}（配点 10 点）\\
+つぎの各問に答えよ．計算の過程も解答用紙に残すこと．
+\((n)_{m}\) は $n$ が $m$ 進表記であることを表すものとする．
+  \begin{enumerate}
+\item \((0.1)_{10}\) を 2 進表記に変換せよ．
+\label{q:first}
+\item (\ref{q:first}) で求めた数を 32 bits の浮動小数点数で表わせ．
+ただし，符号に 1 bit，指数に 8 bits，仮数に 23 bits とする．
+IEEE 754 に従って指数部は下駄をはかせること．
+\label{q:secound}
+\item (\ref{q:secound}) で求めた浮動小数点数は誤差を含む．この誤差を何というか．
+  \end{enumerate}
+\newpage
+\paragraphskip
+\nitem{\bf 問 3.}（配点 10 点）\\
+以下はプログラミング言語 Ruby で書かれた 2 つ関数 (a), (b) について以下の問いに答えよ．
+  \begin{lstlisting}[name=gcd]
+#####
+# (a)
+#####
+def min(x,y)
+  if (x>y)
+    return y
+  else
+    return x
+  end
+end
+def gcd(x,y)
+  ans=1
+  n=min(x,y)
+  for i in 1..n
+    if (x%i==0)&&(y%i==0)
+      ans=i
+    end
+  end
+  return (ans)
+end
+#####
+# (b)
+#####
+def fast_gcd(x1,x2)
+  if (x2==0)
+    return(x1)
+  else
+    return(fast_gcd(x2,x1%x2))
+  end
+end
+
+  \end{lstlisting}
+  \begin{enumerate}
+\item (a), (b) は何をする関数か答えよ．
+\item (a), (b) について，計算量を Big-O 記法で示せ．
+  \end{enumerate}
+
+
+
+\end{document}

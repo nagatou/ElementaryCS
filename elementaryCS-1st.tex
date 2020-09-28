@@ -1,0 +1,153 @@
+%\documentclass[xcolor=dvipsnames]{beamer}
+\documentclass[dvipdfmx]{beamer}
+\mode<presentation>
+{
+  \usetheme{PaloAlto}
+  \usecolortheme{default}
+  \setbeamercovered{transparent}
+}
+\setbeamertemplate{nabigation symbols}{}
+
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{ascmac}
+\usepackage{jtygm}
+\usepackage{amssymb,amsmath}
+\usepackage{txfonts}
+\usepackage{proof}
+\usepackage{graphicx}
+%\usepackage[driverfallback=dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+%\usepackage{url}
+\usepackage{multimedia}
+\usepackage{filecontents}
+\usepackage{bxdpx-beamer}
+\usepackage{listings,jlisting}
+
+%\renewcommand{\ttdefault}{lmtl}
+\newcommand{\jpy}{{{\ooalign{Y\crcr\hss=\hss}}}}
+\newcommand{\lstref}[1]{ソースコード\ref{#1}}
+
+\lstset{language=python,%
+   basicstyle={\ttfamily\tiny},%
+%   lineskip=-0.5zw,%
+   commentstyle=\textit,%
+   classoffset=1,%
+   keywordstyle=\bfseries,%
+   breaklines=true,
+   frame=lines,%
+   framesep=5pt,%
+   showstringspaces=false,%
+   numbers=left,%
+   numbersep=3pt,%
+   stepnumber=1,%
+   numberstyle={\ttfamily\tiny},%
+%   numberstyle={\tiny},%
+   numberblanklines=true,
+%   morekeywords={def, end, while, if, for, in, else, then, return}%
+}%
+
+\title[elementaryCS-1st]{コンピュータサイエンス入門第一}
+\date[3rd quarter]{3rd quarter}
+\author[Naoyuki Nagatou]{永藤 直行}
+%\institute[PRESYSTEMS Inc.]{PRESYSTEMS Inc.}
+
+\subject{Lecture}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+%  \begin{frame}<beamer>{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+\AtBeginSection{
+  \begin{frame}
+\frametitle{Outline}
+\scriptsize
+\tableofcontents[currentsection]
+  \end{frame}
+}
+\AtBeginPart{\frame{\partpage}}
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+%\beamerdefaultoverlayspecification{<+->}
+
+\begin{document}
+\frame{\titlepage}
+%
+%%% PROLOGUE
+%
+\part{Prologue}
+\frame{
+  \frametitle{Prologue}
+  \tableofcontents[part=1]
+}
+\input{elementaryCS-1st-prologue}
+\input{elementaryCS-1st-preliminary}
+%
+%%% 計算の基本
+%
+\part{計算の基本}
+\frame{
+  \frametitle{計算の基本}
+\scriptsize
+  \tableofcontents[part=2]
+}
+\input{elementaryCS-1st-basic}
+%
+%%% QUIZ 1
+
+\part{CS 第 1\textemdash 課題 1}
+\frame{
+  \frametitle{CS 第 1 \textemdash 課題 1}
+\scriptsize
+  \tableofcontents[part=3]
+}
+\input{elementaryCS-1st-quiz1}
+%
+%%% ARRAY
+%
+\part{配列}
+\frame{
+  \frametitle{配列}
+\scriptsize
+  \tableofcontents[part=4]
+}
+\input{elementaryCS-1st-array}
+%
+%%% QUIZ 2
+%
+\part{CS 第 1\textemdash 課題 2}
+\frame{
+  \frametitle{CS 第 1 \textemdash 課題 2}
+\scriptsize
+  \tableofcontents[part=5]
+}
+\input{elementaryCS-1st-quiz2}
+%%
+%%%% SUBROUTINE and FUNCTION
+%%
+\part{関数とサブルーチン}
+\frame{
+  \frametitle{関数とサブルーチン}
+\scriptsize
+  \tableofcontents[part=6]
+}
+\input{elementaryCS-1st-function}
+%
+%%% QUIZ 3
+%
+\part{CS 第 1\textemdash 課題 3}
+\frame{
+  \frametitle{CS 第 1 \textemdash 課題 3}
+\scriptsize
+  \tableofcontents[part=7]
+}
+\input{elementaryCS-1st-quiz3}
+
+\end{document}

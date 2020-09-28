@@ -1,0 +1,143 @@
+\section{ビットとバイト}
+\subsection{Bit とは}
+\begin{frame}
+\frametitle{情報とは}
+  \begin{itemize}
+\item ここで情報とは何か考えてみます
+\item 情報とは"ある物事，事情についてのお知らせ"
+\item 情報の価値はどう決まるか?
+    \begin{itemize}
+\item 驚きをもって受け止められる情報は価値が高い?
+\item 日常的な情報は価値が低い?
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{まずは情報量というもの}
+  \begin{enumerate}
+\item ある結果や情報を得る場合を考える
+\item 結果や情報を生じる事象が確率現象であると見なす
+\item 確率 $p$ の事象の情報量を \(I(p)\) であらわす
+\item \(I(p)\) は単調減少関数
+    \begin{itemize}
+\item 頻繁に起こっていること ((\(p\) が大きい) は情報量が少ない)
+\item 頻繁に起こらないこと ((\(p\) が小さい) は情報量が多い)
+    \end{itemize}
+\item 2 つの事象は独立
+    \begin{itemize}
+\item \(I(p_1~p_2)=I(p_1)+I(p_2)\)
+    \end{itemize}
+\item 連続関数である
+    \begin{itemize}
+\item 確率のわずかな変化で情報量が大きく変化するのは不自然
+    \end{itemize}
+  \end{enumerate}
+  \begin{block}{情報量の定義}
+ある事象 $a$ の生起確率を \(p_a\) とすると
+その情報量 \(I(p_a)\) は \(\log_{2}\frac{1}{p_a}=-\log_{2}p_a\) であらわすことにする
+  \end{block}
+\end{frame}
+\begin{frame}
+\frametitle{ビットとは}
+  \begin{block}{1 bit とは}
+    \begin{enumerate}
+\item 今， 2 つの事象を考える
+\item 同じ確率 \(P=\frac{1}{2}\) で生起するとする
+\item このとき，ひとつの事象 $a$ の情報量 \(I(a)=\log_2\frac{1}{\frac{1}{2}}=1\)
+\item これが 1 bit
+\item 確率 \(\frac{1}{2}\) で起こる事象を知った時の情報量が 1 bit(ビット)
+    \end{enumerate}
+  \end{block}
+  \begin{itemize}
+\item それでは確率 \(\frac{1}{10}\) で起こる事象を知った時は 1 hartley(ハートレー)
+\item 確率 \(\frac{1}{e}\) では 1 nat(ナット)
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{情報の記録}
+  \begin{itemize}
+\item 情報はビットの列として記録
+\item 明確に区別された 2 つの状態で記録しています
+    \begin{itemize}
+\item 磁性体の向き，電圧の高低，スイッチの開閉
+    \end{itemize}
+\item 計算機科学では 2 つの状態を便宜的に $0$ と $1$ として議論しています
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{ビットによる情報の表現}
+  \begin{itemize}
+\item 2 つの状態を取り得るデバイスを $N$ 個並べてそれぞれ独立としたらどれだけの情報があらわせるか
+\item 答えは \(\log_2 2^N=N\) となり $N$ ビットの情報量となります
+\item $N$ ビットでどれだけの事象を区別できるでしょうか
+\item 答えは 2 個の要素から $N$ 個の重複順列 \({ }_2\Pi_N=2^N\) です
+  \end{itemize}
+\end{frame}
+\subsection{Byte とは}
+\begin{frame}
+\frametitle{バイトとは}
+  \begin{itemize}
+\item 人間にとって意味をなす長さ $N$ の小ブロック
+\item 現在のコンピュータでは 8 bit としています
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{8 ビットの由来}
+  \begin{itemize}
+\item ASCII コードを策定する時まで遡ります
+\item 当時，電信で利用しているコードがありました
+    \begin{itemize}
+\item 電信では 5 ビットや 6 ビット
+    \end{itemize}
+\item 一方でコンピュータによるデータ処理が立ち上がっていました
+    \begin{itemize}
+\item EDSAC は 5 ビット
+\item IBM 7030 が 8 ビット
+\item パンチカードは 12 ビット: 12 rows$\times$80(-90) columns (パンチカードの写真参照)
+    \end{itemize}
+\item 電信，データ処理においてどれだけの文字を必要とするか
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{8 ビットの由来 -つづき}
+  \begin{itemize}
+\footnotesize
+\item 電信で用いていた文字
+    \begin{itemize}
+\footnotesize
+\item 1 列に 5 個まで穴を開けられる紙テープを使っていました(インターネット上の画像を参照)
+\item アルファベット大文字と数字と特殊記号
+    \end{itemize}
+\item コンピュータが用いていた文字
+    \begin{itemize}
+\footnotesize
+\item コンピュータの入出力に 12 ビットのパンチカードを使っていました
+\item アルファベットの大文字 26 文字と数字(10個)といくつかの記号(11個)の 47 個あるいは 57 個 (UNIVAC の場合)
+    \end{itemize}
+\item データ処理では小文字も必要ということになって来ました．
+\item 文字を処理するためにはさらに大文字，小文字を区別して 73(=47+26) 個; 7 ビット必要
+    \begin{itemize}
+\footnotesize
+\item いくつの事象を区別したいかに依存します
+\item アルファベットといくつかの記号だけならば \(2^7=128\) で足ります
+\item でも，フランス語，ドイツ語などの文字と数学記号などを含めたら足りません
+\item 漢字までは考えが及んでいたかどうかは分かりません
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{8 ビットの由来 -つづき}
+  \begin{itemize}
+\footnotesize
+\item 7 ビットで足りるが，拡張を考えて 8 ビットにすることを規格策定時に主張
+    \begin{itemize}
+\item 8 自身が \(2^3\) と二進数できりがいいこと
+\item 4 ビットごとに分けられること
+\item 1 ビット余るが，結果的には英語圏以外で空き領域を使っています
+\item 漢字まで含めたら全く足りませんでした
+    \end{itemize}
+\item 当時 8 bit を 1 つのかたまりとして，これを バイト(byte) といっていました
+\item それがそのまま定着して 1 byte = 8 bit と現在に至っています
+\item 8 bit であることを強調してオクテット(octet) という人もいます
+  \end{itemize}
+\end{frame}

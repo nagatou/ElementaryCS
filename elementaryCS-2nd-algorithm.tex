@@ -1,0 +1,516 @@
+\section{良いアルゴリズム，わるいアルゴリズム}
+\subsection{アルゴリズムとは}
+\begin{frame}[containsverbatim, shrink]
+\frametitle{アルゴリズム}
+  \begin{itemize}
+\item 前回まで再帰関数についてお話しました
+\item これはアルゴリズム的に計算可能という概念を定義する上で重要な役割をします
+\item 関数 \(f:D^n\rightarrow D\) が計算可能とは，それを計算するアルゴリズム（算法）が存在すること
+    \begin{itemize}
+\item アルゴリズムとは停止する命令の有限の列をいう
+\item コンピュータにプログラムできるなにがしか
+    \end{itemize}
+\item たとえば，
+    \begin{itemize}
+\item $D$ は最小（あるは極小）があって並んでいるという構造を持つ
+\item \(x\in D\) として \(f(x)=G(f\upharpoonright x)\)
+\item $D$ を自然数すれば \((N;0,S,+,-,\times,\div,\mathrm{mod},<)\)
+\item $G$ を \(0,S,+,-,\times,\div,\mathrm{mod},<\) の有限の列として構成
+    \end{itemize}
+\item 別の方法として Turing machine を紹介（ホワイトボードに書きます）
+\item 計算可能な関数のクラスも理論的に興味深いが，それは別の機会
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{良いアルゴリズム}
+  \begin{itemize}
+\item ここでは，すでに計算可能な関数のクラスがあって，その計算の複雑さについて議論する
+\item 計算のやり方には良い方法とわるい方法がある
+\item 良い方法というのは少ない計算で目的の値を求めること
+\item 良い悪いの尺度のひとつ時間計算量について見ていく
+\item \(0,S,+,-,\times,\div,\mathrm{mod},<\) のような演算が何回必要かを測る
+\item 単にプログラムが動けばいいでなくて
+  \end{itemize}
+\end{frame}
+\subsection{最大公約数を例に導入}
+\begin{frame}
+\frametitle{まずは最大公約数}
+  \begin{itemize}
+\item 関数 GCD をふたつの自然数の公約数のうち最大のもの
+\item アルゴリズムでは具体的に最大公約数をもとめる計算の仕方を議論する
+\item 計算の仕方はいくつか考えられる
+    \begin{itemize}
+\item アルゴリズムの書き方の自然言語で書いたりいろいろ
+    \end{itemize}
+  \end{itemize}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{block}{素朴な方法}
+ふたつの整数 \(x, y\) について $1$ から順に \(\min(x,y)\) まで
+割って，割り切れる最大の整数
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{ユーグリッドの互除法}
+\scriptsize
+\(x, y\) の最大公約数は $x$ を $y$ で割ったときの剰余と $y$ の最大公約数に等しい
+%\setlength{\abovedisplayskip}{10pt}
+        \begin{displaymath}
+          \begin{array}{rcl}
+x_1 &=& n_1 x_2 + x_3\\
+x_2 &=& n_2 x_3 + x_4\\
+x_3 &=& n_3 x_4 + x_5\\
+&\vdots&
+          \end{array}
+        \end{displaymath}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{最大公約数 (Greatest Common Divisor) のプログラム}
+  \begin{itemize}
+\item それぞれの実行時間を比較するので見ていてください
+    \begin{itemize}
+\item 適当な数字思いつかないので
+\item 10,000,000 と 10,203,040 の最大公約数
+\item 62979284285501 と 62873258567731 の最大公約数
+    \end{itemize}
+  \end{itemize}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+      \begin{lstlisting}[caption={Naive Algorithm}]
+def gcd(x,y):
+  def min(x,y):
+    if (x>y):
+      return y
+    else:
+      return x
+  gcm=1
+  n=min(x,y)
+  for i in range(1,n+1):
+    if (x%i==0) and (y%i==0):
+      gcm=i
+  return (gcm)
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{lstlisting}[caption={Euclidean Algorithm},label=lst:euclid]
+def euclid1(x1,x2):
+  if x2==0:
+    return (x1)
+  else:
+    return (euclid1(x2,x1%x2))
+def euclid(x1,x2):
+  def swap(x1,x2):
+    return x2,x1
+  if (x1<x2) : x1,x2 = swap(x1,x2)
+  return(euclid1(x1,x2))
+      \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{実行時間の違いについての考察}
+  \begin{itemize}
+\item Naive な方法
+    \begin{itemize}
+\item mod や比較の回数を数えてみる
+\item $n$ 回で $n$ は $x$ か $y$ の小さい方になっている
+    \end{itemize}
+\item ユーグリッドの互除法
+    \begin{itemize}
+\item $n$ よりは少ない回数で計算できる
+    \end{itemize}
+  \end{itemize}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+      \begin{itembox}{euclid(32204,14744)}
+\scriptsize
+        \begin{verbatim}
+  euculid(32204,14744)
+=>euclid1(14744,2656)
+=>euclid1(2656,1162)
+=>euclid1(1162,332)
+=>euclid1(332,166)
+=>euclid1(166,0)
+=>166
+        \end{verbatim}
+      \end{itembox}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{itembox}{euclid(34,21)}
+\scriptsize
+        \begin{verbatim}
+  euculid(34,21)
+=>euclid1(21,13)
+=>euclid1(13,8)
+=>euclid1(8,5)
+=>euclid1(5,3)
+=>euclid1(3,2)
+=>euclid1(2,1)
+=>euclid1(1,0)
+=>1
+        \end{verbatim}
+      \end{itembox}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{ユーグリッドの互除法の演算回数の見積もり}
+  \begin{itemize}
+\item 最悪の場合について考える
+\item 割り算の商がいつまでも 1 であるとき最悪になる
+\item となり合う 2 つの Fibonacci 数のとき最悪になる
+\item 下の図で $q_i=1$ としたとき Fibonacci 数そのもの
+  \end{itemize}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+\centering
+      \begin{math}
+        \begin{array}{rcl}
+a_1 &=& q_1 a_2 + a_3\\
+a_2 &=& q_2 a_3 + a_4\\
+a_3 &=& q_3 a_4 + a_5\\
+&\cdots&\\
+a_{k-2} &=& q_k a_{k-1}
+        \end{array}
+      \end{math}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+    \end{column}
+  \end{columns}
+\end{frame}
+\newcommand{\fib}{\mathop{\mathrm{fib}}\nolimits}
+\begin{frame}[fragile]
+\frametitle{ユーグリッドの互除法の演算回数}
+  \begin{itemize}
+\item 計算に $k$ 回必要ならば，小さい数は $k$ 番目の Fibonacci 数であるかそれより大きい
+\item この定理から小さい方の数を $N$ として
+  \end{itemize}
+  \begin{center}  
+    \begin{math}
+      \begin{array}{rcl}
+N&\geq& \fib(k)\\
+N&\geq& \frac{\phi^{k}}{\sqrt{5}}\ (\mbox{where }\phi=\frac{(1+\sqrt{5})}{2})\\
+\log_{\phi}(N)&\geq& \log_{\phi}(\frac{\phi^{k}}{\sqrt{5}})\\
+\log_{\phi}(N)+\log_{\phi}\sqrt{5}&\geq& \log_{\phi}\phi^{k}\\
+\log_{5}(N)+\log_{5}\sqrt{5}&\geq& k\\
+\log_{5}(N)+\frac{1}{2}&\geq& k
+      \end{array}
+    \end{math}
+% 2018 年度は Lame の定理のに変更
+  \end{center}
+  \begin{itemize}
+\item Naive な方法の演算回数 N 回 よりは少ない
+  \end{itemize}
+\end{frame}
+\subsection{べき乗のアルゴリズム}
+\begin{frame}[fragile,shrink]
+\frametitle{Quiz2: べき乗 (Power) の計算}
+  \begin{itemize}
+\item 下の例を参考にべき乗を求める良いアルゴリズムを考えてみてください
+\item \(b^8\) を求めるのに乗算を 8 回と 3 回
+\item ふつうの子より 3 回の方が良い子
+\item power-skeleton.py が\href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} に置いてあるので,
+ループに変更して実行時間を比較してみてください
+\item 提出はいつもの OCW-i からソースコードを提出
+  \end{itemize}
+  \begin{example}[\(b^8\) の計算]
+  \begin{columns}[t]
+    \begin{column}{0.55\textwidth}
+\(b\times(b\times(b\times(b\times(b\times(b\times(b\times b))))))\)
+    \end{column}
+    \begin{column}{0.35\textwidth}
+\centering
+      \begin{math}
+        \begin{array}{rcl}
+b^2 &=& b \times b\\
+b^4 &=& b^2 \times b^2\\
+b^8 &=& b^4 \times b^4
+        \end{array}
+      \end{math}
+    \end{column}
+  \end{columns}
+  \end{example}
+\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{べき乗 (Power) のヒント}
+  \begin{itemize}
+\item 指数は偶数のとき半分に，奇数のとき $-1$ 減る
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{math}
+        \begin{array}{rcl}
+b^n &=& (b^{\frac{n}{2}})^{2}\\
+&& n \mbox{が偶数のとき}\\
+b^n &=& b \times b^{n-1}\\
+&& n \mbox{が奇数のとき}
+        \end{array}
+      \end{math}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{lstlisting}[caption={power.py},label=fast_power]
+def fast_power(b,n):
+  def square(x):
+    return(x*x)
+  def is_even(n):
+    if (n%2==0):
+      return(True)
+    else:
+      return(False)
+  if (n==1):
+    return(b) 
+  else:
+    if (is_even(n)):
+      return(square(fast_power(b,n/2)))
+    else:
+      return((b*fast_power(b,n-1)))
+      \end{lstlisting}
+    \end{column}
+  \end{columns}
+\end{frame}
+\section{時間計算量}
+\subsection{Big\textendash O Notation}
+\begin{frame}[shrink]
+\frametitle{時間計算量}
+  \begin{itemize}
+\item アルゴリズムの良し悪しを測る尺度についてみていきます
+\item 良し悪しの基準
+    \begin{itemize}
+\item 良いアルゴリズム，わるいアルゴリズムを実行時間を計測して比較
+\item 入力に対し結果を得るまでの演算 (四則演算や比較演算) の実行回数を見積もって比較
+    \end{itemize}
+\item 実行時間は CPU や演算の実現方式に依存し計算しようとすると複雑な式になってしまう
+\item 演算回数 (時間計算量という)をもとに単純な式で見積もることにする
+    \begin{itemize}
+\item CPU や実現方式といったものは無視
+    \end{itemize}
+\item 実行時間がどう変化するかの傾向を見積もれれば十分
+  \end{itemize}
+  \begin{example}
+入力サイズ $n$ として一方は \(100n^2\) ，もう一方は \(n^3\) 回演算を行うとすれば，
+ $n$ が十分に大きいときには前者の方が良い
+  \end{example}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{Big\textendash$O$ 記法}
+  \begin{itemize}
+\item $n$ を入力のサイズとして，演算回数 \(f(n)\) で傾向をつかむ
+  \end{itemize}
+  \begin{definition}
+2 つの関数 \(f, g\colon N\rightarrow R^{>0}\) とする．
+    \begin{center}
+\(\forall n>k\colon f(n)\leq c\cdot g(n)\)
+    \end{center}
+となるような \(c, k\) が存在するならば \(f(n)=O(g(n))\) とする
+  \end{definition}
+  \begin{example}
+\(f(n)=n^2+2n+1\) は，たとえば \(c=4, k=1\) として \(f(n)=4\cdot n^2\)，よって \(f(n)\) は \(O(n^2)\) となる．
+  \end{example}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{\(f(n)=n^2+2n+1\) は \(O(n^2)\)}
+  \begin{itemize}
+\item \(n>1\)(=\(k\)) で \(2n\leq 2n^2, 1\leq n^2\) なので
+    \begin{displaymath}
+0\leq n^2+2n+1\leq n^2+2n^2+n^2= 4n^2
+    \end{displaymath}
+\item \(c=4, k=1, g(n)=n^2\) となる．よって，
+\item \(f(n)=n^2+2n+1<4\cdot n^2\)\ \textemdash\{\(f(n)\leq c\cdot g(n)\)\}
+\item \(n\leq 2\) とすると \(2n<n^2, 1<n^2\) 
+    \begin{displaymath}
+0\leq n^2+2n+1\leq n^2+n^2+n^2= 3n^2
+    \end{displaymath}
+  \end{itemize}
+  \begin{center}
+\includegraphics[scale=0.6]{./progs/witness.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{ユーグリットの互除法とべき乗のアルゴリズムのオーダ}
+  \begin{example}[ユーグリットの互除法]
+    \begin{itemize}
+\item Lame の定理: 計算に $k$ ステップ必要ならば，小さい数は $k$ 番目の Fibonacci 数であるかそれより大きい
+    \end{itemize}
+    \begin{center}  
+      \begin{math}
+        \begin{array}{rcl}
+\fib(n)&=&\frac{\phi^{n}}{\sqrt{5}}\\
+&=&\log_{5}(n)+\frac{1}{2}\\
+&=&\frac{1}{\log 5}\cdot\log n+\frac{1}{2}<c\log n=O(\log n)
+        \end{array}
+      \end{math}
+    \end{center}
+  \end{example}
+  \begin{example}[べき乗]
+    \begin{itemize}
+\item 指数を $n$，2 進表記の 1 の数 $k$，偶数のときはいつも半分になるので $m$ 回偶数が出現するとして，
+    \end{itemize}
+    \begin{center}
+      \begin{math}
+        \begin{array}{rcl}
+n&=&2^m\\
+\log_2 n &=& m
+        \end{array}
+      \end{math}
+    \end{center}
+よって， \(f(n)=(\log_2 n)+(k-1)=\frac{1}{\log 2}\cdot\log n+(k-1)<c\log n=O(\log n)\)．
+  \end{example}
+\end{frame}
+\begin{frame}[containsverbatim,shrink]
+\frametitle{べき乗 (Power) の演算回数の見積もり}
+  \begin{itemize}
+\scriptsize
+\item 各繰り返しで掛け算の回数は 1 回
+\item 偶数は何回出てくるか，奇数は何回出てくるかを数える
+\item $n$ を指数， $m$ を\(\frac{1}{2}\) する回数として \(\frac{n}{2^m}=1\)
+\item そのうち，何回奇数が出てくるかは $n$ を二進表記した時の 1 の数による
+    \begin{itemize}
+\scriptsize
+\item \(\frac{1}{2}\) するとは右に 1 ビットシフト
+\item 最下位ビットが 1 のとき奇数
+\item 最後 1 乗は計算しないので(1 の数)-1
+    \end{itemize}
+\item \(\lfloor\log_2 1000\rfloor+5\)=14 回
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{偶数の出現回数}
+        \begin{itemize}
+\item 二進表記にした時の桁数
+        \end{itemize}
+        \begin{math}
+          \begin{array}{c}
+\frac{n}{2^m}=1\\
+n=2^m\\
+\log_2 n = m
+          \end{array}
+        \end{math}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{奇数の出現回数}
+\scriptsize
+        \begin{math}
+          \begin{array}{cl}
+(1000)_{10}=&(1111101000)_{2}\\
+&\Rightarrow_{\frac{1}{2}}0111110100\\
+&\Rightarrow_{\frac{1}{2}}0011111010\\
+&\Rightarrow_{\frac{1}{2}}0000111110\\
+&\Rightarrow_{\frac{1}{2}}0000011111\\
+&\cdots\\
+&\Rightarrow_{\frac{1}{2}}0000000011
+          \end{array}
+        \end{math}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+%\begin{frame}[shrink]
+%\frametitle{Big\textendash$\Omega$}
+%  \begin{itemize}
+%\item Big\textendash$O$ は，``それより大きくなることはない''ということ
+%\item では``それより小さくなることはない''ということは ?
+%  \end{itemize}
+%  \begin{definition}
+%2 つの関数 \(f, g\colon N\rightarrow R^{>0}\) とする．
+%    \begin{center}
+%\(\forall n>k\colon f(n)\geq c\cdot g(n)\)
+%    \end{center}
+%となるような \(c, k\) が存在するならば \(f(n)=\Omega(g(n))\) とする
+%  \end{definition}
+%  \begin{block}{オーダ (order)}
+%    \begin{itemize}
+%\item \(f(n)=O(g(n))\) かつ \(f(n)=\Omega(g(n))\) のとき \(f(n)\) は オーダ \(g(n)\) という
+%\item あるいは \(f(n)=O(g(n))\) かつ \(g(n)=O(f(n))\) のとき
+%\item e.g. \(n^2+2n+1=O(n^2)\) で \(n^2=O(n^2+2n+1)\) である
+%    \end{itemize}
+%  \end{block}
+%\end{frame}
+\section{Sorting}
+\begin{frame}[shrink]
+\frametitle{Sorting}
+  \begin{itemize}
+\item Sorting は 2 つの要素の比較と入れ替えだけを用いて，
+与えられた集合の要素のリストを昇順（降順）に並べたリストを作ること
+\item 例えば \{3,2,4,1,5\} と与えられていれば \{1,2,3,4,5\} と並べたリストを作成する
+\item データベースシステムなど多くの場面で利用されている
+\item 多くのアルゴリズムが提案されている
+\item ここではバブルソート (bubble sort)，挿入ソート (insertion sort)，クイックソート (quick sort) を紹介する
+  \end{itemize}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{Bubble Sort}
+  \begin{center}
+\includegraphics[scale=0.4]{./Figure/bubble_sort.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{Insertion Sort}
+  \begin{center}
+\includegraphics[scale=0.4]{./Figure/insertion_sort.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{Quiz 3}
+\framesubtitle{Sort}
+  \begin{block}{Quiz: Quick Sort}
+\scriptsize
+    \begin{itemize}
+\item Input: 任意の長さの任意の整数の列
+\item Output: 昇順に整列した列
+\item sort-skeleton.py を加筆して quick sort を作成して実行時間を比較して見てください
+\item 提出は sort.py としてソースコードだけ提出
+\item ソースコードの先頭にコメント行で quick sort のオーダを入れておいてください (option)
+    \end{itemize}
+  \end{block}
+  \begin{center}
+\includegraphics[scale=0.6]{./progs/sort.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{Quiz 3 の hint}
+  \begin{itemize}
+\scriptsize
+\item Basic step: 異なる値がないときには終了
+\item Recursive step:
+    \begin{enumerate}
+\scriptsize
+\item 中間付近の値 pivot を選ぶ
+\item pivot より小さい値を左側に，大きい値を右側に集める
+\item 左側，右側でそれぞれソートする
+    \end{enumerate}
+  \end{itemize}
+  \begin{center}
+\includegraphics[scale=0.3]{./Figure/quick_sort.pdf}
+  \end{center}
+\end{frame}
+\section{Search Alogorithms}
+\begin{frame}
+\frametitle{Option Quiz}
+\framesubtitle{Search}
+  \begin{itemize}
+\item 余裕のある人は search algorithms のプログラムに挑戦してみてください
+\item Linear search と binary search のプログラムを作成し実行時間を比べる
+  \end{itemize}
+\end{frame}
+%%% Shortest Path Problem
+%
+%\input{elementaryCS-SPP}
+\section{計算の複雑さのクラス}
+\begin{frame}[shrink]
+\frametitle{計算の複雑さのクラス}
+  \begin{itemize}
+\item 計算量をオーダであらわすことをみてきました
+\item 計算量的に実行可能であるかという境界はどこにあるか，という疑問が出てくるのは自然なこと
+\item ひとつは多項式境界 (polinomial bound) でこのクラスを P (Polynominal time) と表し，
+\item もう一つを指数境界 (exponential bound) でこのクラスを NP (Non-deterministic Polynomial time) と表す．
+    \begin{itemize}
+\item このふたつは，決定性か非決定性かの違いや，
+\item 解を得るのに全数探索しなければならないかどうかの違いとして見て取れる
+    \end{itemize}
+\item 有名な問題が \(\mbox{P}\neq\mbox{NP}\) かどうかという問題
+  \end{itemize}
+\end{frame}

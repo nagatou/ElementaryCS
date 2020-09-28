@@ -1,0 +1,81 @@
+# Power
+import os, time, sys
+sys.setrecursionlimit(2000)
+
+def power(b,n):
+  if (n==0):
+    return(1)
+  else:
+    return(b * power(b, n-1))
+
+def power_cps(b,n):
+  def power_cps1(b,n,product):
+    if (n==0):
+      return(product)
+    else:
+      return(power_cps1(b,n-1,(b*product)))
+  return(power_cps1(b,n,1))
+
+def power_iter(b,n):
+  product=1
+  while (not (n==0)):
+    product = b*product
+    n = n-1
+  return(product)
+
+def square(x):
+  return(x*x)
+def is_even(n):
+  if (n%2==0):
+    return(True)
+  else:
+    return(False)
+def fast_power(b,n):
+  if (n==0):
+    return(1) 
+  else:
+    if (is_even(n)):
+      return(square(fast_power(b,n/2)))
+    else:
+      return((b*fast_power(b,n-1)))
+
+def fast_power_cps(b,n):
+  def fast_power_cps1(b,n,product):
+    print(product)
+    if (n==0):
+      return(product) 
+    else:
+      if (is_even(n)):
+        return(fast_power_cps1(square(b),n/2,product))
+      else:
+        return((fast_power_cps1(b,n-1,product*b)))
+  return(fast_power_cps1(b,n,1))
+
+def fast_power_iter(b,n):
+  product=1
+  while (n>0):
+    if (is_even(n)):
+      b = square(b)
+      n = n/2
+    else:
+      product = product * b
+      n = n-1
+  return(product) 
+
+
+# Test Harness
+os.system('clear')
+x = int(input("x(>0)?; (x^y) "))
+y = int(input("y(>0)? "))
+start_time = time.time()
+print("x to the power of y is {0},\n processing time(Fast_Iter): {1:10f} sec\n".format(fast_power_iter(x,y),time.time()-start_time))
+start_time = time.time()
+print("x to the power of y is {0},\n processing time(Fast CPS): {1:10f} sec\n".format(fast_power_cps(x,y),time.time()-start_time))
+start_time = time.time()
+print("x to the power of y is {0},\n processing time(Fast): {1:10f} sec\n".format(fast_power(x,y),time.time()-start_time))
+start_time = time.time()
+print("x to the power of y is {0},\n processing time(Iterate): {1:10f} sec\n".format(power_iter(x,y),time.time()-start_time))
+start_time = time.time()
+print("x to the power of y is {0},\n processing time(CPS): {1:10f} sec\n".format(power_cps(x,y),time.time()-start_time))
+start_time = time.time()
+print("x to the power of y is {0},\n processing time(Naive): {1:10f} sec\n".format(power(x,y),time.time()-start_time))

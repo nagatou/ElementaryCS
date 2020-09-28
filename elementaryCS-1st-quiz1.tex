@@ -1,0 +1,170 @@
+%
+%%% QUIZ 1
+%
+\section{課題 1 演習ガイド}
+\subsection{課題 1 の説明}
+\begin{frame}
+\frametitle{課題 1の説明}
+\framesubtitle{四則演算でアニメーション}
+  \begin{itemize}
+\item 課題: 四則演算でアニメーションを作成してください
+    \begin{itemize}
+\item 動きがあること
+\item 計算だけで動かすこと
+    \end{itemize}
+\item 提出物:
+    \begin{itemize}
+\item 作成したアニメーションプログラムのソースコード (anime.py)
+\item 作成したアニメーションプログラムの使い方の説明
+\item 作成したアニメーションプログラムの計算の仕組みの説明
+      \begin{itemize}
+\item 工夫した点も書くこと
+      \end{itemize}
+    \end{itemize}
+\item 採点者はソースコードを読まないと仮定して説明すること
+\item Python 言語の説明は不要
+\item 期限は来週のこの時間まで
+  \end{itemize}
+\end{frame}
+%\begin{frame}[fragile]
+%\frametitle{四則演算でアニメーションの例}
+%  \begin{itemize}
+%\item 10 個の自然数
+%\item 先頭は 1 にしないとずれる
+%  \end{itemize}
+%\tiny
+%  \begin{columns}
+%    \begin{column}{0.55\textwidth}
+%      \begin{lstlisting}[caption={smile.py},label=smile-data]
+%# smile.py
+%# 入力: 10個の自然数
+%# 出力: スマイルマーク
+%
+%d1 =1000000000000000000000000000
+%d2 =1000000000110000110000000000
+%d3 =1000000000110000110000000000
+%d4 =1000000000000000000000000000
+%d5 =1000001100000000000011000000
+%d6 =1000000110000000000110000000
+%d7 =1000000011000000001100000000
+%d8 =1000000000111111110000000000
+%d9 =1000000000000000000000000000
+%d10=1000000000000000000000000000
+%      \end{lstlisting}
+%    \end{column}
+%    \begin{column}{0.4\textwidth}
+%      \begin{lstlisting}[caption={smile.py},label=smile-body,firstnumber=last]
+%t = 0
+%while t < 15
+%  puts(t)
+%  puts(d1)
+%  puts(d2)
+%  puts(d3)
+%  puts(d4)
+%  puts(d5)
+%  puts(d6)
+%  puts(d7)
+%  puts(d8)
+%  puts(d9)
+%  puts(d10)
+%  puts()   # 空行を出力
+%  sleep(1) # 1秒休む
+%  t = t + 1
+%end
+%      \end{lstlisting}
+%    \end{column}
+%  \end{columns}
+%\end{frame}
+%\begin{frame}[fragile]
+%\frametitle{スマイルを動かしてみる}
+%\scriptsize
+%  \begin{itemize}
+%\item ここでいう動かすとはデータを計算で変化させていってそれを描画
+%\item 10 で割っているので一番右のけたが落ちていきます
+%  \end{itemize}
+%  \begin{lstlisting}[caption={smile2.py},label=smile-destroy]
+%# smile2.py
+%# 入力: 10個の自然数
+%# 出力: スマイルマークが，どうなるか？
+%...
+%while t < 29
+%...
+%  d1 = d1 / 10
+%  d2 = d2 / 10
+%  d3 = d3 / 10
+%  d4 = d4 / 10
+%  d5 = d5 / 10
+%  d6 = d6 / 10
+%  d7 = d7 / 10
+%  d8 = d8 / 10
+%  d9 = d9 / 10
+%  d10 = d10 / 10
+%
+%  t = t + 1
+%end
+%  \end{lstlisting}
+%\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{ひつじさんを動かしてみる}
+  \begin{itemize}
+\scriptsize
+\item 大きな数字を定義して
+\item 各桁をひとつの画素とみなす
+\item 各桁は 0\textendash 9 でこの違いで絵にする
+\item 14 個の自然数
+\item 先頭は 1 にしないとずれる
+\item 動かすときは桁をシフトさせて (ここでは 10 で割っている) 動かす
+  \end{itemize}
+  \begin{lstlisting}[caption={sheep.py (declaration)},label=sheep-data]
+################
+# pattern def. #
+################
+d0  = 1000000000000000000000000000000000000000000000000000000000
+d1  = 1000000000000000000000000011111111000000000000000000000000
+d2  = 1000000000000000000000001110000000110000000000000000000000
+d3  = 1000000011111111111110011000011000111111000000000000000000
+d4  = 1000001110000000000000001100111000110000110000000000000000
+d5  = 1000001100000000000000000111110011000100011000000000000000
+d6  = 1000001100000000000000000000000000000001111000000000000000
+d7  = 1000001100000000000000000000000000000111000000000000000000
+d8  = 1000001100000000000000000000000000011100000000000000000000
+d9  = 1000001100000000000000000000000000011000000000000000000000
+d10 = 1000001100000000000000000000000000111000000000000000000000
+d11 = 1000000011000110001111111000110001110000000000000000000000
+d12 = 1000000000111001110000000111001110000000000000000000000000
+d13 = 1000000000000000000000000000000000000000000000000000000000
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{ひつじさんを動かしてみる}
+  \begin{itemize}
+\scriptsize
+\item 動かすときは桁をシフトさせて (ここでは 10 で割っている) 動かす
+\item {\tt a0} を足しているのは絵がずれないようにするため
+  \end{itemize}
+  \begin{lstlisting}[caption={sheep.py (shift)},label=sheep-shift,firstnumber=last]
+      # shift #
+      a0 = d0
+
+      a1  = (a1 -  a0) // 10 + a0
+      a2  = (a2  - a0) // 10 + a0
+      a3  = (a3  - a0) // 10 + a0
+      a4  = (a4  - a0) // 10 + a0
+      a5  = (a5  - a0) // 10 + a0
+      a6  = (a6  - a0) // 10 + a0
+      a7  = (a7  - a0) // 10 + a0
+      a8  = (a8  - a0) // 10 + a0
+      a9  = (a9  - a0) // 10 + a0
+      a10 = (a10 - a0) // 10 + a0
+      a11 = (a11 - a0) // 10 + a0
+      a12 = (a12 - a0) // 10 + a0
+      a13 = (a13 - a0) // 10 + a0
+      a14 = (a14 - a0) // 10 + a0
+      a15 = (a15 - a0) // 10 + a0
+      a16 = (a16 - a0) // 10 + a0
+      a17 = (a17 - a0) // 10 + a0
+      a18 = (a18 - a0) // 10 + a0
+      a19 = (a19 - a0) // 10 + a0
+      a20 = (a20 - a0) // 10 + a0
+  \end{lstlisting}
+\end{frame}

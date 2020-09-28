@@ -1,0 +1,123 @@
+\section{数の表現}
+\begin{frame}[shrink]
+\frametitle{繰り返しや再帰によるその他の計算}
+  \begin{itemize}
+\item 繰り返しや再帰は自然数 $n$ に対応する解を求めるような感じ
+    \begin{itemize}
+\item 数列は $n$ 番目の数を求める: \(\alpha\colon N\rightarrow N\)
+\item ハノイの塔も $n$ 枚目の解を求める
+    \end{itemize}
+\item これを利用して関数の解を求める計算に利用する
+\item たとえば非線形方程式 \(f(x)=0\) の実根を求める
+\item \href{run:newton.command}{\beamerbutton{ニュートン法}}
+    \begin{itemize}
+\item \(\sqrt{a}\) を求めてみる
+\item \(f(x)=x^2-a\) として \(f(x)=0\) となる $x$ を求める
+\item \(k+1\) 番目の近似値 \(x_{k+1}\) を
+      \begin{displaymath}
+x_{k+1} = x_k-\frac{f(x_k)}{f'(x_k)} = \frac{1}{2}(x_k+\frac{a}{x_k})
+      \end{displaymath}
+で求める
+\item \(x_{k+1}\) と \(x_k\) が十分近くなったら停止
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\subsection{非負整数の表現}
+\begin{frame}[label=Top_Integer]
+\frametitle{非負整数のコンピュータ内での表現}
+  \begin{itemize}
+\item 10 進数から 2 進数への変換
+  \end{itemize}
+  \begin{center}
+   \begin{example}[10進$\Leftrightarrow$2進]
+   \begin{columns}[t]
+    \begin{column}{3cm}
+\infer[\mbox{High}]{0}{\infer{2)1\cdots 1}{\infer{2)2\cdots 0}{\infer{2)4\cdots 0}{\infer[\mbox{Low}]{2)9\cdots 1}{2)19\cdots 1}}}}}
+    \end{column}
+    \begin{column}{3cm}
+\infer{19}{\infer{1\times 2^4=16}{\infer{0\times 2^3=0}{\infer{0\times 2^2=0}{\infer{1\times 2^1=2}{1\times 2^0=1}}}}}
+    \end{column}
+   \end{columns}
+   \end{example}
+  \end{center}
+\end{frame}
+\subsection{負の数の表現}
+\begin{frame}[shrink]
+\frametitle{負の数の表現}
+  \begin{itemize}
+\item 負の数をあらわすには補数表現をもちいます
+\item それでは 2 の補数(2's complement) を求めてみましょう
+  \end{itemize}
+  \begin{block}{2 の補数表現}
+    \begin{enumerate}
+\item 2 進表記において各ビットを反転する
+\item それに 1 を足す
+    \end{enumerate}
+  \end{block}
+  \begin{center}
+    \begin{example}[-8$\sim$7 (2 進 4 桁) の 2 の補数表現]
+\((1000)_{(2)}\Rightarrow(1001)_{(2)}\Rightarrow(1010)_{(2)}\Rightarrow (1011)_{(2)}\Rightarrow (1100)_{(2)}
+\Rightarrow(1101)_{(2)}\Rightarrow(1110)_{(2)}\Rightarrow(1111)_{(2)}
+\Rightarrow(0000)_{(2)}\Rightarrow(0001)_{(2)}\Rightarrow(0010)_{(2)}\Rightarrow(0011)_{(2)}
+\Rightarrow(0100)_{(2)}\Rightarrow(0101)_{(2)}\Rightarrow(0110)_{(2)}\Rightarrow(0111)_{(2)}\)\\
+      \begin{itemize}
+\item Successor (1 足す) でつぎの数になるようになっている
+\item 最上位ビットがサインビットになっている
+\item circulation の実行
+      \end{itemize}
+    \end{example}
+  \end{center}
+\end{frame}
+\subsection{計算機内の計算}
+\begin{frame}[shrink]
+\frametitle{計算機内の計算}
+\framesubtitle{整数の減算}
+  \begin{itemize}
+\item 2 進 $n$ 桁の数 $a, b$ (\(A_k,B_k\in\{1,0\}\))
+    \begin{itemize}
+\item \(a\colon A_{n-1}A_{n-2}\cdots A_{1}A_{0}\)
+\item \(b\colon B_{n-1}B_{n-2}\cdots B_{1}B_{0}\)
+    \end{itemize}
+\item \(a, b\) はそれぞれ
+\[a=\sum_{k=0}^{n-1}2^{k}A_{k}\]
+\[b=\sum_{k=0}^{n-1}2^{k}B_{k}\]
+\item $b$ の各桁を反転させたものを \(\overline{B_{k}}\) として $b$ の補数 \(\overline{b}\) は
+\[\overline{b}=\sum_{k=0}^{n-1}2^{k}\overline{B_{k}}=\sum_{k=0}^{n-1}2^{k}(1-B_{k})=(2^n-1)-b\]
+  \end{itemize}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{計算機内の計算\textemdash Cont.}
+  \begin{itemize}
+\item \(\overline{b}=(2^n-1)-b\) より
+    \begin{eqnarray*}
+a-b&\Rightarrow& a-((2^n-1)-\overline{b})\\
+   &=&a+\overline{b}+1-2^n
+    \end{eqnarray*}
+\item 引き算は補数を足すことで表す
+\item \(\overline{b}+1\) は 2 の補数
+\item \(-2^n\) は最上位の桁上がりは無視
+  \end{itemize}
+  \begin{example}[引き算の例]
+    \begin{itemize}
+\item 4 桁の2進数と仮定して \(6-3\) と \(3-6\)
+    \end{itemize}
+    \begin{columns}[t]
+      \begin{column}{3.5cm}
+        \begin{tabular}{ccccc}
+&0&1&1&0\\
+$+$&1&1&0&1\\
+\hline
+&0&0&1&1\\
+        \end{tabular}
+      \end{column}
+      \begin{column}{3.5cm}
+        \begin{tabular}{ccccc}
+&0&0&1&1\\
+$+$&1&0&1&0\\
+\hline
+&1&1&0&1\\
+        \end{tabular}
+      \end{column}
+    \end{columns}
+  \end{example}
+\end{frame}

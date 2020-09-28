@@ -1,0 +1,211 @@
+% subject: コンピュータサイエンス第一期末試験（雛形）
+% date:    16/11/2
+% LaTeX2e: Japanese
+
+\documentclass[12pt]{article}
+\pagestyle{empty}
+\usepackage{ascmac}
+\usepackage[dvips]{epsfig}
+\usepackage{listings}
+
+% local.mac
+\lstset{language=,%
+   basicstyle={\ttfamily\scriptsize},%
+   lineskip=-0.5zw,%
+   commentstyle=\textit,%
+   classoffset=1,%
+   keywordstyle=\bfseries,%
+   breaklines=true,
+   frame=lines,%
+   framesep=5pt,%
+   showstringspaces=false,%
+   numbers=left,%
+   numbersep=3pt,%
+   stepnumber=1,%
+   numberstyle={\ttfamily\scriptsize},%
+%   numberstyle={\tiny},%
+   numberblanklines=true,
+   morekeywords={def, end, while, if, for, in, else, then, return},%
+   escapechar=\@,
+}%
+
+%%% STYLE PARAM.s (for A4) %%%
+\textwidth=16cm
+\textheight=240mm
+
+\topmargin=0mm
+\headsep=0cm
+\headheight=0cm
+\oddsidemargin=0cm
+\evensidemargin=0cm
+\marginparwidth=0cm
+
+\footnotesep=15pt
+%\footheight=1.5cm
+%\footskip=1.5cm
+
+\itemsep=0.1pt
+\parindent=11pt
+
+\def\baselinestretch{1.15}
+
+%%% LOCAL MACRO DEF.s %%%
+
+
+% Print control (skips)
+%\newcommand{\bigskip}{\vskip12pt}
+%\newcommand{\medskip}{\vskip6pt}
+%\newcommand{\smallskip}{\vskip3pt}
+\newcommand{\paragraphskip}{\vskip\topsep}
+
+% Itemization, etc
+\newcommand{\nitem}[1]{%
+\par\noindent\hangindent20pt%
+\hskip20pt\llap{#1~}}
+\newcommand{\nnitem}[1]{%
+\par\noindent\hangindent30pt%
+\hskip30pt\llap{#1~}}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+\begin{document}
+\noindent
+\hfill{\small 8.Feb.2017}
+
+\noindent
+\hfil
+{\large\bf
+コンピュータサイエンス第 2\textemdash 期末試験 CS4b\textemdash}
+\hfil
+
+\paragraphskip\noindent
+※答案用紙は各問ごとに 1 枚使用して書くこと．\\
+※答案用紙には各枚ごとに学籍番号と氏名を書くこと．
+
+
+\paragraphskip
+\nitem{\bf 問１．}（配点 10 点）\\
+つぎの問に答えよ．計算の過程も解答用紙に残すこと．
+\((n)_{m}\) は $n$ が $m$ 進表記であることを表すものとする．
+  \begin{enumerate}
+\item \((0.1)_{10}\) を 32 bits の浮動小数点数に変換せよ．符号に 1 bit，指数に 8 bits，仮数に 23 bits とする．
+ただし，規格に従って指数部は下駄をはかせること．
+\item \((5.005)_{10}+(1.00003)_{10}\) を 10 進で 5 桁まで記憶できるコンピュータで計算したときの丸め誤差を求めよ
+(2 進数に変換せず，10 進のままで考えてよい)．
+\item つぎの無限級数の和と第 n 項までの和の差の絶対値は第 n+1 項の絶対値より小さくなる． \(x=1.0\) として
+第 5 項で打ち切ったときの打ち切り誤差の絶対値の上限を求めよ．
+ここで \(n=0,1,\cdots\) とする．
+ \[\sin(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}\cdots+(-1)^{n}\frac{x^{2n+1}}{(2n+1)!}\cdots\]
+  \end{enumerate}
+
+\newpage
+\paragraphskip
+\nitem{\bf 問２．}（配点 10 点）\\
+プログラミング言語 Ruby で書かれたプログラムの一部を以下に示す．
+このプログラムについてつぎの問いに答えよ．
+  \begin{lstlisting}[name=wholemodel]
+def min_el(dis,rest)
+  tmp=rest.first
+  rest.each do |v|
+    if(dis[tmp]>dis[v])
+      tmp=v
+    end
+  end
+  return(tmp)
+end
+def min(a,b)
+  if(a<b)
+    return(a)
+  else
+    return(b)
+  end
+end 
+def dijkstra(start, destination, graph, p)
+  d=Array.new(28)
+  s=Array.new(28)
+  rest=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+  for i in 0..27
+    d[i]=graph[start][i]
+  end
+  s.push(start)
+  rest.delete(start)
+  n=rest.length
+  i=0
+  while i<n
+    w=min_el(d,rest)
+    s.push(w)
+    rest.delete(w)
+    rest.each do |v|
+      if(d[w]+graph[w][v]<d[v])
+        d[v]=d[w]+graph[w][v]
+        @\fbox{ ~~~~~~~ (1) ~~~~~~}@
+      end
+    end
+    i=i+1
+  end
+  return(p)
+end
+  \end{lstlisting}
+  \begin{enumerate}
+\item {\tt p} は最短経路を保持するための配列である．これをもちいて $\fbox{(1)}$ の中を完成させよ．
+\item {\tt rest.delete(e)} は配列 {\tt rest} から要素 {\tt e} を削除した配列を， 
+ {\tt rest.each do $|$v$|$} は配列 {\tt rest} の各要素 {\tt v} についての繰り返しを意味している．
+このとき，グラフのノード数 $n$ として 17 行-41 行までの時間計算量を求めよ．
+  \end{enumerate}
+
+\newpage
+\paragraphskip
+\nitem{\bf 問３．}（配点 10 点）\\
+プログラミング言語 Ruby で書かれたプログラムの一部を以下に示す．
+このプログラムについてつぎの問いに答えよ．
+  \begin{lstlisting}
+def eps_m ()
+  epsilon=1.0
+  old=0.0
+  prod=0.0
+  cnt=0
+  while (prod!=1.0)
+    old = epsilon
+    cnt=cnt+1
+    epsilon=epsilon/2.0
+    prod=epsilon+1.0
+  end
+  return(old)
+end
+#
+def f_iter (guess,n,eps,previous)
+  if is_enough(guess,eps,previous) then
+     return(guess)
+  else
+     return(sqrt_iter(improve(guess,n),n,eps,guess))
+  end
+end
+def improve (guess,n)
+  return((guess+(n/guess))/2.0)
+end
+def is_enough (guess,eps,previous)
+  return(abs(previous-guess)<(2.0*eps))
+end
+def abs (x)
+  if x<0 then
+     return(-x)
+  else
+     return(x)
+  end
+end
+def f1 (n,eps)
+  return(f_iter(1.0,n,(2*eps),0.0))
+end
+def f (n)
+  print(f1(n,eps_m()),"\n")
+end
+  \end{lstlisting}
+  \begin{enumerate}
+\item 漸化式で表せるものは自然に再帰プログラムに表せる．{\tt f\_iter()} を漸化式の形で示せ．
+\item {\tt is\_enough} で数列は収束したと判定している．このときの収束判定条件を示せ．
+\item {\tt eps\_m()} は何を求めている関数か述べよ．
+\item このプログラムを用いて {\tt f(2.0)} を計算したときの各繰り返しでの {\tt guess} の値を示せ．
+ただし， 10 進表記で 9 桁まで記憶できると仮定する．
+\item 自然数 $n$ に対して，{\tt f(}$n${\tt)} は，どのような関数か述べよ．
+  \end{enumerate}
+
+\end{document}

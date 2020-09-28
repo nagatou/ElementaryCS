@@ -1,0 +1,85 @@
+%
+%%% HOMEWORK 2,3
+%
+\section{宿題 2, 3}
+\begin{frame}[containsverbatim]
+\frametitle{準備}
+  \begin{enumerate}
+\scriptsize
+\item 前回の宿題を実際に動かしてみます
+\item Terminal を起動
+\item > mkdir CShomework として宿題用ディレクトリを作成
+\item abcPrint-skeleton.rb と max-skeleton.rb を宿題用ディレクトリにダウンロード
+\item > cp abcPrint-skeleton.py abcPrint.py
+\item > cp max-skeleton.py max.py とコピーして
+\item 前回の宿題 2, 3 を完成させて実行してみる
+  \end{enumerate}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{itembox}{宿題 2 の実行方法}
+\scriptsize
+> python3 max.py\\
+numbers? -3 8 19 -4\\
+19 2
+      \end{itembox}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{itembox}{宿題 3 の実行方法}
+\scriptsize
+> python3 abcPrint.py\\
+strings? Ice\%cream\\
+c\\
+e\\
+c\\
+r\\
+e\\
+a\\
+m
+      \end{itembox}
+    \end{column}
+  \end{columns}
+\end{frame}
+%
+%%% QUIZ 2
+%
+\section{課題 2 演習ガイド}
+\subsection{課題 2}
+\begin{frame}[label=quiz2]
+\frametitle{課題 2 テーマ}
+  \begin{itemize}
+\item 前回までにみたように配列は複数のデータを統一的に扱う方法を提供した
+\item それ以外の例もこの課題で見ていくことにします
+  \end{itemize}
+  \begin{block}{やってほしいこと}
+    \begin{itemize}
+\item 今，整数の組で表わされている有理数を小数表記に変換するプログラムを作ろうとしているとします
+\item 配列を使って循環小数になっても停止するようにプログラム junkan.py を改良してください
+\item ただし，分子は 1 に固定する
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}[containsverbatim, shrink]
+\frametitle{junkan.py}
+  \begin{itemize}
+\item まずは junkan.py を実行してみてください
+\item あまりは 0 から d-1 の有限の範囲なので，10 倍して割るを繰り返しているとどこかで同じあまりが出てくるはず
+  \end{itemize}
+  \begin{lstlisting}[caption={junkan.py},label=lst:rational]
+# junkan.py
+# 配列の使い方の練習（循環小数を循環するまで求める）
+# 入力: d
+# 出力: 1/d の各桁を循環するまで求める
+d = int(input("1/d d(>=2)? "))
+print("1/",d," を求めます")
+x = 1
+print("0.", end=""),
+while (True):
+  x = x * 10
+  q = x // d
+  x = x % d
+  print(q, end="")
+  if x == 0:
+    break
+print("")
+  \end{lstlisting}
+\end{frame}

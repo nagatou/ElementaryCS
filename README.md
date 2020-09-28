@@ -1,0 +1,2 @@
+# ElementaryCS
+# Copyright Naoyuki Nagatou.

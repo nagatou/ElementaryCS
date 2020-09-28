@@ -1,0 +1,182 @@
+% subject: コンピュータサイエンス第一期末試験（雛形）
+% date:    16/11/2
+% LaTeX2e: Japanese
+
+\documentclass[12pt]{article}
+\pagestyle{empty}
+\usepackage{ascmac}
+\usepackage[dvips]{epsfig}
+\usepackage{listings}
+
+% local.mac
+\lstset{language=,%
+   basicstyle={\ttfamily\scriptsize},%
+   lineskip=-0.5zw,%
+   commentstyle=\textit,%
+   classoffset=1,%
+   keywordstyle=\bfseries,%
+   breaklines=true,
+   frame=lines,%
+   framesep=5pt,%
+   showstringspaces=false,%
+   numbers=left,%
+   numbersep=3pt,%
+   stepnumber=1,%
+   numberstyle={\ttfamily\scriptsize},%
+%   numberstyle={\tiny},%
+   numberblanklines=true,
+   morekeywords={def, end, while, if, for, in, else, then, return},%
+   escapechar=\@,
+}%
+
+%%% STYLE PARAM.s (for A4) %%%
+\textwidth=16cm
+\textheight=240mm
+
+\topmargin=0mm
+\headsep=0cm
+\headheight=0cm
+\oddsidemargin=0cm
+\evensidemargin=0cm
+\marginparwidth=0cm
+
+\footnotesep=15pt
+%\footheight=1.5cm
+%\footskip=1.5cm
+
+\itemsep=0.1pt
+\parindent=11pt
+
+\def\baselinestretch{1.15}
+
+%%% LOCAL MACRO DEF.s %%%
+
+
+% Print control (skips)
+%\newcommand{\bigskip}{\vskip12pt}
+%\newcommand{\medskip}{\vskip6pt}
+%\newcommand{\smallskip}{\vskip3pt}
+\newcommand{\paragraphskip}{\vskip\topsep}
+
+% Itemization, etc
+\newcommand{\nitem}[1]{%
+\par\noindent\hangindent20pt%
+\hskip20pt\llap{#1~}}
+\newcommand{\nnitem}[1]{%
+\par\noindent\hangindent30pt%
+\hskip30pt\llap{#1~}}
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+
+\begin{document}
+\noindent
+\hfill{\small 31.Jan.2018}
+
+\noindent
+\hfil
+{\large\bf
+コンピュータサイエンス第 2\textemdash 期末試験 CS4b\textemdash}
+\hfil
+
+\paragraphskip\noindent
+※答案用紙は各問ごとに 1 枚使用して書くこと．\\
+※答案用紙には各枚ごとに学籍番号と氏名を書くこと．
+
+
+\paragraphskip
+\nitem{\bf 問１．}（配点 15 点）\\
+つぎの各問に答えよ．計算の過程も解答用紙に残すこと．
+\((n)_{m}\) は $n$ が $m$ 進表記であることを表すものとする．
+  \begin{enumerate}
+\item \((0.1)_{10}\) を 2 進表記に変換せよ．
+\label{q:first}
+\item (\ref{q:first}) で求めた数を 32 bits の浮動小数点数で表わせ．
+ただし，符号に 1 bit，指数に 8 bits，仮数に 23 bits とする．
+IEEE 754 に従って指数部は下駄をはかせること．
+\label{q:secound}
+\item (\ref{q:secound}) で求めた浮動小数点数は誤差を含む．この誤差を何というか．
+  \end{enumerate}
+
+\newpage
+\paragraphskip
+\nitem{\bf 問２．}（配点 15 点）\\
+以下はプログラミング言語 Ruby で書かれたプログラムである．
+関数 A, B, C は同じ計算を行う．
+このプログラムについてつぎの問いに答えよ．
+  \begin{lstlisting}[name=wholemodel]
+require 'benchmark'
+######
+# A
+######
+def A(b,n)
+  if (n==0)
+    return 1
+  else
+    return(b * A(b, n-1))
+  end
+end
+######
+# B
+######
+def B_1(b,n,product)
+  if (n==0)
+    return product
+  else
+    return(B_1(b,n-1,(b*product)))
+  end
+end
+def B(b,n)
+  return B_1(b,n,1)
+end
+######
+# C
+######
+def even?(n)
+  if (n%2==0)
+    return true
+  else
+    return false
+  end
+end
+def square(x)
+  return (x*x)
+end
+def C(b,n)
+  if (n==1) # スライドと少し違うので注意
+    return b 
+  else
+    if (even?(n))
+      return square(C(b,n/2))
+    else
+      return (b*C(b,n-1))
+    end
+  end
+end
+
+# Test Harness
+x = gets().to_i
+y = gets().to_i
+Benchmark.bm(8) do |tmp|
+  tmp.report(" "){
+    puts(A(x,y))
+  }
+end
+Benchmark.bm(8) do |tmp|
+  tmp.report(" "){
+    puts(B(x,y))
+  }
+end
+Benchmark.bm(8) do |tmp|
+  tmp.report(" "){
+    puts(C(x,y))
+  }
+end
+  \end{lstlisting}
+  \begin{enumerate}
+\item 何を計算するプログラムか答えよ．
+\item B と C について \(\tt{x}=2, \tt{y}=998\) のときの掛け算の回数を求めよ．
+\item \(\tt{y}=n\) として，A, B, C の各関数について，演算回数の増減を Big-O 記法で示せ．
+\item A, B には再帰的な計算過程に違いがある．この違いについて説明せよ．
+  \end{enumerate}
+
+
+\end{document}

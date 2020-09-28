@@ -1,0 +1,33 @@
+#!/bin/sh
+#                         Copyright (C) 2016 Naoyuki Nagatou
+
+DIR=./Quiz1
+IDs=`find ${DIR} -maxdepth 1 -type d`
+PROG=anime.rb
+
+for id in ${IDs}
+do
+  if test -d $id ; then
+    if test -f $id/${PROG} ; then 
+      ruby $id/${PROG}
+      echo $id >> success
+    else
+      if test -f $id/${PROG}.rb ; then 
+        cp -f $id/${PROG}.rb $id/temp.rb
+        ruby $id/temp.rb $1 $2
+        rm -f $id/temp.rb
+        echo $id >> success
+      else
+        if find $id *.rb >/dev/null ; then 
+          for other in `find $id *.rb`
+          ruby $id/$other $1 $2
+          echo $id >> success
+        else
+          echo "does not exist" $id >> failure
+        fi
+      fi
+    fi
+  else
+    echo "does not exist" $id >> failure
+  fi
+done

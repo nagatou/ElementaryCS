@@ -1,0 +1,9 @@
+#ss="abc"
+#aa=ss.unpack("H*")
+#rr=aa.pack("H*")
+#p ss
+#p aa
+#p rr
+#p "abc".unpack("H*")
+p "Ice%cream".unpack("H*")
+p [0x49,0x63,0x65,0x25,0x63,0x72,0x65,0x61,0x6d].pack("C*")
