@@ -1,5 +1,4 @@
-%\documentclass[xcolor=dvipsnames]{beamer}
-\documentclass[dvipdfmx]{beamer}
+\documentclass[final,c]{beamer}
 \mode<presentation>
 {
   \usetheme{PaloAlto}
@@ -8,23 +7,23 @@
 }
 \setbeamertemplate{nabigation symbols}{}
 
-\usepackage[latin1]{inputenc}
+\usepackage{luatexja}
+\usepackage{luatexja-otf}
+\usepackage[match]{luatexja-fontspec}
+\usepackage[hiragino-pron,deluxe,expert]{luatexja-preset}
+
 \usepackage{times}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{ascmac}
-\usepackage{jtygm}
 \usepackage{amssymb,amsmath}
 \usepackage{txfonts}
 \usepackage{proof}
 \usepackage{graphicx}
-%\usepackage[driverfallback=dvipdfmx]{hyperref}
-\usepackage{pxjahyper}
-%\usepackage{url}
 \usepackage{multimedia}
 \usepackage{filecontents}
 \usepackage{bxdpx-beamer}
-\usepackage{listings,jlisting}
+\usepackage{listings}
 
 %\renewcommand{\ttdefault}{lmtl}
 \newcommand{\jpy}{{{\ooalign{Y\crcr\hss=\hss}}}}
@@ -52,7 +51,7 @@
 \title[elementaryCS-1st]{コンピュータサイエンス入門第一}
 \date[3rd quarter]{3rd quarter}
 \author[Naoyuki Nagatou]{永藤 直行}
-%\institute[PRESYSTEMS Inc.]{PRESYSTEMS Inc.}
+\institute[TITECH]{東京工業大学 情報理工学院}
 
 \subject{Lecture}
 
@@ -78,6 +77,20 @@
 %\beamerdefaultoverlayspecification{<+->}
 
 \begin{document}
+\begin{frame}
+\frametitle{新型コロナウィルスへの対応}
+  \begin{itemize}
+\item 講義は第一，第二ともオンラインで行います
+\item 何らかの理由で講義に参加できなかったとしても，心配しないでください
+    \begin{itemize}
+\item ネットワークや機器の不調
+\item 自身が感染，などなど
+    \end{itemize}
+\item 何某か対応するので焦らずゆっくり落ち着いて参加してください
+\item PC の記憶領域をかなり圧迫するので講義の録画は各自でする必要はありません
+\item こちらから動画視聴ための URL を別途お送りします．
+  \end{itemize}
+\end{frame}
 \frame{\titlepage}
 %
 %%% PROLOGUE
@@ -112,42 +125,42 @@
 %
 %%% ARRAY
 %
-\part{配列}
-\frame{
-  \frametitle{配列}
-\scriptsize
-  \tableofcontents[part=4]
-}
-\input{elementaryCS-1st-array}
+%\part{配列}
+%\frame{
+%  \frametitle{配列}
+%\scriptsize
+%  \tableofcontents[part=4]
+%}
+%\input{elementaryCS-1st-array}
 %
 %%% QUIZ 2
 %
-\part{CS 第 1\textemdash 課題 2}
-\frame{
-  \frametitle{CS 第 1 \textemdash 課題 2}
-\scriptsize
-  \tableofcontents[part=5]
-}
-\input{elementaryCS-1st-quiz2}
+%\part{CS 第 1\textemdash 課題 2}
+%\frame{
+%  \frametitle{CS 第 1 \textemdash 課題 2}
+%\scriptsize
+%  \tableofcontents[part=5]
+%}
+%\input{elementaryCS-1st-quiz2}
 %%
 %%%% SUBROUTINE and FUNCTION
 %%
-\part{関数とサブルーチン}
-\frame{
-  \frametitle{関数とサブルーチン}
-\scriptsize
-  \tableofcontents[part=6]
-}
-\input{elementaryCS-1st-function}
+%\part{関数とサブルーチン}
+%\frame{
+%  \frametitle{関数とサブルーチン}
+%\scriptsize
+%  \tableofcontents[part=6]
+%}
+%\input{elementaryCS-1st-function}
 %
 %%% QUIZ 3
 %
-\part{CS 第 1\textemdash 課題 3}
-\frame{
-  \frametitle{CS 第 1 \textemdash 課題 3}
-\scriptsize
-  \tableofcontents[part=7]
-}
-\input{elementaryCS-1st-quiz3}
+%\part{CS 第 1\textemdash 課題 3}
+%\frame{
+%  \frametitle{CS 第 1 \textemdash 課題 3}
+%\scriptsize
+%  \tableofcontents[part=7]
+%}
+%\input{elementaryCS-1st-quiz3}
 
 \end{document}

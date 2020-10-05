@@ -32,7 +32,7 @@
 \item コンピュータに載せるには
     \begin{itemize}
 \item 対象をデータとして表すこと
-\item 処理を基本演算の組み合わせてで表すこと
+\item 処理を基本演算の組み合わせで表すこと
     \end{itemize}
 \item 処理とはコンピュータのなかの抽象的な世界に存在して
 \item データというもう一つの抽象的な存在を操作する
@@ -261,53 +261,53 @@
 %
 %%% STRINGS
 %
-\subsection{文字データ}
-\begin{frame}
-\frametitle{文字データの表現}
-  \begin{itemize}
-\item コンピュータは数値だけでなく文字も処理することができる
-\item 文字をコード化して処理する
-\item 詳細は第 3 回目で
-  \end{itemize}
-\end{frame}
+%\subsection{文字データ}
+%\begin{frame}
+%\frametitle{文字データの表現}
+%  \begin{itemize}
+%\item コンピュータは数値だけでなく文字も処理することができる
+%\item 文字をコード化して処理する
+%\item 詳細は第 3 回目で
+%  \end{itemize}
+%\end{frame}
 %
 %%% SOUND and MOVIE
 %
-\subsection{画像と音}
-\begin{frame}
-\frametitle{画像}
-  \begin{itemize}
-\item つぎは画像データについて見てみます
-\item 画像も二進列で表せます
-\item ビットマップというファイル形式
-    \begin{itemize}
-\item マス目にわけ，白い部分を 1 ，黒い部分を 0 としてビットの列を作る
-    \end{itemize}
-  \end{itemize}
-\centering
-\includegraphics[scale=0.4]{./Figure/TITECH-logo.jpg}
-\end{frame}
-\begin{frame}
-\frametitle{音}
-  \begin{itemize}
-\item つぎは音データ
-\item 波の符号化
-    \begin{itemize}
-\item (a) は波形
-\item (b) は標本化
-\item (c) はそれぞれの標本値
-\item この標本値を順番にならべた二進列
-    \end{itemize}
-\item 音符の符号化 (Standard MIDI)
-    \begin{itemize}
-\item 音符やテンポを符号化
-\item \movie[once,externalviewer]{\beamerbutton{.mid}}{./Figure/Nodame.mid}
-    \end{itemize}
-  \end{itemize}
-  \begin{center}
-\includegraphics[scale=0.4]{./Figure/wave.jpg}
-  \end{center}
-\end{frame}
+%\subsection{画像と音}
+%\begin{frame}
+%\frametitle{画像}
+%  \begin{itemize}
+%\item つぎは画像データについて見てみます
+%\item 画像も二進列で表せます
+%\item ビットマップというファイル形式
+%    \begin{itemize}
+%\item マス目にわけ，白い部分を 1 ，黒い部分を 0 としてビットの列を作る
+%    \end{itemize}
+%  \end{itemize}
+%\centering
+%\includegraphics[scale=0.4]{./Figure/TITECH-logo.jpg}
+%\end{frame}
+%\begin{frame}
+%\frametitle{音}
+%  \begin{itemize}
+%\item つぎは音データ
+%\item 波の符号化
+%    \begin{itemize}
+%\item (a) は波形
+%\item (b) は標本化
+%\item (c) はそれぞれの標本値
+%\item この標本値を順番にならべた二進列
+%    \end{itemize}
+%\item 音符の符号化 (Standard MIDI)
+%    \begin{itemize}
+%\item 音符やテンポを符号化
+%\item \movie[once,externalviewer]{\beamerbutton{.mid}}{./Figure/Nodame.mid}
+%    \end{itemize}
+%  \end{itemize}
+%  \begin{center}
+%\includegraphics[scale=0.4]{./Figure/wave.jpg}
+%  \end{center}
+%\end{frame}
 %
 %%% COMPUTER
 %
@@ -445,7 +445,7 @@ print(seki)                 # seki の値を出力
 \begin{frame}[fragile]
 \frametitle{Python における基本式}
   \begin{itemize}
-\item 式の基本要素は 自然数，整数，実数，虚数などがある
+\item 式の基本要素は 自然数，整数，実数などがある
     \begin{itemize}
 \item 自然数の例: \(286, 386, 486\) 
 \item 講義では自然数だけあつかうので注意
@@ -527,12 +527,12 @@ print(seki)                 # seki の値を出力
 %%%
 \subsection{宿題 1 を動かしてみる}
 \begin{frame}[fragile,shrink]
-\frametitle{$\pm 1$だけで四則演算を作る}
-\framesubtitle{宿題 1}
+\frametitle{宿題 1 を動かしてみる}
+\framesubtitle{宿題 1 \textendash $\pm 1$だけで四則演算を作る}
   \begin{itemize}
-\item 宿題 1 を完成して実行してみてください
-\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} に div-skeleton.py と sub-skeleton.py があるはずなのでそれを完成させてくだい
-\item 次回講義までに OCW-i か紙で提出
+\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} に div-skeleton.py と sub-skeleton.py があるはずなのでそれを完成させて実行する
+\item OCW-i から提出
+\item ファイル名に日本語文字は使用しないでください
   \end{itemize}
   \begin{columns}
     \begin{column}{0.45\textwidth}
@@ -570,130 +570,6 @@ print(amari)
   \end{columns}
 \end{frame}
 %
-%%% TERMINAL
+%%% PROGRAMMING ENVIRONMENT
 %
-\subsection{Terminal について}
-\begin{frame}[containsverbatim]
-\frametitle{Terminal の起動}
-  \begin{itemize}
-\item Launchpad からターミナルのアイコンをクリックして起動
-\item これで shell が起動しファイル，ディレクトリの操作とプログラムの起動，終了ができます
-  \end{itemize}
-  \begin{center}
-\includegraphics[scale=0.5]{./Figure/elementaryCS-figTermIcon.jpg}
-  \end{center}
-\end{frame}
-\begin{frame}
-\frametitle{ファイルに対する操作}
-\scriptsize
-  \begin{tabular}{l|l|lp{4cm}}
-操作 & コマンド & 実行例 & \\\hline
-生成 & touch & touch $name$ & 指定した名前で空のファイルを生成\\
-名前変更 & mv & mv $oldfile\ newfile$ & $oldfile$ という名前を $newfile$ という名前に変更\\
-複製 & cp & cp $srcfile\ dstfile$ & $srcfile$ を複製して $dstfile$ という名前をつける\\
-表示 & less & less $name$ & $name$ の内容を表示\\
-消去 & rm & rm $name$ & 指定した名前のファイルを消去
-  \end{tabular}
-\end{frame}
-%\begin{frame}
-%\frametitle{ディレクトリ}
-%  \begin{itemize}
-%\scriptsize
-%\item ホームディレクトリはユーザアカウント毎にひとつ作られます
-%\item ホームの下に適当なディレクトリを作成して管理してください
-%\item 増えてきたら幾つかのグループに分けて管理すると便利です
-%\item カレントディレクトリを目的のファイルがあるディレクトリまで移動して作業してください
-%  \end{itemize}
-%  \begin{center}
-%\includegraphics[scale=.3]{../Figure/IL-figPath.eps}
-%  \end{center}
-%\end{frame}
-\begin{frame}
-\frametitle{ディレクトリに対する操作}
-\scriptsize
-  \begin{tabular}{l|l|lp{4cm}}
-操作 & コマンド & 実行例 & \\\hline
-作成 & mkdir & mkdir $name$ & 指定した名前で空のディレクトリを生成\\
-一覧 & ls & ls $dir$ & $dir$ の中身一覧を表示\\
-格納 & mv & mv $file\ dir$ & $file$ を消去して $dir$ に格納\\
-     & cp & cp $file\ dir$ & $file$ を複製して $dir$ に格納\\
-名称変更 & mv & mv $olddir\ newdir$ & $olddir$ を $newdir$ に変更\\
-消去 & rmdir & rmdir $dir$ & 空の時には $dir$ を消去\\
-     & rm    & rm -r $dir$ & 中身ごと $dir$ を消去\\
-移動 & cd & cd $dir$ & 作業ディレクトリを移動\\
-     & pushd & pushd $dir$ & 作業ディレクトリを移動して現在のディレクトリを保存\\
-     & popd & popd $dir$ & 作業ディレクトリを保存したディレクトリに移動\\
-表示 & pwd & pwd & 作業ディレクトリを表示\\
-     & dirs & dirs & 保存したディレクトリを表示\\
-  \end{tabular}
-\end{frame}
-\begin{frame}[fragile]
-\frametitle{ターミナルをつかってみよう}
-  \begin{itemize}
-\item ターミナルを使って課題の準備をします
-\item Terminal を起動
-\item コマンドプロンプト \verb|>| が表示されたらホームディレクトリの下に適当なディレクトリ (ここでは CS1$\slash$kadai) を作成し
-\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} から必要なファイルを作成したディレクトリにダウンロード
-  \end{itemize}
-  \begin{itembox}{課題準備}
-\scriptsize
-    \begin{verbatim}
-> mkdir CS1/kadai # 課題用のディレクトリを作成
-> cd CS1/kadai    # 課題用ディレクトリに移動
-> cp sub-skeleton.py sub.py # 課題をコピー
-    \end{verbatim}
-  \end{itembox}
-\end{frame}
-%
-%%% EDIT SROURCE FILE
-%
-\subsection{ソースファイルの編集}
-\begin{frame}[containsverbatim]
-\frametitle{ソースファイルの編集}
-  \begin{itemize}
-\item テキストエディタと呼ばれるソフトウェアを使って編集
-    \begin{itemize}
-\item vim, emacs など
-    \end{itemize}
-\item ターミナルからコマンド入力して起動
-  \end{itemize}
-  \begin{itembox}{editor の起動}
-\scriptsize
-    \begin{verbatim}
-> open -a Macvim sub.py
-あるいは
-> open -a Emacs sub.py
-    \end{verbatim}
-  \end{itembox}
-\end{frame}
-%
-%%% Run a Program
-%
-\subsection{プログラムを走らせてみる}
-\begin{frame}[containsverbatim]
-\frametitle{プログラムを走らせてみる}
-  \begin{itemize}
-\item コマンドプロンプト \verb|>| が表示されたら phtyon3 とソースファイル名と入力して return 
-\item Python プログラムが実行されます
-  \end{itemize}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \begin{itembox}{\footnotesize Python の起動}
-\scriptsize
-        \begin{verbatim}
-> python3 sub.py
-        \end{verbatim}
-      \end{itembox}
-    \end{column}
-%    \begin{column}{0.5\textwidth}
-%      \begin{itembox}{\footnotesize Ruby の起動と終了}
-%\scriptsize
-%        \begin{verbatim}
-%> irb
-%>> load smile.rb
-%>> quit
-%        \end{verbatim}
-%      \end{itembox}
-%    \end{column}
-  \end{columns}
-\end{frame}
+\input{IL-proenv}
