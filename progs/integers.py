@@ -12,8 +12,8 @@ import os
 def succ(num):
   return(num+1)
 def pred (x):
-  if (x==0):
-    return(0)
+  if (x<=0):
+    raise ValueError("OUT OF THE SET NAT")
   else:
     return(x-1)
 def add_on_nat(a,b):
@@ -27,7 +27,7 @@ def mult_on_nat(a,b):
   else:
     return(add_on_nat(add_on_nat(0,a),mult_on_nat(a,pred(b))))
 def comp_on_nat (a,b):
-  if (b==0):
+  if ((b==0) and (a>=0)):
     return(0) # if a > b then set to zero
   else:
     if ((a==0) and (b>=0)):
@@ -80,7 +80,7 @@ def comp_on_int (za,zb):
 os.system('clear')
 z = int(input("integer? "))
 zz = int(input("integer? "))
-print(pair2num(add_on_int(num2pair(z),num2pair(zz))))
-print(pair2num(mult_on_int(num2pair(z),num2pair(zz))))
-print(pair2num(sub_on_int(num2pair(z),num2pair(zz))))
-print(comp_on_int(num2pair(z),num2pair(zz)))
+print('add({0},{1})={2}'.format(z,zz,pair2num(add_on_int(num2pair(z),num2pair(zz)))))
+print('mult({0},{1})={2}'.format(z,zz,pair2num(mult_on_int(num2pair(z),num2pair(zz)))))
+print('sub({0},{1})={2}'.format(z,zz,pair2num(sub_on_int(num2pair(z),num2pair(zz)))))
+print('comp({0},{1})={2}'.format(z,zz,comp_on_int(num2pair(z),num2pair(zz))))
