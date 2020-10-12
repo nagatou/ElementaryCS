@@ -6,7 +6,10 @@ import time
 def succ (x):
   return(x+1)
 def pred (x):
-  return(x-1)
+  if (x==0):
+    raise ValueError("OUT OF THE SET NAT")
+  else:
+    return(x-1)
 def add (a,b):
   if (a==0):
     return(b)
@@ -28,6 +31,11 @@ def sub (a,b):
     return(a)
   else:
     return(pred(sub(a,pred(b))))
+def sub_iter (a,b):
+  if (b==0):
+    return(a)
+  else:
+    return(sub_iter(pred(a),pred(b)))
 # Multiplication
 #
 def mult (a,b):
@@ -78,6 +86,19 @@ def remainder (a,b):
     else:
       return(0)
 
+# Comparision
+#
+# Set the sign bit to 1, else zero.
+def comp (a,b):
+  if (b==0):
+    return(0)
+  else:
+    if ((a==0) and (b>=0)):
+      return(1)
+    else:
+      return(comp(pred(a),pred(b)))
+    
+
 # Test Harness
 os.system('clear')
 x = int(input("x(>=0)? "))
@@ -86,7 +107,8 @@ y = int(input("y(>=0)? "))
 #print(add_iter(x,y))
 #print(mult(x,y))
 #print(mult_iter(x,y))
-#print(sub(x,y))
-print(quotient(x,y))
+#print(sub_iter(x,y))
+#print(quotient(x,y))
 #print(quotient_iter(x,y))
 #print(remainder(x,y))
+print(comp(x,y))
