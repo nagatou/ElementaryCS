@@ -112,6 +112,7 @@ print(s)
 \item 最大値=max\((a_1, a_2,\cdots,a_n)\)
 \item {\tt for j in range(0,n)} は {\tt j} を 0 から n-1 まで繰り返すという意味
   \end{itemize}
+\vspace{-1em}
   \begin{columns}
     \begin{column}{0.6\textwidth}
       \begin{lstlisting}[caption={max.py},label=lst:max]
@@ -120,7 +121,7 @@ print(s)
 # 出力: 最大値
 array = list(map(int,input("numbers? ").split()))
 if not array:  # array が空の場合
-	raise ValueError("...")  # 入力エラー
+    raise ValueError("...")  # 入力エラー
 # 以下が計算部分
 max_value = array[0]      # array[0] を一時的に最大値に
 max_index = 0
@@ -221,20 +222,22 @@ numbers? -3 8 19 -4\\
 \item 0 番目から順番にインデックスで参照できる
   \end{itemize}
   \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.55\textwidth}
       \begin{lstlisting}[caption={stringPrint.py},label=lst:strprt]
 # stringPrint.py
 # 文字列処理の練習プログラム
 # 入力: 文字列
 # 出力: 文字列の文字を１行１文字で出す
+import os
 
+os.system('clear')
 str = (input("strings? ")).encode("ascii")
 print(str)
 for k in range(0,len(str)):
    print(chr(str[k]), hex(str[k]))
       \end{lstlisting}
     \end{column}
-    \begin{column}{0.4\textwidth}
+    \begin{column}{0.35\textwidth}
       \begin{itembox}{出力例}
 \scriptsize
 > python3 stringPrint.py\\

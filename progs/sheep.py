@@ -22,7 +22,7 @@ sheep = [1000000000000000000000000000000000000000000000000000000000,\
 base = 1000000000000000000000000000000000000000000000000000000000
 
 for ii in range(0,16):
-   os.system("cls")
+   os.system("clear")
    for i in range(0,14):
       print(sheep[i])
    for i in range(0,14):
