@@ -4,7 +4,7 @@ import os
 ALPHABET = range(ord('a'), ord('z')+1) # 英字小文字アルファベット
 Tops = 3
 
-def dec(k, c): # form hukugo.py
+def dec(k, c): # from hukugo.py
   global ALPHABET
   cipher = list(c.encode("ascii"))
   plain = cipher.copy()
@@ -83,6 +83,8 @@ def cipher_breaking (ciphertext):
 ### TEST harness
 #
 os.system("clear")
-plaintext = cipher_breaking(input())
+with open('./ciphertext.txt','rt') as file: # 暗号文を読み込む
+    ciphertext= file.readline()
+plaintext = cipher_breaking(ciphertext)
 for i in range(Tops):
   print(plaintext[i]+"\n")

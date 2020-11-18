@@ -50,4 +50,6 @@ def cipher_breaking (ciphertext):
 
 ### TEST HARNESS
 os.system("clear")
-print(cipher_breaking(input()))
+with open('./ciphertext.txt','rt') as file: # 暗号文を読み込む
+    ciphertext= file.readline()
+print(cipher_breaking(ciphertext))

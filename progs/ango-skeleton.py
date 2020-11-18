@@ -22,5 +22,7 @@ def enc(k, m):
 
 # TEST HARNESS
 os.system("clear")
-angobun = enc(K,input()) # 暗号文に変換
-print(angobun)           # 暗号文を出力
+with open('./plaintext.txt','rt') as file: # 平文を読み込む
+    plaintext= file.readline()
+angobun = enc(K,plaintext)                 # 暗号文に変換
+print(angobun)                             # 暗号文を出力

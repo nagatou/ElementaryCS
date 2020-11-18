@@ -109,6 +109,18 @@ def difference(seta,setb,result):
     \end{column}
   \end{columns}
 \end{frame}
+\begin{frame}[fragile]
+\frametitle{仮引数と実引数}
+  \begin{itemize}
+\item 関数は仮引数というものをもつ
+\item 複数の関数が同じ名前の仮引数を持っていても良い
+\item 仮引数は関数の本体で有効である
+\item 関数を呼び出したときの値に束縛 (bind) されて，関数の本体では呼び出し時の値に置き換えられる
+\item 呼び出し時の値を実引数という
+\item 一般に変数は有効範囲 (scope) が決まっている
+\item 仮引数は関数本体が有効範囲である
+  \end{itemize}
+\end{frame}
 %
 %%% CRYPTOGRAPHY
 %
@@ -126,8 +138,8 @@ def difference(seta,setb,result):
 \begin{frame}[fragile]
 \frametitle{暗号方式 (Cryptography)}
   \begin{itemize}
-\item シーザ暗号 (Caesar chipher): ローマ皇帝シーザが使った方式
-\item ビジュネル暗号 (Vigen\`{e}re chipher): Vigen\`{e}re が作った方式
+\item シーザ暗号 (Caesar cipher): ローマ皇帝シーザが使った方式
+\item ビジュネル暗号 (Vigen\`{e}re cipher): Vigen\`{e}re が作った方式
 \item エニグマ (enigma): 大戦中にドイツ軍が使った方式
 \item DES (Data Encyption Satandard), RSA (Rivest, Shamir and Adleman): 現在広く利用されている方式
   \end{itemize}
@@ -155,7 +167,7 @@ d & e & f && c
 \item $\cal C$: 暗号文の集合
 \item $\cal K$: 鍵の集合
 \item \(\cal E\colon M\rightarrow C\): 暗号関数の集合
-\item \(\cal D\colon C\rightarrow M\): 複合関数の集合
+\item \(\cal D\colon C\rightarrow M\): 復号関数の集合
   \end{itemize}
   \begin{example}[Caesar Cipher]
 \scriptsize
@@ -189,7 +201,7 @@ Hello World&$\stackrel{\mbox{復号}}{\leftarrow}$&Hhoor Wruog
   \begin{itemize}
 \item 各文字を 0 から 25 で置き換える
     \begin{itemize}
-\item A$\rightarrow$0, Z$\rightarrow$25
+\item a$\rightarrow$0, z$\rightarrow$25
     \end{itemize}
 \item 暗号化関数 \(\mathit{enc}(3,m)=c\): 平文 \(m=m_1,m_2,\cdots,m_n\)，暗号文 \(c=c_1,c_2,\cdots,c_n\) として \(f(m_i)=(m_i+3)\mod 26\) と表せる
 \item 復号関数 \(\mathit{dec}(3,c)=m\): 平文 \(m=m_1,m_2,\cdots,m_n\)，暗号文 \(c=c_1,c_2,\cdots,c_n\) として \(f^{-1}(c_i)=((26+c_i)-3)\mod 26\) と表せる
@@ -235,11 +247,6 @@ def enc(k, m):
     # 宿題 4
     ###
   return(bytes(cipher).decode("ascii"))
-
-# TEST HARNESS
-os.system("clear")
-angobun = enc(K,input()) # 暗号文に変換
-print(angobun)           # 暗号文を出力
   \end{lstlisting}
 \end{frame}
 \begin{frame}[containsverbatim,shrink]
@@ -277,12 +284,12 @@ ALPHABET = range(ord('a'), ord('z')+1)         # 英字文字アルファベッ�
 bun = input("Enter a string:")                 # 入力文字列から改行除法
 cc  = list(bun.encode("ascii"))                # 文字列 → 文字コードの配列
 for i, moji in enumerate(bun):                 # mojiはbunのi文字目を得る (i は 0 から始まる)
-	code   = cc[i]                             # その文字のコードを得る
-	offset = code - ALPHABET[0]                # 文字 a との差分
-	if code in ALPHABET:                       # 小文字アルファベットなら
-		print(moji, ": ", code, ", ",hex(code), ", ", offset)   #   差分まで表示する
-	else:                                      # そうでない時は
-		print(moji, ": ", code, ", ",hex(code))#   差分は表示しない
+  code   = cc[i]                               # その文字のコードを得る
+  offset = code - ALPHABET[0]                  # 文字 a との差分
+  if code in ALPHABET:                         # 小文字アルファベットなら
+    print(moji, ": ", code, ", ",hex(code), ", ", offset)   #   差分まで表示する
+  else:                                        # そうでない時は
+    print(moji, ": ", code, ", ",hex(code))    #   差分は表示しない
   \end{lstlisting}
 \end{frame}
 \begin{frame}[containsverbatim,shrink]
@@ -307,45 +314,14 @@ def dec(k, c):
     # 宿題 5
     ###
   return(bytes(plain).decode("ascii"))
-
-### TEST HARNESS
-os.system("clear")
-hirabun = dec(K,input())       # 平文に変換
-print(hirabun)                 # 平文を出力
   \end{lstlisting}
 \end{frame}
 \begin{frame}[containsverbatim,shrink]
 \frametitle{宿題 4, 5}
   \begin{itemize}
-\item 宿題 4, 5 は OCW-i から
-\item ファイル名は暗号化プログラム: ango.py， 複合プログラム: hukugo.py としてください
-\item オプション: 
-    \begin{itemize}
-\item 自分流の暗号方式を考えて見てください
-    \end{itemize}
+\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}}から ango-skeleton.py と hukugo-skeleton.py をダウンロード
+\item 同様にテスト用サンプルデータ plaintext.txt と ciphertext.txt をダウンロード（ソースコードと同じディレクトリに保存してください）
+\item ファイル名は暗号化プログラム: ango.py， 復号プログラム: hukugo.py としてください
+\item 提出は OCW-i から
   \end{itemize}
-\end{frame}
-%
-%%% CRYPTANALYSIS
-%
-\subsection{暗号解読 (Cryptoanalysis)}
-\begin{frame}[containsverbatim,shrink]
-\frametitle{暗号解読}
-\framesubtitle{課題 3 の予習}
-  \begin{itemize}
-\item 暗号をやぶろうとすることを暗号解読 (cryptoanalysis) と呼ぶ
-\item 暗号アルゴリズム (\(\cal E\) と \(\cal D\)) は知っているが，鍵を知らないという前提
-\item Cipher text only attack: 暗号文だけを得ることができるとして解読 (e.g. 踊る人形)
-\item Known plaintext attack: 平文とその暗号文を得ることができるとして解読 (e.g. エニグマで "異常なし")
-\item Chosen plaintext attack: 特定の平文を送り，埋め込んだ暗号文を得ることができるとして解読 (e.g. 日本軍のミッドウェイ島攻撃)
-  \end{itemize}
-  \begin{block}{暗号解読のヒント}
-    \begin{itemize}
-\item Cipher text only attack で解くこと
-\item 統計的な手法を用いる
-      \begin{itemize}
-\item 文字の出現頻度: 踊る人形，コナン・ドイル (ホームズのはなしのことかな)
-      \end{itemize}
-    \end{itemize}
-  \end{block}
 \end{frame}

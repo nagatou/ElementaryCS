@@ -25,5 +25,7 @@ def dec(k, c):
 
 ### TEST HARNESS
 os.system("clear")
-hirabun = dec(K,input())       # 平文に変換
-print(hirabun)                 # 平文を出力
+with open('./ciphertext.txt','rt') as file: # 暗号文を読み込む
+    ciphertext= file.readline()
+hirabun = dec(K,ciphertext)                 # 平文に変換
+print(hirabun)                              # 平文を出力
