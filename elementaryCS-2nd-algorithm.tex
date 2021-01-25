@@ -53,7 +53,7 @@
     \begin{column}{0.5\textwidth}
       \begin{block}{ユーグリッドの互除法}
 \scriptsize
-\(x, y\) の最大公約数は $x$ を $y$ で割ったときの剰余と $y$ の最大公約数に等しい
+\(x_1, x_2\) の最大公約数は $x_1$ を $x_2$ で割ったときの剰余と $x_2$ の最大公約数に等しい
 %\setlength{\abovedisplayskip}{10pt}
         \begin{displaymath}
           \begin{array}{rcl}
@@ -304,10 +304,10 @@ def fast_power(b,n):
     \begin{center}
 \(\forall n>k\colon f(n)\leq c\cdot g(n)\)
     \end{center}
-となるような \(c, k\) が存在するならば \(f(n)=O(g(n))\) とする
+となるような \(c, k\) が存在するならば \(f(n)\Rightarrow O(g(n))\) とする
   \end{definition}
   \begin{example}
-\(f(n)=n^2+2n+1\) は，たとえば \(c=4, k=1\) として \(f(n)=4\cdot n^2\)，よって \(f(n)\) は \(O(n^2)\) となる．
+\(f(n)=n^2+2n+1\) は，たとえば \(c=4, k=1\) として \(g(n)=n^2\)，よって \(f(n)\) は \(O(n^2)\) となる．
   \end{example}
 \end{frame}
 \begin{frame}[shrink]
@@ -319,7 +319,7 @@ def fast_power(b,n):
     \end{displaymath}
 \item \(c=4, k=1, g(n)=n^2\) となる．よって，
 \item \(f(n)=n^2+2n+1<4\cdot n^2\)\ \textemdash\{\(f(n)\leq c\cdot g(n)\)\}
-\item \(n\leq 2\) とすると \(2n<n^2, 1<n^2\) 
+\item \(n\geq 2\) とすると \(2n<n^2, 1<n^2\) 
     \begin{displaymath}
 0\leq n^2+2n+1\leq n^2+n^2+n^2= 3n^2
     \end{displaymath}
@@ -339,7 +339,7 @@ def fast_power(b,n):
         \begin{array}{rcl}
 \fib(n)&=&\frac{\phi^{n}}{\sqrt{5}}\\
 &=&\log_{5}(n)+\frac{1}{2}\\
-&=&\frac{1}{\log 5}\cdot\log n+\frac{1}{2}<c\log n=O(\log n)
+&=&\frac{1}{\log 5}\cdot\log n+\frac{1}{2}<c\log n\Rightarrow O(\log n)
         \end{array}
       \end{math}
     \end{center}
@@ -356,7 +356,7 @@ n&=&2^m\\
         \end{array}
       \end{math}
     \end{center}
-よって， \(f(n)=(\log_2 n)+(k-1)=\frac{1}{\log 2}\cdot\log n+(k-1)<c\log n=O(\log n)\)．
+よって， \(f(n)=(\log_2 n)+(k-1)=\frac{1}{\log 2}\cdot\log n+(k-1)<c\log n\Rightarrow O(\log n)\)．
   \end{example}
 \end{frame}
 \begin{frame}[containsverbatim,shrink]
@@ -430,6 +430,7 @@ n=2^m\\
 %  \end{block}
 %\end{frame}
 \section{Sorting}
+\subsection{各種ソートアルゴリズム}
 \begin{frame}[shrink]
 \frametitle{Sorting}
   \begin{itemize}
@@ -487,9 +488,37 @@ n=2^m\\
 \includegraphics[scale=0.3]{./Figure/quick_sort.pdf}
   \end{center}
 \end{frame}
+\subsection{ソートアルゴリズムの時間計算量的比較}
+\begin{frame}
+\frametitle{ソートアルゴリズムの時間計算量的比較}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.5\linewidth}{Bubble と Insertion Sort}
+      \begin{itemize}
+\tiny
+\item 入力データのサイズを $n$ として
+\item 各 $i$ 回目の繰り返しについて \(n-i\) だけ比較を繰り返す
+\item それを $n$ 回繰り返すので全体で \(\frac{n(n+1)}{2}\) 回繰り返すことになる
+\item \(\frac{n(n+1)}{2}\leq c\cdot n^2\Rightarrow O(n^2)\)
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\linewidth}{Quick Sort}
+      \begin{itemize}
+\tiny
+\item Pivot が中央のとき最適になる
+\item このとき分割する回数 $m$ として \(\frac{n}{2^m}=1\)
+\item よって \(\log_2 n=m\)
+\item $j$ 番目の要素で分割されたとしてそれぞれの分割で $j$ 回と \(n-j\) 回比較する
+\item よって合わせて $n$ 回
+\item したがって，全体で \(n\log n\) 回の比較する
+\item \(n\log n\leq n\log n \Rightarrow O(n\log n)\)
+\item （最悪は \(O(n^2)\) 回）
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
 \section{Search Alogorithms}
 \begin{frame}
-\frametitle{Option Quiz}
+\frametitle{Optional Quiz}
 \framesubtitle{Search}
   \begin{itemize}
 \item 余裕のある人は search algorithms のプログラムに挑戦してみてください

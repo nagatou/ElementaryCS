@@ -52,7 +52,7 @@ def mult_on_nat(a,b):
     return(add_on_nat(add_on_nat(0,a),mult_on_nat(a,pred(b))))
 def comp_on_nat (a,b):
   if ((b==0) and (a>=0)):
-    return(0) # if a > b then set to zero
+    return(0) # if a >= b then set to zero
   else:
     if ((a==0) and (b>=0)):
       return(1) # if a < b then set to non-zero
@@ -63,9 +63,6 @@ def comp_on_nat (a,b):
 integers = [[0 for i in range(2)] for j in range(128)]
 top = current = 0
 bottom = len(integers)
-#integers=[[0,0],[1,0]]
-#zero=integers[0]
-#one=integers[1]
 
 def new_num (non_negative, negative):
   global integers, top, bottom, current

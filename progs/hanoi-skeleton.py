@@ -1,9 +1,16 @@
 # Cyclic towers of Hanoi problem
 # Mode:: Python3
+
 import os
 
+def move (fr,to,result):
+  from_to=[None]*2
+  from_to[0]=fr
+  from_to[1]=to
+  result.append(from_to)
+
 def hanoi (n,source,dest,via,result):
-  # ここか
+  # ここから
 
 ### Test Harness
 os.system('clear')

@@ -90,13 +90,13 @@
   \end{center}
 \end{frame}
 \begin{frame}
-\frametitle{Quiz: 浮動小数点}
+\frametitle{Quiz: 浮動小数}
   \begin{itemize}
-\item 実数の浮動小数点表現をやってみてください
+\item 実数の浮動小数表現をやってみてください
   \end{itemize}
   \begin{block}{宿題}
     \begin{itemize}
-\item 35.75 を浮動小数点で表現してみてください
+\item 35.75 を浮動小数で表現してみてください
     \end{itemize}
   \end{block}
 \end{frame}
@@ -113,9 +113,9 @@
 \item 32 bit 形式に: {\scriptsize 0 1000 0100 0001 1110 0000 0000 0000 000}
   \end{itemize}
 \end{frame}
-\subsection{浮動小数点数の算術演算}
+\subsection{浮動小数の算術演算}
 \begin{frame}[shrink,fragile]
-\frametitle{浮動小数点演算の変な現象}
+\frametitle{浮動小数演算の変な現象}
   \begin{itemize}
 \item machine\_epsilon.py を実行してみます．
 \item 結果が予測と少し違うことになります
@@ -138,9 +138,9 @@ print("System information in Python:",sys.float_info.epsilon)
   \end{lstlisting}
 \end{frame}
 \begin{frame}
-\frametitle{浮動小数点数の算術演算}
+\frametitle{浮動小数数の算術演算}
   \begin{itemize}
-\item 正規化した 2 つの浮動小数点数 \(X, Y\) を \(X=F_x\cdot 10^{e_x}, Y=F_y\cdot 10^{e_y}\) とする
+\item 正規化した 2 つの浮動小数数 \(X, Y\) を \(X=F_x\cdot 10^{e_x}, Y=F_y\cdot 10^{e_y}\) とする
 \item 乗算: \(XY=(F_x\cdot 10^{e_x})(F_y\cdot 10^{e_y})=F_xF_y\cdot 10^{e_x+e_y}\)
 \item 除算: \(\frac{X}{Y}=\frac{(F_x\cdot 10^{e_x})}{(F_y\cdot 10^{e_y})}=\frac{F_x}{F_y}\cdot 10^{e_x-e_y}\)
 \item 加算\(\cdot\)減算: \(X\pm Y=(F_x\cdot 10^{e_x})\pm(F_y\cdot 10^{e_y})=(F_x\pm F_y\cdot 10^{e_y-e_x})\cdot 10^{e_x}\)
@@ -214,8 +214,8 @@ print("System information in Python:",sys.float_info.epsilon)
 \begin{frame}[shrink]
 \frametitle{誤差とは}
   \begin{itemize}
-\item コンピュータの中では実数は有限個の 0 と 1 の組み合わせ(浮動小数点)で表しています
-\item なので，本来数学の実数であるべき真値を適当な浮動小数点で近似している
+\item コンピュータの中では実数は有限個の 0 と 1 の組み合わせ(浮動小数)で表しています
+\item なので，本来数学の実数であるべき真値を適当な浮動小数で近似している
 \item 近似値-真値 を誤差という
   \end{itemize}
 \end{frame}

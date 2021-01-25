@@ -63,9 +63,6 @@ def comp_on_nat (a,b):
 integers = [[0 for i in range(2)] for j in range(128)]
 top = current = 0
 bottom = len(integers)
-#integers=[[0,0],[1,0]]
-#zero=integers[0]
-#one=integers[1]
 
 def new_num (non_negative, negative):
   global integers, top, bottom, current
@@ -85,22 +82,21 @@ def pair2num (num):
   return(num[0]-num[1])
 
 ### On Integer
-#(1) 5 点
+#(1) 4 点
 def add_on_int(za,zb):
   return(new_num(add_on_nat(za[0],zb[0]),add_on_nat(za[1],zb[1])))
-#(2) 5 点
+#(2) 4 点
 def mult_on_int(za,zb):
   return(new_num(
           add_on_nat(mult_on_nat(za[0],zb[0]), mult_on_nat(za[1],zb[1])),
           add_on_nat(mult_on_nat(za[0],zb[1]), mult_on_nat(za[1],zb[0]))))
-#(3) 5 点
+#(3) 3 点
 def comp_on_int (za,zb):
-  tmp=sub_on_int(za,zb)
-  return(comp_on_nat(tmp[0],tmp[1]))
-#(4) 10 点
-def inverse_on_int(z):
-  return(new_num(z[1],z[0]))
+  return(comp_on_nat(add_on_nat(za[0],zb[1]),add_on_nat(za[1],zb[0])))
+#(4) 4 点
 def sub_on_int(za,zb):
+  def inverse_on_int(z):
+    return(new_num(z[1],z[0]))
   return(add_on_int(za,inverse_on_int(zb)))
 
 

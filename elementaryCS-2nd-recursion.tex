@@ -4,7 +4,7 @@
 \frametitle{再帰への導入}
   \begin{itemize}
 \item 対象を簡潔に明示的に表す方法
-\item たとえば下の絵，ひとつ絵を書いてその中央にその絵を書ている（このプロセスが再帰）
+\item たとえば下の絵，ひとつ絵を書いてその中央にその絵を書ている（Droste 効果)
 \item 対象を定義するときに既にわかっている部分を参照して定義するということ
 
 %\item 関数を合成することで別の関数を定義できる
@@ -14,18 +14,27 @@
 \includegraphics[scale=0.4]{../Figure/Rosen_picture.jpg}
   \end{center}
 \end{frame}
-\begin{frame}[fragile]
+\begin{frame}[fragile,shrink]
 \frametitle{数列の再帰的定義}
   \begin{itemize}
-\item 数列 \(a_n=2^n\) for \(n=0,1,2,\cdots\)
+\item 数列 \(a_n=\frac{n(n+1)}{2},\ n\leq 1\)
 \item Baseic step (初項) を 1
-\item Recursive step (n 項) を \(a_{n+1}=2\cdot a_n\) と定義できる
-\item \(n+1\) 項を決めるのに \(n\) 項から決める
+\item Recursive step (n 項) を \(a_n=n+a_{n-1}\) と定義できる
+\item \(n\) 項を決めるのに \(n-1\) 項から決める
 \item まだ決まっていない最小の項を既に知っている項から決定する
   \end{itemize}
-  \begin{center}
-\includegraphics[scale=0.5]{./Figure/elementaryCS-2nd-figRecursion.pdf}
-  \end{center}
+  \begin{columns}
+    \begin{column}[t]{0.4\textwidth}
+      \begin{center}
+\includegraphics[scale=0.4]{./Figure/elementaryCS-figTriangular.pdf}
+      \end{center}
+    \end{column}
+    \begin{column}[t]{0.4\textwidth}
+      \begin{center}
+\includegraphics[scale=0.4]{./Figure/elementaryCS-2nd-figRecursion.pdf}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 \subsection{再帰 (Recursion)}
 \begin{frame}[fragile]
@@ -50,25 +59,29 @@
 \subsection{再帰的定義}
 \begin{frame}[fragile,shrink]
 \frametitle{関数の再帰的定義}
-\framesubtitle{加算・乗算の再帰的定義}
+\framesubtitle{加算，乗算の再帰的定義}
    \begin{itemize}
-\item Basic step と recursive step をそれぞれ定義
-\item \(\pm 1\) を \(\mathit{succ}\) と \(\mathit{pre}\) とする
+%\item Basic step と recursive step をそれぞれ定義
+\item G に相当するのが \(\operatorname{succ}\)
+\item Basic step に近づけるように recursive step を定義
+     \begin{itemize}
+\item \(a+\operatorname{succ}(b)=\operatorname{succ}(a+b)\)
+     \end{itemize}
   \end{itemize}
+\vspace{-1em}
   \begin{center}
   \begin{math}
     \begin{array}{lll}
-\mbox{Basic step:}& b & \mbox{if }a=0 \\
-\mbox{Recusive step:}& \mathit{succ}(\mathit{pre}(a)+b) & \mbox{otherwise}
+\mbox{Basic step:}& a+0 & \mbox{if }b=0 \\
+\mbox{Recusive step:}& \operatorname{succ}(a+b) & \mbox{otherwise}
     \end{array}
   \end{math}  
   \end{center}
-\vspace{-2zw}
+\vspace{-2em}
   \begin{columns}
     \begin{column}[t]{0.4\textwidth}
       \begin{lstlisting}[caption={加算},label=add-rec]
 # Recursive definition
-# Mode:: Python3
 import os
 import time
 
@@ -77,10 +90,10 @@ def succ (x):
 def pred (x):
   return(x-1)
 def add (a,b):
-  if (a==0):
-    return(b)
+  if (b==0):
+    return(a)
   else:
-    return(succ(add(pred(a),b)))
+    return(succ(add(a,pred(b))))
       \end{lstlisting}
     \end{column}
     \begin{column}[t]{0.55\textwidth}
@@ -101,7 +114,7 @@ def mult (a,b):
 \framesubtitle{Factorial}
   \begin{itemize}
 \item \(n!=n\cdot(n-1)\cdot(n-2)\cdots 3\cdot 2\cdot 1\)
-\item \(\mathit{succ}(n)!\) を決めるのに \(n\) の値をつかう
+\item \(n!\) を決めるのに \((n-1)!\) の値をつかう
 \item G に相当するのが \(n\cdot(n-1)!\) ということ
 \item まだ決まっていない最小の値は決まっている値で最大の値のつぎになる
   \end{itemize}
@@ -123,8 +136,31 @@ def fact (n):
   \end{columns}
 \end{frame}
 \begin{frame}[fragile]
+\frametitle{フィボナッチ数}
+  \begin{itemize}
+\item 突然ですが次の問題を考えてみてください
+  \end{itemize}
+  \begin{block}{うさぎとフィボナッチ数}
+    \begin{itemize}
+\item $n$ ヶ月後のうさぎのつがいは何組？
+\item 最初一組のつがいだけ
+\item 2 ヶ月経つと メス 1 匹を生んでそのつがいが 1 組増える
+\item うさぎは決して死なない
+    \end{itemize}
+  \end{block}
+  \begin{center}
+    \begin{tabular}{ccccc}
+月&生後 0 ヶ月&生後 2 ヶ月以下&合計\\
+\hline
+1&0&1&1\\
+2&0&1&1\\
+3&1&1&2\\
+4&1&2&3\\
+    \end{tabular}
+  \end{center}
+\end{frame}
+\begin{frame}[fragile]
 \frametitle{再帰的定義の例 2}
-\framesubtitle{The sequence of Fibonacci Numbers}
   \begin{itemize}
 \item フィボナッチ数\\
     \begin{tabular}{c|c|c|c|c|c}
@@ -140,7 +176,7 @@ def fact (n):
       \begin{lstlisting}[caption={フィボナッチ数},label=fib-rec]
 def fib (n):
   if (n==0):
-    return(1)
+    return(0)
   else:
     if (n==1):
       return(1)
@@ -163,29 +199,20 @@ def fib (n):
 \item Basic step: 集合の初期要素を定義
 \item Recursive step: 既にわかっている要素から新しい要素を定義する規則
   \end{itemize}
-  \begin{example}[3 の倍数]
-    \begin{itemize}
-\item Basic step: 3 は集合の要素
-\item Recursive step: 集合の要素 \(x,y\) として \(x+y\) も要素
-\item E.g. : \(\{3,\ 3+3=6,\ 3+6=9,\ 6+6=12,\cdots\}\)
-    \end{itemize}
-  \end{example}
+%  \begin{example}[3 の倍数]
+%    \begin{itemize}
+%\item Basic step: 3 は集合の要素
+%\item Recursive step: 集合の要素 \(x,y\) として \(x+y\) も要素
+%\item E.g. : \(\{3,\ 3+3=6,\ 3+6=9,\ 6+6=12,\cdots\}\)
+%    \end{itemize}
+%  \end{example}
   \begin{example}[文字列の集合\(\Sigma*\)]
     \begin{itemize}
 \item Basic step: \(\epsilon\in\Sigma\) (空列 \(\epsilon\) も \(\Sigma\) に含まれる)
-\item Recursive step: \(a\in\Sigma,w\in\Sigma*\) ならば \(wx\in\Sigma*\)
+\item Recursive step: \(a\in\Sigma,w\in\Sigma*\) ならば \(aw\in\Sigma*\)
 \item E.g.: \(\{\epsilon,\ a,\ aa,\ aaa,\cdots\}\)
     \end{itemize}
   \end{example}
-\end{frame}
-\begin{frame}[fragile]
-\frametitle{宿題 1}
-  \begin{itemize}
-\item 自然数上の四則演算を再帰で定義し直してみてください
-%\item 先の文字列の集合を参考に文字列の長さを求める関数を再帰的に定義せよ．
-%\item Hint: Basic step を空列は長さ 0 として，recursive step は一文字短い文字列より 1 長い
-%\item Python では str[1:] とすると文字列の 2 番目以降の文字列を得ることができ，空列は not str で判定
-  \end{itemize}
 \end{frame}
 \subsection{木構造}
 \begin{frame}[fragile]
@@ -209,6 +236,19 @@ def fib (n):
 \item （いつもではないけど）
   \end{itemize}
 \end{frame}
+\begin{frame}[fragile]
+\frametitle{宿題 1}
+  \begin{itemize}
+\item 自然数上の四則演算を再帰で定義し直してみてください
+\item フィボナッチ数を求める再帰的な計算を繰り返しに直してみてください
+\item 先の文字列の集合を参考に文字列の長さを求める関数を再帰的に定義せよ．
+    \begin{itemize}
+\item Hint: Basic step を空列は長さ 0 として，recursive step は一文字短い文字列より 1 長い
+\item Python では str[1:] とすると文字列の 2 番目以降の文字列を得ることができる
+\item 空列は not str  あるいは len(str) で判定
+    \end{itemize}
+  \end{itemize}
+\end{frame}
 \section{プログラムとしての再帰}
 \subsection{引数の有効範囲 (Scope)}
 \begin{frame}[fragile,shrink]
@@ -228,7 +268,7 @@ def fib (n):
 \item 一般に変数は有効範囲 (scope) が決まっている
 \item 仮引数は関数本体が有効範囲である
   \end{itemize}
-\vspace{-3zw}
+\vspace{-3em}
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
       \begin{lstlisting}[caption={Newton 法},label=newton-rec]
@@ -375,12 +415,12 @@ def fact (n):
 \item 帰納法は再帰的に定義されたものの性質を証明するテクニック
 \item 再帰的アルゴリズムの正当性を証明するのにも使える
 \item 下に帰納法の原理をあげておきます
-\item \(\mathit{succ}(y)\) は $y$ のつぎの数という意味です (CS 入門第一の\(+1\) に相当)
+\item \(\operatorname{succ}(y)\) は $y$ のつぎの数という意味です (CS 入門第一の\(+1\) に相当)
 \item 証明したいことがらを \(\phi\) とします
-\item 原理の前提条件を充たすことを示します \(\phi(0)\wedge(\phi(n)\Rightarrow\phi(succ(n)))\)
+\item 原理の前提条件を充たすことを示します \(\phi(0)\wedge(\phi(n)\Rightarrow\phi(\operatorname{succ}(n)))\)
   \end{itemize}
   \begin{block}{帰納法の原理}
-集合 \(X=\{n\colon \phi(n)\}\) について，もし \(0\in X\) かつ \(\forall y\in X\colon \mathit{succ}(y)\in X\) であるなら，$X$ はすべての自然数を含む
+集合 \(X=\{n\colon \phi(n)\}\) について，もし \(0\in X\) かつ \(\forall y\in X\colon \operatorname{succ}(y)\in X\) であるなら，$X$ はすべての自然数を含む
   \end{block}
 \end{frame}
 \section{繰り返しと再帰}
@@ -433,13 +473,12 @@ def fact (n):
 \item \lstref{fact-iter} はその必要はなく，計算の状態``カウンタと途中までの積''を覚えておくだけで良い
 \item \lstref{fact-iter} のような形を末尾再帰的といいます
   \end{itemize}
-\vspace{-2zw}
+\vspace{-2em}
   \begin{columns}[t]
     \begin{column}{0.45\textwidth}
       \begin{lstlisting}[caption={再帰プロセス版},label=fact-rec1]
 # Factorial
 def fact (n):
-  print("n={0}.".format(n))
   if (n == 1):
     return(1)
   else:
@@ -549,9 +588,10 @@ def fact_iter (n):
 \begin{frame}[fragile]
 \frametitle{再帰のまとめ}
   \begin{itemize}
-\item 再帰とはあるものを既にわかっているそれより前のものから求めるというもの
+\item 再帰とはある問題をそれより簡単な同じ問題に分解して問題を解く方法
+\item 既にわかっているそれより前のものから求める
 \item 一見複雑な問題も再帰的に定義すると単純な計算で解ける
-\item それ以上分割出来ない問題を解き，結果からより大きい問題の結果を得るというもの (分割統治法 (Devide and Conquer) と呼ばれる)
+\item それ以上分割出来ない問題を解き，結果からより大きい問題の結果を得るというもの (分割統治法 (Divide and Conquer) と呼ばれる)
 \item E.g. Quiz 1 では複雑な問題をより小さい同じ問題に分解して解いていっている
 \item 再帰は非常に強力な解法になる
   \end{itemize}

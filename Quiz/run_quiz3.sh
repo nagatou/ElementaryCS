@@ -1,9 +1,9 @@
 #!/bin/sh
 #                         Copyright (C) 2016 Naoyuki Nagatou
 
-DIR=./Quiz3
+DIR=./QUIZ3
 Target=*.py
-Prog=/opt/local/bin/python3
+Prog=/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
 
 IDs=`find ${DIR} -maxdepth 1 -type d | sort`
 
@@ -13,10 +13,6 @@ do
     encipher="../progs/ango.py"
     decipher="dummy"
     attack="dummy"
-#    if ! `ls $id/${Target} > /dev/null`
-#    then
-#      continue
-#    fi
     for other in `ls $id/${Target}`
     do
       mark=`cat $other`;\

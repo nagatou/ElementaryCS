@@ -11,18 +11,18 @@ def pred (x):
   else:
     return(x-1)
 def add (a,b):
-  if (a==0):
-    return(b)
+  if (b==0):
+    return(a)
   else:
-    return(succ(add(pred(a),b)))
+    return(succ(add(a,pred(b))))
 #
 # Iterative process
 #
 def add_iter (a,b):
-  if (a==0):
-    return(b)
+  if (b==0):
+    return(a)
   else:
-    return(add_iter(pred(a),succ(b)))
+    return(add_iter(succ(a),pred(b)))
 #
 # Sub
 #
@@ -103,12 +103,12 @@ def comp (a,b):
 os.system('clear')
 x = int(input("x(>=0)? "))
 y = int(input("y(>=0)? "))
-#print(add(x,y))
-#print(add_iter(x,y))
-#print(mult(x,y))
-#print(mult_iter(x,y))
-#print(sub_iter(x,y))
-#print(quotient(x,y))
-#print(quotient_iter(x,y))
-#print(remainder(x,y))
+print(add(x,y))
+print(add_iter(x,y))
+print(mult(x,y))
+print(mult_iter(x,y))
+print(sub_iter(x,y))
+print(quotient(x,y))
+print(quotient_iter(x,y))
+print(remainder(x,y))
 print(comp(x,y))

@@ -1,7 +1,7 @@
 #!/bin/sh
 #                         Copyright (C) 2016 Naoyuki Nagatou
 
-DIR=./QUIZ1
+DIR=./HW1
 Target=*.py
 Prog=/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
 

@@ -1,5 +1,4 @@
-%\documentclass[xcolor=dvipsnames]{beamer}
-\documentclass[dvipdfmx,fleqn]{beamer}
+\documentclass[final,c]{beamer}
 \mode<presentation>
 {
   \usetheme{PaloAlto}
@@ -8,28 +7,28 @@
 }
 \setbeamertemplate{nabigation symbols}{}
 
-\usepackage[latin1]{inputenc}
+\usepackage{luatexja}
+\usepackage{luatexja-otf}
+\usepackage[match]{luatexja-fontspec}
+\usepackage[hiragino-pron,deluxe,expert]{luatexja-preset}
+
 \usepackage{times}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{ascmac}
-\usepackage{jtygm}
-\usepackage{amsmath}
+\usepackage{amssymb,amsmath}
 \usepackage{txfonts}
 \usepackage{proof}
 \usepackage{graphicx}
-%\usepackage{hyperref}
-\usepackage{pxjahyper}
-%\usepackage{url}
 \usepackage{multimedia}
 \usepackage{filecontents}
 \usepackage{bxdpx-beamer}
-\usepackage{listings,jlisting}
+\usepackage{listings}
 
 %\renewcommand{\ttdefault}{lmtl}
 \newcommand{\jpy}{{{\ooalign{Y\crcr\hss=\hss}}}}
 \newcommand{\combination}[2]{{}_{#1}C_{#2}}
-\newcommand{\lstref}[1]{ソースコード\ref{#1}}
+\newcommand{\lstref}[1]{Listing \ref{#1}}
 
 \lstset{language=python,%
    basicstyle={\ttfamily\tiny},%
@@ -98,6 +97,7 @@
   \tableofcontents[part=2]
 }
 \input{elementaryCS-2nd-recursion}
+\input{elementaryCS-2nd-quizS}
 %
 %%% 実数
 %

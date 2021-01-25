@@ -1,9 +1,9 @@
 #!/bin/sh
 #                         Copyright (C) 2016 Naoyuki Nagatou
 
-DIR=./HomeWork45
+DIR=./HW45
 Target=*.py
-Prog=/opt/local/bin/python3
+Prog=/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
 
 IDs=`find ${DIR} -maxdepth 1 -type d | sort`
 

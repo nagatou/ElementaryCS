@@ -4,7 +4,6 @@ import os
 import time
 
 def fact (n):
-  print("n={0}.".format(n))
   if (n == 1):
     return(1)
   else:

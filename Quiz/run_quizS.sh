@@ -1,7 +1,7 @@
 #!/bin/sh
 #                         Copyright (C) 2016 Naoyuki Nagatou
 
-DIR=./QUIZ1
+DIR=./QUIZS
 Target=*.py
 Prog=/Library/Frameworks/Python.framework/Versions/3.8/bin/python3
 
@@ -12,7 +12,7 @@ do
   if [ -d $id ] ; then
     for other in `ls $id/${Target}`
     do
-      echo $other; ${Prog} $other
+      ${Prog} $other; echo $other
       read -p "hit any key to the next program::"
       if [ $? -eq 0 ] ; then
         echo $id >> success
@@ -23,7 +23,6 @@ do
   else
     echo "does not exist" $id >> failure
   fi
-  echo "ran" $id
   read -p "hit any key to the next student::"
 done
 
