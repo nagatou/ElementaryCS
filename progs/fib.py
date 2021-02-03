@@ -6,6 +6,11 @@
 import timeit
 import cProfile
 
+def iseven (n):
+  if (n%2==0):
+    return(True)
+  else:
+    return(False)
 #(1)
 #O(2^n)
 def fib (n):
@@ -36,17 +41,13 @@ def fast_fib(n):
       return(0,1)
     else:
       a,b=fast_fib1(n//2)
-      if (n%2==0):
+      if (iseven(n)):
         return(a*(2*b-a),a**2+b**2)
       else:
         return(b**2+a**2,a*(2*b-a)+a**2+b**2)
   return(fast_fib1(n)[0])
+
 def fast_fib_tail(n):
-  def iseven (n):
-    if (n%2==0):
-      return(True)
-    else:
-      return(False)
   def fast_fib1(a,b,p,q,k):
     if (k == 0):
       return(b)
@@ -59,11 +60,6 @@ def fast_fib_tail(n):
 
 def fast_fib_iter(n):
   a,b,p,q=1,0,0,1
-  def iseven (n):
-    if (n%2==0):
-      return(True)
-    else:
-      return(False)
   while (n != 0):
     if (iseven(n)):
       p,q=(p**2)+(q**2),(2*p*q)+(q**2)
@@ -80,5 +76,6 @@ def fast_fib_iter(n):
 n = int(input("n(>=0)? "))
 cProfile.run("print(fast_fib_iter(n))")
 cProfile.run("print(fast_fib_tail(n))")
+cProfile.run("print(fast_fib(n))")
 cProfile.run("print(fib_iter(n))")
 cProfile.run("print(fib(n))")
