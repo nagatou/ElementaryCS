@@ -36,10 +36,15 @@ import os
 def succ(num):
   return(num+1)
 def pred (x):
-  if (x<=0):
+  def pred1 (x,k1,k2):
+    if (x==k2):
+      return(k1)
+    else:
+      return(pred1(x,succ(k1),succ(k2)))
+  if (x==0):
     raise ValueError("OUT OF THE SET NAT")
   else:
-    return(x-1)
+    return(pred1(x,0,1))
 def add_on_nat(a,b):
   if (a==0):
     return(b)

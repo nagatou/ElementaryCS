@@ -322,8 +322,6 @@
 %  \begin{center}
 %\includegraphics[scale=0.4]{./Figure/elementaryCS-figCPU}
 %  \end{center}
-%\end{frame}
-%\begin{frame}
 %\frametitle{演算のサイクル}
 %  \begin{enumerate}
 %\scriptsize
@@ -344,50 +342,53 @@
 \begin{frame}
 \frametitle{計算とは}
   \begin{itemize}
-\item つぎは計算について
-\item 計算には入力と出力があって
-\item 入力と出力の関係をとくに関数とよぶ
-\item この場合，ある入力に対して出力は一意に決まる
-\item また関数には適当な名前をつけることができる
-\item 関数を合成してより複雑な計算を実現していく
-\item ここまではまだ入出力の関係としか云っていない
+\item これまで自然数から初めて実数はては虚数のうえでの演算や関数の規則を覚えていろいろな計算をしてきた
+\item 挙句には証明するといったこともしてきた
+\item これらに共通する特徴を捉えて計算というものを体系的に捉えていく
+\item 計算には入力と出力があって入力から出力を生成する
+\item 生成過程を定めたものがアルゴリズム(alghrithm)
   \end{itemize}
   \begin{example}[最大公約数]
 最大公約数 \(gcd(n,m)\) は \(n, m\) の公約数で最大ものと定義されるが，どう求めるか方法は書いていない
   \end{example}
 \end{frame}
-\begin{frame}[fragile,shrink]
-\frametitle{計算の方法}
-  \begin{itemize}
-\item 計算の方法について考える
-\item 計算機科学では関数といった時はこちらの意味
-\item 計算の方法のことをアルゴリズム (algorithm) といっている
-\item アルゴリズムとデータを特定の形式で書いたものがプログラム
-  \end{itemize}
-  \begin{lstlisting}[caption={最大公約数},label=gcd]
-# Greatest common divisor
-# Input: 自然数 x, y
-# Output: gcd(x,y)
-###
-
-def gcd(x,y):
-  ans=1
-  n=min(x,y)
-  for i in range(1,n):
-    if (x%i==0) and (y%i==0):
-      ans=i
-  return (ans)
-print(gcd(x,y))
-  \end{lstlisting}
-\hfill{\hyperlink{if}{\beamerbutton{Back to if-slide}}}
-\end{frame}
+%\begin{frame}[fragile,shrink]
+%\frametitle{計算の方法}
+%  \begin{itemize}
+%\item 計算の方法について考える
+%\item 計算機科学では関数といった時はこちらの意味
+%\item 計算の方法のことをアルゴリズム (algorithm) といっている
+%\item アルゴリズムとデータを特定の形式で書いたものがプログラム
+%  \end{itemize}
+%  \begin{lstlisting}[caption={最大公約数},label=gcd]
+%# Greatest common divisor
+%# Input: 自然数 x, y
+%# Output: gcd(x,y)
+%###
+%
+%def gcd(x,y):
+%  ans=1
+%  n=min(x,y)
+%  for i in range(1,n):
+%    if (x%i==0) and (y%i==0):
+%      ans=i
+%  return (ans)
+%print(gcd(x,y))
+%  \end{lstlisting}
+%\hfill{\hyperlink{if}{\beamerbutton{Back to if-slide}}}
+%\end{frame}
 \subsection{計算の基本要素}
 \begin{frame}[fragile]
 \frametitle{計算の基本要素}
-\framesubtitle{計算 = \(\pm 1\) と繰り返し}
   \begin{itemize}
-\item 合成していくとして最も基本となるものは何か
-\item 結論から云ってしまえば，ある値に $\pm 1$ する操作と繰り返しと条件分岐である
+\item では，アルゴリズムを記述するための最も基本となるものは何か？
+    \begin{itemize}
+\item ある値に \(\pm 1\) する操作
+\item 値を保持する操作
+\item 繰り返し
+\item 条件分岐
+    \end{itemize}
+\item これらの操作を加算個並べて表す
   \end{itemize}
   \begin{lstlisting}[caption={加算},label=add]
 # add.py
@@ -428,41 +429,42 @@ print(seki)                 # seki の値を出力
   \end{lstlisting}
 \hfill{\hyperlink{composit}{\beamerbutton{Back to composit-slide}} \hyperlink{while}{\beamerbutton{Back to while-slide}}}
 \end{frame}
-\section{プログラムの書き方}
-\subsection{プログラミングのための仕掛け}
-\begin{frame}[fragile]
-\frametitle{プログラミングのための仕掛け}
-  \begin{itemize}
-\item プログラミング言語にはプログラミングのための 3 つの仕掛けがある
-    \begin{itemize}
-\item 基本式: プログラミングに関わる最も単純なもの
-\item 組合せ法: 単純なものからより複雑なものをつくる (構文として定義されている)
-\item 抽象化法: 合成物に名前をつけ基本式と同様に扱う
-    \end{itemize}
-\item データについても同様
-  \end{itemize}
-\end{frame}
+%\section{プログラムの書き方}
+%\subsection{プログラミングのための仕掛け}
+%\begin{frame}[fragile]
+%\frametitle{プログラミングのための仕掛け}
+%  \begin{itemize}
+%\item プログラミング言語にはプログラミングのための 3 つの仕掛けがある
+%    \begin{itemize}
+%\item 基本式: プログラミングに関わる最も単純なもの
+%\item 組合せ法: 単純なものからより複雑なものをつくる (構文として定義されている)
+%\item 抽象化法: 合成物に名前をつけ基本式と同様に扱う
+%    \end{itemize}
+%\item データについても同様
+%  \end{itemize}
+%\end{frame}
 \begin{frame}[fragile]
 \frametitle{Python における基本式}
   \begin{itemize}
 \item 式の基本要素は 整数，実数がある
     \begin{itemize}
 \item 整数の例: \(286, 386, 486\) 
-\item 講義では自然数だけあつかうので注意
+\item 講義では自然数だけ扱います
     \end{itemize}
-\item 基本要素と演算子 \(+, -, *, \slash\slash, \%, **\) などを組み合わせて式をつくる
+\item 基本要素と演算子 \(+, -, *, \slash\slash, \%, **\) などがある
+\item 数と演算子を組み合わせて式を作ることができる
     \begin{itemize}
-\item 数の例: \(286+386, 486\) 
 \item 入れ子にできます: \(286+(386+486)\) 
+\item 今回は \(+1\) と \(-1\) だけ
     \end{itemize}
-\item 式には名前をつけることができ，この名前のことを変数と呼でいます
-\item その名前で参照することもできます
+\item 式には名前をつけ（この名前のことを変数と呼ぶ），変数に式の値を保持し，
+変数で値を参照することができます
     \begin{itemize}
 \item 例: \(\mbox{abc}=286+386\) 
 \item 例: \(\mbox{efg}=\mbox{abc}+486\) 
-    \end{itemize}
 \item $=$ は論理記号ではなくて代入をあらわすので注意
 \item abc は \(\mbox{a}\times\mbox{b}\times\mbox{c}\) ではなく変数名なので注意
+    \end{itemize}
   \end{itemize}
 \end{frame}
 %\begin{frame}[fragile]
@@ -500,26 +502,45 @@ print(seki)                 # seki の値を出力
 \begin{frame}[label=composit]
 \frametitle{Python における合成}
   \begin{itemize}
-\item 式を順番に並べる
-\item 実行は上から下へ，左から右に順番に実行される
+\item 式を上から下へ順番に並べることで合成
+\item 上から下へ順番に実行される
 \item 前に実行された式の結果は変数をもちいて参照
 \item 実行順序を変えたいときは while や if を使う
 \item \hyperlink{mult}{\beamerbutton{Jump to an example}}
   \end{itemize}
 \end{frame}
+\begin{frame}[fragile,label=while]
+\frametitle{繰り返し文}
+\framesubtitle{while 文とfor 文}
+  \begin{itemize}
+\item 特定の実行列を繰り返し実行
+\item \hyperlink{mult}{\beamerbutton{Jump to an example of while}}
+\item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 8.2, 8.3 節}}参照
+  \end{itemize}
+  \begin{lstlisting}[caption={gcd.py(for 文の例)},label=gcd]
+# Greatest common divisor
+# Input: 自然数 x, y
+# Output: gcd(x,y)
+###
+
+def gcd(x,y):
+  ans=1
+  n=min(x,y)
+  for i in range(1,n):
+    if (x%i==0) and (y%i==0):
+      ans=i
+  return (ans)
+print(gcd(x,y))
+  \end{lstlisting}
+\end{frame}
 \begin{frame}[fragile,label=if]
-\frametitle{if 文}
+\frametitle{条件分岐}
+\framesubtitle{if 文}
   \begin{itemize}
 \item 条件によって実行順序を変更する
-\item \hyperlink{gcd}{\beamerbutton{Jump to an example}}
+\item \hyperlink{gcd}{\beamerbutton{Jump to an example of if}}
+\item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 8.1 節}}参照
 \item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 6.10, 6.11, 6.12 節}}参照
-  \end{itemize}
-\end{frame}
-\begin{frame}[fragile,label=while]
-\frametitle{while 文}
-  \begin{itemize}
-\item 実行列を繰り返し実行する
-\item \hyperlink{mult}{\beamerbutton{Jump to an example}}
   \end{itemize}
 \end{frame}
 %%%
@@ -530,9 +551,7 @@ print(seki)                 # seki の値を出力
 \frametitle{宿題 1 を動かしてみる}
 \framesubtitle{宿題 1 \textendash $\pm 1$だけで四則演算を作る}
   \begin{itemize}
-\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} に div-skeleton.py と sub-skeleton.py があるはずなのでそれを完成させて実行する
-\item OCW-i から提出
-\item ファイル名に日本語文字は使用しないでください
+\item \href{https://sites.google.com/presystems.xyz/elementarycs/top}{\beamerbutton{https://sites.google.com/presystems.xyz/elementarycs/top}} に div-skeleton.py と sub-skeleton.py があるはずなのでそれを完成させて実行する
   \end{itemize}
   \begin{columns}
     \begin{column}{0.45\textwidth}
@@ -569,7 +588,4 @@ print(amari)
     \end{column}
   \end{columns}
 \end{frame}
-%
-%%% PROGRAMMING ENVIRONMENT
-%
-\input{IL-proenv}
+%\frametitle{演算のサイクル}

@@ -6,7 +6,8 @@
 \begin{frame}[containsverbatim]
 \frametitle{配列}
   \begin{itemize}
-\item データオブジェクトの順序づけられた集まり
+\item いくつかのデータオブジェクトを1つにまとめて扱い時がある
+\item 配列は，データブジクトの順序づけられた集まり
 \item 配列の各オブジェクトを配列の要素と呼びます
 \item 各要素は 0 から始まる自然数に対応付けられていて
 \item 自然数のことをインデックスと呼んでいます
@@ -83,7 +84,7 @@ d9 =  1000000000000000000000000000
   \end{itemize}
   \begin{columns}
     \begin{column}{0.35\textwidth}
-      \begin{lstlisting}[caption={総和},label=lst:sum6]
+      \begin{lstlisting}[caption={sum6.py},label=lst:sum6]
 a=[2,4,6,8,10,12]
 s=0
 for k in range(len(a)):
@@ -93,7 +94,7 @@ print(s)
       \end{lstlisting}
     \end{column}
     \begin{column}{0.6\textwidth}
-      \begin{lstlisting}[caption=入力した数の総和,label=lst:sum]
+      \begin{lstlisting}[caption=sum.py,label=lst:sum]
 a = list(map(int,input("numbers? ").split()))
 s=0
 for k in range(len(a)):
@@ -108,7 +109,7 @@ print(s)
 \frametitle{最大値を求める}
 \framesubtitle{宿題 2}
   \begin{itemize}
-\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} の max-skeleton.py を完成させる
+\item \href{https://sites.google.com/presystems.xyz/elementarycs/top}{\beamerbutton{https://sites.google.com/presystems.xyz/elementarycs/top}} の max-skeleton.py を完成させる
 \item 最大値=max\((a_1, a_2,\cdots,a_n)\)
 \item {\tt for j in range(0,n)} は {\tt j} を 0 から n-1 まで繰り返すという意味
   \end{itemize}
@@ -157,7 +158,7 @@ numbers? -3 8 19 -4\\
 \begin{frame}
 \frametitle{文字コード}
   \begin{itemize}
-\item コードとは，文字や記号をコンピュータで扱うための記号です
+\item コードとは，文字や記号をコンピュータで扱うための符号です
 \item コンピュータ内では適当な正整数が文字や記号に割り振られています
     \begin{itemize}
 \item 整数は 2 進数で表されているので 0 と 1 の列にコード化されます
@@ -290,7 +291,7 @@ m 0x6d
 \frametitle{英小文字だけを画面に出力}
 \framesubtitle{宿題 3}
   \begin{itemize}
-\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} の abcPrint-skeleton.py を完成させる
+\item \href{https://sites.google.com/presystems.xyz/elementarycs/top}{\beamerbutton{https://sites.google.com/presystems.xyz/elementarycs/top}} の abcPrint-skeleton.py を完成させる
   \end{itemize}
   \begin{columns}
     \begin{column}{0.6\textwidth}
