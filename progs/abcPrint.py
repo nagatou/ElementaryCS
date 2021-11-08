@@ -8,5 +8,5 @@ import os
 os.system('clear')
 str = (input("strings? ")).encode("ascii") # 文字列を入力しよう"
 for k, code in enumerate(str):
-  if ord('a') <= code <= ord('z'):        # 小文字アルファベットならば
+  if ord('a') <= code and code <= ord('z'):        # 小文字アルファベットならば
      print(chr(str[k]), hex(code), code)  # 文字，16 進， 10 進を表示する
