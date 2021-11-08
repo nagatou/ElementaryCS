@@ -1,16 +1,4 @@
 %
-%%% QUIZ 3
-%
-%\section{課題 3 演習ガイド}
-%\subsection{課題 3 ガイド}
-%\begin{frame}
-%\frametitle{課題 3 ガイド}
-%  \begin{itemize}
-%\item \hyperlink{situation}{\beamerbutton{課題 3 予告}}
-%\item これを通して関数，メソッド，サブルーチンの概念を見ていく
-%  \end{itemize}
-%\end{frame}
-%
 %%% FUNCTION
 %
 \section{関数，メソッド，サブルーチン}
@@ -48,7 +36,7 @@ print(wa)
       \end{lstlisting}
     \end{column}
     \begin{column}{0.3\textwidth}
-      \begin{lstlisting}[caption={関数定義},label=lst:definefun2]
+      \begin{lstlisting}[caption={mult\_basicsonly.py},label=lst:definefun2]
 def add(x,y):
   wa = x 
   while y > 0:
@@ -58,7 +46,7 @@ def add(x,y):
       \end{lstlisting}
     \end{column}
     \begin{column}{0.3\textwidth}
-      \begin{lstlisting}[caption={関数適用},label=lst:definefun3,firstnumber=last]
+      \begin{lstlisting}[caption={mult\_basicsonly.py},label=lst:definefun3,firstnumber=last]
 def mult(x,y):
   seki = 0
   while y > 0:
@@ -81,7 +69,7 @@ def mult(x,y):
   \end{itemize}
   \begin{columns}[t]
     \begin{column}{0.45\textwidth}
-      \begin{lstlisting}[caption={集合演算},label=lst:fun_abst]
+      \begin{lstlisting}[caption={bit\_string.py},label=lst:fun_abst]
 ### Set operations
 def union(seta,setb,result):
   global Size
@@ -94,7 +82,7 @@ def intersection(seta,setb,result):
       \end{lstlisting}
     \end{column}
     \begin{column}{0.45\textwidth}
-      \begin{lstlisting}[caption={集合演算},label=lst:fun_abst2,firstnumber=last]
+      \begin{lstlisting}[caption={bit\_string.py},label=lst:fun_abst2,firstnumber=last]
 def complement(seta,result):
   global Size
   for i in range(Size):
@@ -319,9 +307,8 @@ def dec(k, c):
 \begin{frame}[containsverbatim,shrink]
 \frametitle{宿題 4, 5}
   \begin{itemize}
-\item \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}}から ango-skeleton.py と hukugo-skeleton.py をダウンロード
+\item \href{https://sites.google.com/presystems.xyz/elementarycs/top}{\beamerbutton{https://sites.google.com/presystems.xyz/elementarycs/top}}から ango-skeleton.py と hukugo-skeleton.py をダウンロード
 \item 同様にテスト用サンプルデータ plaintext.txt と ciphertext.txt をダウンロード（ソースコードと同じディレクトリに保存してください）
 \item ファイル名は暗号化プログラム: ango.py， 復号プログラム: hukugo.py としてください
-\item 提出は OCW-i から
   \end{itemize}
 \end{frame}
