@@ -24,7 +24,7 @@ while (True):
   print(q, end="")
   if (n == 0):
     break
-  elif (rem_count[n] > 1):
+  elif (rem_count[n] >= 1):
     print("...")
     break
   rem_count[n]=rem_count[n]+1
