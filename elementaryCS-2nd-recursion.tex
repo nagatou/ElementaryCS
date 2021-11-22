@@ -1,31 +1,38 @@
 \section{再帰 (Recursion)}
 \subsection{再帰への導入}
-\begin{frame}[fragile]
+\begin{frame}[fragile,shrink]
 \frametitle{再帰への導入}
   \begin{itemize}
 \item 対象を簡潔に明示的に表す方法
 \item たとえば下の絵，ひとつ絵を書いてその中央にその絵を書ている（Droste 効果)
-\item 対象を定義するときに既にわかっている部分を参照して定義するということ
+\item 対象を定義するときにより小さい部分を参照して定義する
 
 %\item 関数を合成することで別の関数を定義できる
 %\item 複雑な計算を定義する時にはより単純な部分問題に分割して，単純な計算を合成する
   \end{itemize}
   \begin{center}
-\includegraphics[scale=0.4]{../Figure/Rosen_picture.jpg}
+\includegraphics[scale=0.5]{./Figure/Droste.pdf}
   \end{center}
 \end{frame}
 \begin{frame}[fragile,shrink]
 \frametitle{数列の再帰的定義}
   \begin{itemize}
 \item 数列 \(a_n=\frac{n(n+1)}{2},\ n\leq 1\)
-\item Baseic step (初項) を 1
-\item Recursive step (n 項) を \(a_n=n+a_{n-1}\) と定義できる
+\item 初項を 1， n 項を \(a_n=n+a_{n-1}\) とする
 \item \(n\) 項を決めるのに \(n-1\) 項から決める
 \item まだ決まっていない最小の項を既に知っている項から決定する
+\item 再帰的定義:
+\begin{displaymath}
+a(n) = \left\{ \begin{array}{ll}
+\displaystyle 1               & \mbox{if }n=1 \\
+              n + a(n-1)    & \mbox{otherwise} 
+\end{array} \right.
+\end{displaymath}
   \end{itemize}
   \begin{columns}
     \begin{column}[t]{0.4\textwidth}
       \begin{center}
+\vspace{-2em}
 \includegraphics[scale=0.4]{./Figure/elementaryCS-figTriangular.pdf}
       \end{center}
     \end{column}
@@ -37,21 +44,21 @@
   \end{columns}
 \end{frame}
 \subsection{再帰 (Recursion)}
-\begin{frame}[fragile]
+\begin{frame}[fragile,shrink]
 \frametitle{再帰的定義の原理}
   \begin{itemize}
 \item 関数 $f$ の定義に $x$ より小さい要素についての評価を利用して定義することを原始再帰 (primitive recursion) と呼ぶ
 \item $x$ より小さい値についての評価はいつも同じ値と仮定
 \item 定義できた最大の $x$ のつぎの値について定義するというのを繰り返すと全体について定義できる (\(\delta\)-近似)
   \end{itemize}
-  \begin{theorem}[再帰の原理]
+  \begin{block}{再帰の原理}
 \scriptsize
 順序数 (自然数は順序数) \(x\) として，
     \begin{center}
 \(f(x)=G(f\upharpoonright x)\)
     \end{center}
 ここで，\(f\upharpoonright x\) は \(f\) を \(x\) より小さい数に制限したもの， $G$ は計算のしかたを表したもの
-  \end{theorem}
+  \end{block}
   \begin{center}
 \includegraphics[scale=0.5]{./Figure/elementaryCS-2nd-figRecursion.pdf}
   \end{center}
@@ -206,10 +213,10 @@ def fib (n):
 %\item E.g. : \(\{3,\ 3+3=6,\ 3+6=9,\ 6+6=12,\cdots\}\)
 %    \end{itemize}
 %  \end{example}
-  \begin{example}[文字列の集合\(\Sigma*\)]
+  \begin{example}[文字列の集合\(\Sigma^*\)]
     \begin{itemize}
 \item Basic step: \(\epsilon\in\Sigma\) (空列 \(\epsilon\) も \(\Sigma\) に含まれる)
-\item Recursive step: \(a\in\Sigma,w\in\Sigma*\) ならば \(aw\in\Sigma*\)
+\item Recursive step: \(a\in\Sigma,w\in\Sigma^*\) ならば \(aw\in\Sigma^*\)
 \item E.g.: \(\{\epsilon,\ a,\ aa,\ aaa,\cdots\}\)
     \end{itemize}
   \end{example}
