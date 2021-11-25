@@ -3,7 +3,7 @@
 \begin{frame}[fragile,shrink]
 \frametitle{再帰への導入}
   \begin{itemize}
-\item 対象を簡潔に明示的に表す方法
+\item 対象（問題）を簡潔に明示的に表す方法
 \item たとえば下の絵，ひとつ絵を書いてその中央にその絵を書ている（Droste 効果)
 \item 対象を定義するときにより小さい部分を参照して定義する
 
@@ -15,10 +15,10 @@
   \end{center}
 \end{frame}
 \begin{frame}[fragile,shrink]
-\frametitle{数列の再帰的定義}
+\frametitle{再帰の例}
   \begin{itemize}
 \item 数列 \(a_n=\frac{n(n+1)}{2},\ n\leq 1\)
-\item 初項を 1， n 項を \(a_n=n+a_{n-1}\) とする
+\item 初項を 1， n 項を \(a_n=n+a_{n-1}\) となる
 \item \(n\) 項を決めるのに \(n-1\) 項から決める
 \item まだ決まっていない最小の項を既に知っている項から決定する
 \item 再帰的定義:
@@ -47,8 +47,8 @@ a(n) = \left\{ \begin{array}{ll}
 \begin{frame}[fragile,shrink]
 \frametitle{再帰的定義の原理}
   \begin{itemize}
-\item 関数 $f$ の定義に $x$ より小さい要素についての評価を利用して定義することを原始再帰 (primitive recursion) と呼ぶ
-\item $x$ より小さい値についての評価はいつも同じ値と仮定
+\item 関数 $f$ の定義に $x$ より小さい要素についての評価値を利用して定義することを原始再帰 (primitive recursion) と呼ぶ
+\item $f$ が $x$ より小さい値について計算可能であり，いつも同じ値と仮定し， \(f\upharpoonright x\) と書く
 \item 定義できた最大の $x$ のつぎの値について定義するというのを繰り返すと全体について定義できる (\(\delta\)-近似)
   \end{itemize}
   \begin{block}{再帰の原理}
@@ -215,7 +215,7 @@ def fib (n):
 %  \end{example}
   \begin{example}[文字列の集合\(\Sigma^*\)]
     \begin{itemize}
-\item Basic step: \(\epsilon\in\Sigma\) (空列 \(\epsilon\) も \(\Sigma\) に含まれる)
+\item Basic step: \(\epsilon\in\Sigma^*\) (空列 \(\epsilon\) も \(\Sigma^*\) に含まれる)
 \item Recursive step: \(a\in\Sigma,w\in\Sigma^*\) ならば \(aw\in\Sigma^*\)
 \item E.g.: \(\{\epsilon,\ a,\ aa,\ aaa,\cdots\}\)
     \end{itemize}
