@@ -4,6 +4,7 @@ import os
 import time
 
 def fact (n):
+  print('n->{0}'.format(n))
   if (n == 1):
     return(1)
   else:
@@ -28,7 +29,7 @@ def fact_loop (max):
 # Test Harness
 while (1):
   n = int(input("n(>=0)? "))
-  if n is 0:
+  if n == 0:
     break
   else:
     print(fact(n))

@@ -17,7 +17,7 @@
 \begin{frame}[fragile,shrink]
 \frametitle{再帰の例}
   \begin{itemize}
-\item 数列 \(a_n=\frac{n(n+1)}{2},\ n\leq 1\)
+\item 数列 \(a_n=\frac{n(n+1)}{2},\ n\geq 1\)
 \item 初項を 1， n 項を \(a_n=n+a_{n-1}\) となる
 \item \(n\) 項を決めるのに \(n-1\) 項から決める
 \item まだ決まっていない最小の項を既に知っている項から決定する
@@ -72,7 +72,7 @@ a(n) = \left\{ \begin{array}{ll}
 \item G に相当するのが \(\operatorname{succ}\)
 \item Basic step に近づけるように recursive step を定義
      \begin{itemize}
-\item \(a+\operatorname{succ}(b)=\operatorname{succ}(a+b)\)
+\item \(a+\operatorname{succ}(b)=\)
      \end{itemize}
   \end{itemize}
 \vspace{-1em}
@@ -90,7 +90,6 @@ a(n) = \left\{ \begin{array}{ll}
       \begin{lstlisting}[caption={加算},label=add-rec]
 # Recursive definition
 import os
-import time
 
 def succ (x):
   return(x+1)
@@ -127,7 +126,7 @@ def mult (a,b):
   \end{itemize}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \begin{lstlisting}[caption={階乗},label=fact-rec]
+      \begin{lstlisting}[caption={fact.py},label=fact-rec]
 def fact (n):
   if (n == 1):
     return(1)
@@ -200,27 +199,6 @@ def fib (n):
     \end{column}
   \end{columns}
 \end{frame}
-\begin{frame}[fragile]
-\frametitle{集合の再帰的定義}
-  \begin{itemize}
-\item Basic step: 集合の初期要素を定義
-\item Recursive step: 既にわかっている要素から新しい要素を定義する規則
-  \end{itemize}
-%  \begin{example}[3 の倍数]
-%    \begin{itemize}
-%\item Basic step: 3 は集合の要素
-%\item Recursive step: 集合の要素 \(x,y\) として \(x+y\) も要素
-%\item E.g. : \(\{3,\ 3+3=6,\ 3+6=9,\ 6+6=12,\cdots\}\)
-%    \end{itemize}
-%  \end{example}
-  \begin{example}[文字列の集合\(\Sigma^*\)]
-    \begin{itemize}
-\item Basic step: \(\epsilon\in\Sigma^*\) (空列 \(\epsilon\) も \(\Sigma^*\) に含まれる)
-\item Recursive step: \(a\in\Sigma,w\in\Sigma^*\) ならば \(aw\in\Sigma^*\)
-\item E.g.: \(\{\epsilon,\ a,\ aa,\ aaa,\cdots\}\)
-    \end{itemize}
-  \end{example}
-\end{frame}
 \subsection{木構造}
 \begin{frame}[fragile]
 \frametitle{Tree (木構造)}
@@ -235,6 +213,20 @@ def fib (n):
   \end{center}
 \end{frame}
 \begin{frame}[fragile]
+\frametitle{集合の再帰的定義}
+  \begin{itemize}
+\item Basic step: 集合の初期要素を定義
+\item Recursive step: 既にわかっている要素から新しい要素を定義する規則
+  \end{itemize}
+  \begin{example}[文字列の集合\(\Sigma^*\)]
+    \begin{itemize}
+\item Basic step: \(\epsilon\in\Sigma^*\) (空列 \(\epsilon\) も \(\Sigma^*\) に含まれる)
+\item Recursive step: \(a\in\Sigma,w\in\Sigma^*\) ならば \(aw\in\Sigma^*\)
+\item E.g.: \(\{\epsilon,\ a,\ aa,\ aaa,\cdots\}\)
+    \end{itemize}
+  \end{example}
+\end{frame}
+\begin{frame}[fragile]
 \frametitle{再帰は強力な道具}
   \begin{itemize}
 \item 最初の元から順番に対象を構成
@@ -242,17 +234,19 @@ def fib (n):
 \item 問題を解く時も，最も小さい問題の解から順番に全体の解を構成することができる
 \item （いつもではないけど）
   \end{itemize}
+  \begin{center}
+\includegraphics[scale=0.3]{./Figure/Structure.pdf}
+  \end{center}
 \end{frame}
 \begin{frame}[fragile]
 \frametitle{宿題 1}
   \begin{itemize}
-\item 自然数上の四則演算を再帰で定義し直してみてください
-\item フィボナッチ数を求める再帰的な計算を繰り返しに直してみてください
-\item 先の文字列の集合を参考に文字列の長さを求める関数を再帰的に定義せよ．
+\item 自然数上の四則演算を再帰で定義せよ(four-ops-rec.py 参照)
+\item 先の文字列の集合を参考に文字列の長さを求める関数を再帰的に定義せよ(str\_len.py 参照)
     \begin{itemize}
 \item Hint: Basic step を空列は長さ 0 として，recursive step は一文字短い文字列より 1 長い
 \item Python では str[1:] とすると文字列の 2 番目以降の文字列を得ることができる
-\item 空列は not str  あるいは len(str) で判定
+\item 空列は not str で判定
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -278,7 +272,7 @@ def fib (n):
 \vspace{-3em}
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
-      \begin{lstlisting}[caption={Newton 法},label=newton-rec]
+      \begin{lstlisting}[caption={newton.py},label=newton-rec]
 ### Newton's method 
 def sqrt_iter (guess,n,eps,previous):
   def is_enough (guess,eps,previous):
@@ -294,7 +288,7 @@ def sqroot1 (n,eps):
       \end{lstlisting}
     \end{column}
     \begin{column}{0.45\textwidth}
-      \begin{lstlisting}[caption={Newton 法},firstnumber=13,label=newton-is_enough-rec]
+      \begin{lstlisting}[caption={newton.py},firstnumber=13,label=newton-is_enough-rec]
 def sqroot (n):
   ### Machine epsilon
   def eps_m ():
@@ -324,7 +318,7 @@ def sqroot (n):
   \end{itemize}
   \begin{columns}[c]
     \begin{column}{0.6\textwidth}
-      \begin{lstlisting}[caption={階乗 (引数表示版)},label=fact-with-puts]
+      \begin{lstlisting}[caption={fact.py},label=fact-with-puts]
 # Factorial
 def fact (n):
   if (n == 1):
@@ -415,22 +409,22 @@ def fact (n):
 %puts(comb(x,y))
 %  \end{lstlisting}
 %\end{frame}
-\subsection{帰納法 (Induction)}
-\begin{frame}[fragile]
-\frametitle{帰納法の原理}
-  \begin{itemize}
-\item 帰納法は再帰的に定義されたものの性質を証明するテクニック
-\item 再帰的アルゴリズムの正当性を証明するのにも使える
-\item 下に帰納法の原理をあげておきます
-\item \(\operatorname{succ}(y)\) は $y$ のつぎの数という意味です (CS 入門第一の\(+1\) に相当)
-\item 証明したいことがらを \(\phi\) とします
-\item 原理の前提条件を充たすことを示します \(\phi(0)\wedge(\phi(n)\Rightarrow\phi(\operatorname{succ}(n)))\)
-  \end{itemize}
-  \begin{block}{帰納法の原理}
-集合 \(X=\{n\colon \phi(n)\}\) について，もし \(0\in X\) かつ \(\forall y\in X\colon \operatorname{succ}(y)\in X\) であるなら，$X$ はすべての自然数を含む
-  \end{block}
-\end{frame}
-\section{繰り返しと再帰}
+%\subsection{帰納法 (Induction)}
+%\begin{frame}[fragile]
+%\frametitle{帰納法の原理}
+%  \begin{itemize}
+%\item 帰納法は再帰的に定義されたものの性質を証明するテクニック
+%\item 再帰的アルゴリズムの正当性を証明するのにも使える
+%\item 下に帰納法の原理をあげておきます
+%\item \(\operatorname{succ}(y)\) は $y$ のつぎの数という意味です (CS 入門第一の\(+1\) に相当)
+%\item 証明したいことがらを \(\phi\) とします
+%\item 原理の前提条件を充たすことを示します \(\phi(0)\wedge(\phi(n)\Rightarrow\phi(\operatorname{succ}(n)))\)
+%  \end{itemize}
+%  \begin{block}{帰納法の原理}
+%集合 \(X=\{n\colon \phi(n)\}\) について，もし \(0\in X\) かつ \(\forall y\in X\colon \operatorname{succ}(y)\in X\) であるなら，$X$ はすべての自然数を含む
+%  \end{block}
+%\end{frame}
+\section{Quiz 1}
 \begin{frame}[fragile,shrink]
 \frametitle{QUIZ 1}
   \begin{itemize}
@@ -444,7 +438,7 @@ def fact (n):
 \item 柱から柱への移動は一度に 1 枚だけ
 \item 大きい円盤をそれより小さい円盤の上にのせてはいけない
     \end{itemize}
-\item 4b(CS2) クラスのサイト: \href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} 
+\item 4b(CS2) クラスのサイト: \href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS}} 
 から hanoi-skeleton.py をダウンロードして使ってください
   \end{itemize}
   \begin{center}
@@ -463,19 +457,26 @@ def fact (n):
 \includegraphics[scale=0.28]{./Figure/elementaryCS-figHanoi-Hint.pdf}
   \end{center}
 \end{frame}
+\section{繰り返しと再帰}
+\subsection{末尾再帰 (Tail Recursion)}
 \begin{frame}[fragile,shrink]
-\frametitle{繰り返しと再帰}
+\frametitle{繰り返しプログラムと再帰プログラム}
   \begin{itemize}
 \item 以前，繰り返しでいろいろな計算を実現しました
-\item 再帰は繰り返しに変換できることがあります
 \item ここでは繰り返しと再帰の関係について見ていきます
+\item \(\operatorname{succ}(y)\) は $y$ のつぎの数という意味で CS 入門第一の\(+1\) に対応
+\item \(\operatorname{0}\) は定数 (引数なしの特別な関数)
+\item これら初期関数から再帰と関数合成で繰り返しプログラムと同じものが作れます
+    \begin{itemize}
+\item 関数合成は \(f(g_1(x_1),\ldots,g_n(x_n))\) 
+\item 再帰は basic step と recursive step で場合分け
+    \end{itemize}
   \end{itemize}
 \end{frame}
-\subsection{末尾再帰 (Tail Recursion)}
 \begin{frame}[fragile,shrink]
 \frametitle{末尾再帰呼び出し (Tail Recursive Call)}
   \begin{itemize}
-\item どちらも再帰的定義ですが計算プロセスに違いがあります
+\item \lstref{fact-rec1}と\lstref{fact-iter}はどちらも再帰的定義ですが計算プロセスに違いがあります
 \item \lstref{fact-rec1} は fact(n) を得るために fact(n-1) の後の計算 (n  $\times\,\Box$) を覚えてなければならない
 \item \lstref{fact-iter} はその必要はなく，計算の状態``カウンタと途中までの積''を覚えておくだけで良い
 \item \lstref{fact-iter} のような形を末尾再帰的といいます
@@ -509,7 +510,6 @@ def fact_iter (n):
 \begin{frame}[fragile]
 \frametitle{末尾呼び出し (Tail Call)}
   \begin{itemize}
-\scriptsize
 \item 末尾再帰は繰り返し {\tt while, for} に書き換えられます
 \item 繰り返しは再帰関数の特別な場合と見なせる
 \item 再帰は関数を呼び出すたびに資源を消費するが，繰り返しは一定
@@ -549,7 +549,7 @@ def fact_iter (n):
 %
 %%% COMPUTER
 %
-\section{コンピュータの中では}
+\subsection{コンピュータの中では}
 \begin{frame}[shrink]
 \frametitle{CPU とメモリ}
   \begin{itemize}
