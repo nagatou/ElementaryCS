@@ -2,7 +2,7 @@
 
 import os, time
 
-# Naive
+# Naive Algorithm
 def gcd(x,y):
   def min(x,y):
     if (x>y):
@@ -25,7 +25,8 @@ def euclid1(x1,x2):
 def euclid(x1,x2):
   def swap(x1,x2):
     return x2,x1
-  if (x1<x2) : x1,x2 = swap(x1,x2)
+  if (x1<x2) :
+     x1,x2 = swap(x1,x2)
   return(euclid1(x1,x2))
 
 #Test Harness

@@ -15,7 +15,7 @@
 \item $D$ は最小（あるは極小）があって並んでいるという構造を持つ
 \item \(x\in D\) として \(f(x)=G(f\upharpoonright x)\)
 \item $D$ を自然数すれば \((N;0,S,+,-,\times,\div,\mathrm{mod},<)\)
-\item $G$ を \(0,S,+,-,\times,\div,\mathrm{mod},<\) の有限の列として構成
+\item 計算を \(0,S,+,-,\times,\div,\mathrm{mod},<\) を再帰や合成で列として構成
     \end{itemize}
 \item 別の方法として Turing machine を紹介（ホワイトボードに書きます）
 \item 計算可能な関数のクラスも理論的に興味深いが，それは別の機会
@@ -40,7 +40,7 @@
 \item アルゴリズムでは具体的に最大公約数をもとめる計算の仕方を議論する
 \item 計算の仕方はいくつか考えられる
     \begin{itemize}
-\item アルゴリズムの書き方の自然言語で書いたりいろいろ
+\item アルゴリズムの書き方も自然言語で書いたりいろいろ
     \end{itemize}
   \end{itemize}
   \begin{columns}[t]
@@ -73,13 +73,13 @@ x_3 &=& n_3 x_4 + x_5\\
 \item それぞれの実行時間を比較するので見ていてください
     \begin{itemize}
 \item 適当な数字思いつかないので
-\item 10,000,000 と 10,203,040 の最大公約数
+\item 10000000 と 10203040 の最大公約数
 \item 62979284285501 と 62873258567731 の最大公約数
     \end{itemize}
   \end{itemize}
   \begin{columns}[t]
     \begin{column}{0.45\textwidth}
-      \begin{lstlisting}[caption={Naive Algorithm}]
+      \begin{lstlisting}[caption={gcd.py}]
 def gcd(x,y):
   def min(x,y):
     if (x>y):
@@ -95,7 +95,7 @@ def gcd(x,y):
       \end{lstlisting}
     \end{column}
     \begin{column}{0.45\textwidth}
-      \begin{lstlisting}[caption={Euclidean Algorithm},label=lst:euclid]
+      \begin{lstlisting}[caption={gcd.py},label=lst:euclid]
 def euclid1(x1,x2):
   if x2==0:
     return (x1)
@@ -104,7 +104,8 @@ def euclid1(x1,x2):
 def euclid(x1,x2):
   def swap(x1,x2):
     return x2,x1
-  if (x1<x2) : x1,x2 = swap(x1,x2)
+  if (x1<x2) :
+    x1,x2 = swap(x1,x2)
   return(euclid1(x1,x2))
       \end{lstlisting}
     \end{column}
@@ -162,44 +163,93 @@ def euclid(x1,x2):
 \item 最悪の場合について考える
 \item 割り算の商がいつまでも 1 であるとき最悪になる
 \item となり合う 2 つの Fibonacci 数のとき最悪になる
-\item 下の図で $q_i=1$ としたとき Fibonacci 数そのもの
+\item 下の図で $q_i=1$ for \(1\le i\le n-1\) としたとき Fibonacci 数 \(1,1,2,3,5,8,13,21,\ldots\) を逆にたどったもの
   \end{itemize}
   \begin{columns}[t]
     \begin{column}{0.45\textwidth}
 \centering
       \begin{math}
         \begin{array}{rcl}
-a_1 &=& q_1 a_2 + a_3\\
-a_2 &=& q_2 a_3 + a_4\\
-a_3 &=& q_3 a_4 + a_5\\
-&\cdots&\\
-a_{k-2} &=& q_k a_{k-1}
+r_0 &=& q_1 r_1 + r_2\\
+r_1 &=& q_2 r_2 + r_3\\
+r_2 &=& q_3 r_3 + r_4\\
+&\vdots&\\
+r_{n-2} &=& q_{n-1}r_{n-1} + r_{n}\\
+r_{n-1} &=& q_{n}r_{n}\\
+&&\mbox{where } r_0=x_1>r_1=x_2
         \end{array}
       \end{math}
     \end{column}
     \begin{column}{0.45\textwidth}
+\centering
+      \begin{math}
+        \begin{array}{rcl}
+21 &=& 13 + 8\\
+13 &=& 8 + 5\\
+ 8 &=& 5 + 3\\
+ 5 &=& 3 + 2\\
+ 3 &=& 2 + 1\\
+ 2 &=& 2 \cdot 1
+        \end{array}
+      \end{math}
     \end{column}
   \end{columns}
 \end{frame}
 \newcommand{\fib}{\mathop{\mathrm{fib}}\nolimits}
-\begin{frame}[fragile]
+\begin{frame}[fragile,shrink]
 \frametitle{ユーグリッドの互除法の演算回数}
   \begin{itemize}
-\item 計算に $k$ 回必要ならば，小さい数は $k$ 番目の Fibonacci 数であるかそれより大きい
-\item この定理から小さい方の数を $N$ として
+\item \(r_1>r_2>\ldots>r_{n-1}>r_n>r_{n+1}=0\)
+\item 小さい方の数 \(r_1\)は \(n+1\) 番目の Fibonacci 数 \(f_{n+1}\) であるかそれより大きい
+  \end{itemize}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+\centering
+      \begin{math}
+        \begin{array}{rcl}
+r_0 &=& r_1 + r_2\\
+r_1 &=& r_2 + r_3\\
+r_2 &=& r_3 + r_4\\
+&\vdots&\\
+r_{n-2} &=& r_{n-1} + r_{n}\\
+r_{n-1} &=& q_{n}r_{n}\\
+         && (q_n\ge 2)
+        \end{array}
+      \end{math}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+\centering
+      \begin{math}
+        \begin{array}{rcl}
+r_n     &\ge& 1(=f_2)\\
+r_{n-1} &\ge& 2(=f_3)\\
+r_{n-2} &\ge& f_3+f_2(=f_4)\\
+ &\vdots& \\
+ r_{n-(l-1)}&\ge& f_l+f_{l-1}\\
+ &\vdots& \\
+r_{2} &\ge& f_{n-1}+f_{n-2}(=f_n)\\
+r_{1} &\ge& f_n+f_{n-1}(=f_{n+1})\\
+        \end{array}
+      \end{math}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{ユーグリッドの互除法の演算回数\textemdash つづき}
+  \begin{itemize}
+\item $r_1=N$ として，このことから
   \end{itemize}
   \begin{center}  
     \begin{math}
-      \begin{array}{rcl}
-N&\geq& \fib(k)\\
-N&\geq& \frac{\phi^{k}}{\sqrt{5}}\ (\mbox{where }\phi=\frac{(1+\sqrt{5})}{2})\\
-\log_{\phi}(N)&\geq& \log_{\phi}(\frac{\phi^{k}}{\sqrt{5}})\\
-\log_{\phi}(N)+\log_{\phi}\sqrt{5}&\geq& \log_{\phi}\phi^{k}\\
-\log_{5}(N)+\log_{5}\sqrt{5}&\geq& k\\
-\log_{5}(N)+\frac{1}{2}&\geq& k
+      \begin{array}{rcll}
+N&\ge& f_{n+1}\\
+N&\ge& \phi^{n-1}&(\mbox{by }f_{n+1}>\phi^{n-1} \mbox{ for }n>2\\
+                &&&\mbox{where }\phi=\frac{(1+\sqrt{5})}{2})\\
+\log_{10}N&\ge&(n-1)\log_{10}\phi\\
+\log_{10}N&\ge&(n-1)\log_{10}\phi>\frac{n-1}{5}\\
+n&<&5\cdot\log_{10}N+1\\
       \end{array}
     \end{math}
-% 2018 年度は Lame の定理のに変更
   \end{center}
   \begin{itemize}
 \item Naive な方法の演算回数 N 回 よりは少ない
@@ -211,10 +261,10 @@ N&\geq& \frac{\phi^{k}}{\sqrt{5}}\ (\mbox{where }\phi=\frac{(1+\sqrt{5})}{2})\\
   \begin{itemize}
 \item 下の例を参考にべき乗を求める良いアルゴリズムを考えてみてください
 \item \(b^8\) を求めるのに乗算を 8 回と 3 回
-\item ふつうの子より 3 回の方が良い子
-\item power-skeleton.py が\href{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}{\beamerbutton{https://sites.google.com/a/presystems.xyz/sample/home/elementary-computer-science}} に置いてあるので,
+\item  8 回より 3 回の方が良い子
+\item power-skeleton.py が\href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS/}} に置いてあるので,
 ループに変更して実行時間を比較してみてください
-\item 提出はいつもの OCW-i からソースコードを提出
+\item 提出はいつもの T2Schola からソースコードを提出
   \end{itemize}
   \begin{example}[\(b^8\) の計算]
   \begin{columns}[t]
@@ -332,14 +382,12 @@ def fast_power(b,n):
 \frametitle{ユーグリットの互除法とべき乗のアルゴリズムのオーダ}
   \begin{example}[ユーグリットの互除法]
     \begin{itemize}
-\item Lame の定理: 計算に $k$ ステップ必要ならば，小さい数は $k$ 番目の Fibonacci 数であるかそれより大きい
+\item Lame の定理: 割り算の回数は，小さい数 $n$ の桁数の 5 倍以下である
     \end{itemize}
     \begin{center}  
       \begin{math}
         \begin{array}{rcl}
-\fib(n)&=&\frac{\phi^{n}}{\sqrt{5}}\\
-&=&\log_{5}(n)+\frac{1}{2}\\
-&=&\frac{1}{\log 5}\cdot\log n+\frac{1}{2}<c\log n\Rightarrow O(\log n)
+5(\log_{10}n)+1&<&c\log n\Rightarrow O(\log n)
         \end{array}
       \end{math}
     \end{center}
