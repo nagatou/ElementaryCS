@@ -340,7 +340,7 @@ def fast_power(b,n):
 \item 実行時間がどう変化するかの傾向を見積もれれば十分
   \end{itemize}
   \begin{example}
-入力サイズ $n$ として一方は \(100n^2\) ，もう一方は \(n^3\) 回演算を行うとすれば，
+入力サイズ $n$ として一方は \(n^2\) ，もう一方は \(n^3\) 回演算を行うとすれば，
  $n$ が十分に大きいときには前者の方が良い
   \end{example}
 \end{frame}
@@ -367,7 +367,7 @@ def fast_power(b,n):
     \begin{displaymath}
 0\leq n^2+2n+1\leq n^2+2n^2+n^2= 4n^2
     \end{displaymath}
-\item \(c=4, k=1, g(n)=n^2\) となる．よって，
+\item \(c=4, k=1, g(n)=n^2\) として，
 \item \(f(n)=n^2+2n+1<4\cdot n^2\)\ \textemdash\{\(f(n)\leq c\cdot g(n)\)\}
 \item \(n\geq 2\) とすると \(2n<n^2, 1<n^2\) 
     \begin{displaymath}
@@ -384,17 +384,11 @@ def fast_power(b,n):
     \begin{itemize}
 \item Lame の定理: 割り算の回数は，小さい数 $n$ の桁数の 5 倍以下である
     \end{itemize}
-    \begin{center}  
-      \begin{math}
-        \begin{array}{rcl}
-5(\log_{10}n)+1&<&c\log n\Rightarrow O(\log n)
-        \end{array}
-      \end{math}
-    \end{center}
+よって，\(\forall n\ge 10:(5(\log_{10}n)+1<(5+1)\log_{10} n)\Rightarrow O(\log n)\)
   \end{example}
   \begin{example}[べき乗]
     \begin{itemize}
-\item 指数を $n$，2 進表記の 1 の数 $k$，偶数のときはいつも半分になるので $m$ 回偶数が出現するとして，
+\item 指数を $n$，2 進表記の 1 の数 $j$，偶数のときはいつも半分になるので $m$ 回偶数が出現するとして，
     \end{itemize}
     \begin{center}
       \begin{math}
@@ -404,7 +398,7 @@ n&=&2^m\\
         \end{array}
       \end{math}
     \end{center}
-よって， \(f(n)=(\log_2 n)+(k-1)=\frac{1}{\log 2}\cdot\log n+(k-1)<c\log n\Rightarrow O(\log n)\)．
+よって， \(\forall n\ge2:((\log_2 n)+(j-1)<(1+(j-1))\log_2 n)\Rightarrow O(\log n)\)．
   \end{example}
 \end{frame}
 \begin{frame}[containsverbatim,shrink]
@@ -419,21 +413,18 @@ n&=&2^m\\
 \scriptsize
 \item \(\frac{1}{2}\) するとは右に 1 ビットシフト
 \item 最下位ビットが 1 のとき奇数
-\item 最後 1 乗は計算しないので(1 の数)-1
+\item 最後 0 乗は計算しないので(1 の数)-1
     \end{itemize}
 \item \(\lfloor\log_2 1000\rfloor+5\)=14 回
   \end{itemize}
   \begin{columns}
     \begin{column}{0.45\textwidth}
       \begin{block}{偶数の出現回数}
-        \begin{itemize}
-\item 二進表記にした時の桁数
-        \end{itemize}
         \begin{math}
           \begin{array}{c}
 \frac{n}{2^m}=1\\
 n=2^m\\
-\log_2 n = m
+\lfloor\log_2 n\rfloor = m
           \end{array}
         \end{math}
       \end{block}
@@ -446,10 +437,11 @@ n=2^m\\
 (1000)_{10}=&(1111101000)_{2}\\
 &\Rightarrow_{\frac{1}{2}}0111110100\\
 &\Rightarrow_{\frac{1}{2}}0011111010\\
-&\Rightarrow_{\frac{1}{2}}0000111110\\
-&\Rightarrow_{\frac{1}{2}}0000011111\\
+&\Rightarrow_{\frac{1}{2}}0000111101\\
+&\Rightarrow_{-1}0000111100\\
+&\Rightarrow_{\frac{1}{2}}0000011110\\
 &\cdots\\
-&\Rightarrow_{\frac{1}{2}}0000000011
+&\Rightarrow_{\frac{1}{2}}0000000001
           \end{array}
         \end{math}
       \end{block}
