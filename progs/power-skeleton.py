@@ -33,7 +33,7 @@ def fast_power(b,n):
     return(b) 
   else:
     if (is_even(n)):
-      return(square(fast_power(b,n/2)))
+      return(square(fast_power(b,n//2)))
     else:
       return((b*fast_power(b,n-1)))
 
@@ -43,7 +43,7 @@ def fast_power_tail(b,n):
       return(product) 
     else:
       if (is_even(n)):
-        return(fast_power_tail1(square(b),n/2,product))
+        return(fast_power_tail1(square(b),n//2,product))
       else:
         return((fast_power_tail1(b,n-1,product*b)))
   return(fast_power_tail1(b,n,1))
