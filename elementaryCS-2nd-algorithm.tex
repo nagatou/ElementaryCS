@@ -479,32 +479,77 @@ n=2^m\\
 \item 例えば \{3,2,4,1,5\} と与えられていれば \{1,2,3,4,5\} と並べたリストを作成する
 \item データベースシステムなど多くの場面で利用されている
 \item 多くのアルゴリズムが提案されている
-\item ここではバブルソート (bubble sort)，挿入ソート (insertion sort)，クイックソート (quick sort) を紹介する
+\item ここではバブルソート (bubble sort)，挿入ソート (insertion sort)，クイックソート (quick sort) を例に機械的にアルゴリズムから計算量を求めていく方法を見てみる
   \end{itemize}
 \end{frame}
-\begin{frame}[shrink]
+\begin{frame}[containsverbatim,shrink]
 \frametitle{Bubble Sort}
-  \begin{center}
-\includegraphics[scale=0.4]{./Figure/bubble_sort.pdf}
-  \end{center}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.5\linewidth}
+      \begin{lstlisting}[caption={擬似コード},label=bubble_sort]
+def bubble_sort(numbers):
+  for i in {1..n-1}:
+    for j in {n..i+1}:
+      if (numbers[j]<numbers[j-1]):
+        numbers[j],numbers[j-1]を入替え
+  return(numbers)  
+      \end{lstlisting}
+      \begin{itembox}[l]{計算量}
+        \begin{itemize}
+\tiny
+\item 配列のサイズを $n$ として
+\item 4-5 行は入力サイズによらず一定; $c$
+\item 3-6 行の演算回数は各繰り返しの演算回数の和; $c$ を \(n-i\) 回繰り返すので \(c(n-i)\)
+\item 2-6 行の演算回数は各繰り返しで \(c(n-i)\) を \((n-1)\) 回繰り返すので
+\item 全体で \(\sum_{i=1}^{n-1} c(n-i)=\frac{cn(n-1)}{2}=c(\frac{n^2}{2}-\frac{n}{2})\)
+        \end{itemize}
+      \end{itembox}
+    \end{column}
+    \begin{column}{0.55\linewidth}{様相}
+      \begin{center}
+\includegraphics[scale=0.3]{./Figure/bubble_sort.pdf}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
-\begin{frame}[shrink]
+\begin{frame}[containsverbatim,shrink]
 \frametitle{Insertion Sort}
-  \begin{center}
-\includegraphics[scale=0.4]{./Figure/insertion_sort.pdf}
-  \end{center}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.5\linewidth}
+      \begin{lstlisting}[caption={擬似コード},label=insertion_sort]
+def insertion_sort(numbers):
+  for i in range(1,len(numbers)):
+    j=i
+    while (numbers[j]<numbers[j-1]):
+      numbers[j],numbers[j-1]を入替え
+      j=j-1
+  return(numbers)
+      \end{lstlisting}
+      \begin{itembox}[l]{計算量（宿題 2）}
+        \begin{itemize}
+\tiny
+\item 配列のサイズを $n$ として \(O(n^2)\) が求められるはず
+\item 宿題とするので各自で確かめてみてください
+        \end{itemize}
+      \end{itembox}
+    \end{column}
+    \begin{column}{0.55\linewidth}{様相}
+      \begin{center}
+\includegraphics[scale=0.3]{./Figure/insertion_sort.pdf}
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 \begin{frame}[shrink]
 \frametitle{Quiz 3}
-\framesubtitle{Sort}
   \begin{block}{Quiz: Quick Sort}
 \scriptsize
     \begin{itemize}
 \item Input: 任意の長さの任意の整数の列
 \item Output: 昇順に整列した列
-\item sort-skeleton.py を加筆して quick sort を作成して実行時間を比較して見てください
+\item \href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS/}} から sort-skeleton.py をダウンロード
+\item quick sort を作成して実行時間を比較して見てください
 \item 提出は sort.py としてソースコードだけ提出
-\item ソースコードの先頭にコメント行で quick sort のオーダを入れておいてください (option)
     \end{itemize}
   \end{block}
   \begin{center}
@@ -528,41 +573,87 @@ n=2^m\\
 \includegraphics[scale=0.3]{./Figure/quick_sort.pdf}
   \end{center}
 \end{frame}
-\subsection{ソートアルゴリズムの時間計算量的比較}
-\begin{frame}
-\frametitle{ソートアルゴリズムの時間計算量的比較}
+\begin{frame}[containsverbatim, shrink]
+\frametitle{Quick Sort の計算量}
+  \begin{itemize}
+\item 再帰関数の計算量の計算方法について見ていきます
+  \end{itemize}
   \begin{columns}[t,onlytextwidth]
-    \begin{column}{0.5\linewidth}{Bubble と Insertion Sort}
-      \begin{itemize}
-\tiny
-\item 入力データのサイズを $n$ として
-\item 各 $i$ 回目の繰り返しについて \(n-i\) だけ比較を繰り返す
-\item それを $n$ 回繰り返すので全体で \(\frac{n(n+1)}{2}\) 回繰り返すことになる
-\item \(\frac{n(n+1)}{2}\leq c\cdot n^2\Rightarrow O(n^2)\)
-      \end{itemize}
+    \begin{column}{0.45\linewidth}
+      \begin{lstlisting}[caption={擬似コード},label=insertion_sort]
+def quick_sort1(numbers,front,rear):
+  pivot=findpivot(numbers,front,rear)
+  if (値がすべて同じ時):
+    return(numbers)
+  else:
+    k=partition(numbers,front,rear,numbers[pivot])
+    quick_sort1(numbers,front,k-1)
+    quick_sort1(numbers,k,rear)
+    return(numbers)
+      \end{lstlisting}
     \end{column}
-    \begin{column}{0.5\linewidth}{Quick Sort}
-      \begin{itemize}
+    \begin{column}{0.5\linewidth}
+      \begin{itembox}[l]{Best case}
+        \begin{itemize}
 \tiny
 \item Pivot が中央のとき最適になる
-\item このとき分割する回数 $m$ として \(\frac{n}{2^m}=1\)
-\item よって \(\log_2 n=m\)
-\item $j$ 番目の要素で分割されたとしてそれぞれの分割で $j$ 回と \(n-j\) 回比較する
-\item よって合わせて $n$ 回
-\item したがって，全体で \(n\log n\) 回の比較する
-\item \(n\log n\leq n\log n \Rightarrow O(n\log n)\)
-\item （最悪は \(O(n^2)\) 回）
-      \end{itemize}
+\item findpivot と partition はそれぞれ $O(n)$
+\item 各繰り返しでの計算回数を \(T(n)\) として
+\item \(T(n)=2T(\frac{n}{2})+n\)
+\item これを解いて \(T(n)=n+n\log_2(n)\)
+\item したがって，全体で \(O(n\log n)\) 
+        \end{itemize}
+      \end{itembox}
+      \begin{itembox}[l]{Worst case}
+        \begin{itemize}
+\tiny
+\item 分割した一方が 1 個のとき最悪になる
+\item 各繰り返しでの計算回数を \(T(n)\) として
+\item \(T(n)=T(n-1)+T(1)+n\)
+\item これを解いて \(T(n)=\frac{n^2}{2}+(T(1)+\frac{1}{2})n+T(1)\)
+\item したがって，\(O(n^2)\)
+        \end{itemize}
+      \end{itembox}
     \end{column}
   \end{columns}
 \end{frame}
+\begin{frame}[containsverbatim, shrink]
+\frametitle{Master Theorem}
+  \begin{theorem}
+漸化式が \(T(n)=aT(\frac{n}{b})+cn^d\) の形をしているときのオーダは以下のようになる
+    \begin{displaymath}
+T(n) = \left\{
+      \begin{array}{ll}
+\displaystyle
+O(n^d)&\mbox{if } a<b^d \\
+O(n^d\log(n))&\mbox{if } a=b^d \\
+O(n^{\log_b(a)})&\mbox{if } a>b^d \\
+      \end{array} \right.
+    \end{displaymath}
+  \end{theorem}
+  \begin{itemize}
+\item \(aT(\frac{n}{b})\) は大きさ $n$ の問題を \(\frac{n}{b}\) の大きさで $a$ 個に分けるという意味
+\item \(cn^d\) は再帰以外の計算量の意味
+  \end{itemize}
+\end{frame}
+%\begin{frame}[containsverbatim, shrink]
+%\frametitle{ハノイの塔の場合}
+%  \begin{itemize}
+%\item ディスクの枚数 $n$ を入力データの大きさとして move の出現回数を数える
+%  \end{itemize}
+%\end{frame}
+
 \section{Search Alogorithms}
-\begin{frame}
-\frametitle{Optional Quiz}
+\begin{frame}[containsverbatim,shrink]
+\frametitle{宿題 3}
 \framesubtitle{Search}
   \begin{itemize}
-\item 余裕のある人は search algorithms のプログラムに挑戦してみてください
+\item 余裕のある人は search algorithms に挑戦してみてください
+\item Linear search と binary search の計算量を求める
 \item Linear search と binary search のプログラムを作成し実行時間を比べる
+\item 参考までに binary search のソースコード (search.py) を
+\href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS/}} に置いておきます
+\item 提出の必要はありません
   \end{itemize}
 \end{frame}
 %%% Shortest Path Problem
