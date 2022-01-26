@@ -215,7 +215,7 @@ print("System information in Python:",sys.float_info.epsilon)
 \frametitle{誤差とは}
   \begin{itemize}
 \item コンピュータの中では実数は有限個の 0 と 1 の組み合わせ(浮動小数)で表しています
-\item なので，本来数学の実数であるべき真値を適当な浮動小数で近似している
+\item なので，本来あるべき真値を適当な浮動小数で近似している
 \item 近似値-真値 を誤差という
   \end{itemize}
 \end{frame}
@@ -348,7 +348,7 @@ print("System information in Python:",sys.float_info.epsilon)
 %  \end{example}
 %\end{frame}
 \subsection{打ち切り誤差 (truncation error)}
-\begin{frame}
+\begin{frame}[shrink]
 \frametitle{打ち切り誤差 (truncation error)}
   \begin{itemize}
 \item コンピュータでは無限に繰り返して値をもとめることはできない
@@ -361,22 +361,33 @@ print("System information in Python:",sys.float_info.epsilon)
 \item gnuplot で試してみてください
     \end{itemize}
   \end{example}
-\end{frame}
-\section{まとめ}
-\begin{frame}[shrink,fragile]
-\frametitle{数値計算}
-  \begin{itemize}
-\item ここで取り上げたおはなしは数値計算（計算機科学の一分野）のなかの計算誤差をとりあげたもの
-\item シミュレーションなどではある関数の実際の数値を必要とする場合がある
+  \begin{example}[平方の計算]
     \begin{itemize}
-\item 例えば，方程式 \(f(x)=0\) の $x$ を数値的に求める
+\item \href{run:newton.command}{\beamerbutton{ニュートン法}}
+\item \(\sqrt{a}\) を求めてみる
+\item \(f(x)=x^2-a\) として \(f(x)=0\) となる $x$ を求める
+\item \(k+1\) 番目の近似値 \(x_{k+1}\) を
+      \begin{displaymath}
+x_{k+1} = x_k-\frac{f(x_k)}{f'(x_k)} = \frac{1}{2}(x_k+\frac{a}{x_k})
+      \end{displaymath}
     \end{itemize}
-\item 数値計算の手順
-    \begin{itemize}
-\item 最初に適当な 1 次近似 \(x_0\) を選んで，
-\item より良い近似を求め，
-\item 適当な収束条件を満たすまで繰り返す （マシンイプシロンは収束条件の重要な指標）
-    \end{itemize}
-\item \(f\) は複雑なので数値的な解を求めるいろいろな算法を考察
-  \end{itemize}
+  \end{example}
 \end{frame}
+%\section{まとめ}
+%\begin{frame}[shrink,fragile]
+%\frametitle{数値計算}
+%  \begin{itemize}
+%\item ここで取り上げたおはなしは数値計算（計算機科学の一分野）のなかの計算誤差をとりあげたもの
+%\item シミュレーションなどではある関数の実際の数値を必要とする場合がある
+%    \begin{itemize}
+%\item 例えば，方程式 \(f(x)=0\) の $x$ を数値的に求める
+%    \end{itemize}
+%\item 数値計算の手順
+%    \begin{itemize}
+%\item 最初に適当な 1 次近似 \(x_0\) を選んで，
+%\item より良い近似を求め，
+%\item 適当な収束条件を満たすまで繰り返す （マシンイプシロンは収束条件の重要な指標）
+%    \end{itemize}
+%\item \(f\) は複雑なので数値的な解を求めるいろいろな算法を考察
+%  \end{itemize}
+%\end{frame}

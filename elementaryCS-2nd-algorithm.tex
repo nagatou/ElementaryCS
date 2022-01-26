@@ -518,7 +518,7 @@ def bubble_sort(numbers):
     \begin{column}{0.5\linewidth}
       \begin{lstlisting}[caption={擬似コード},label=insertion_sort]
 def insertion_sort(numbers):
-  for i in range(1,len(numbers)):
+  for i in {2..n}:
     j=i
     while (numbers[j]<numbers[j-1]):
       numbers[j],numbers[j-1]を入替え
@@ -564,8 +564,8 @@ def insertion_sort(numbers):
 \item Recursive step:
     \begin{enumerate}
 \scriptsize
-\item 中間付近の値 pivot を選ぶ
-\item pivot より小さい値を左側に，大きい値を右側に集める
+\item 中間付近の値 pivot を選ぶ: findpivot()
+\item pivot より小さい値を左側に，大きい値を右側に集める: partition()
 \item 左側，右側でそれぞれソートする
     \end{enumerate}
   \end{itemize}
@@ -578,9 +578,18 @@ def insertion_sort(numbers):
   \begin{itemize}
 \item 再帰関数の計算量の計算方法について見ていきます
   \end{itemize}
+\vspace{-5mm}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.45\linewidth}
       \begin{lstlisting}[caption={擬似コード},label=insertion_sort]
+def partition(numbers,left,right,pivot):
+  while left<=right:
+    numbers[left],numbers[right] を入替え
+    while (numbers[left]<pivot):
+      left=left+1
+    while (numbers[right]>=pivot):
+      right=right-1
+  return(left)
 def quick_sort1(numbers,front,rear):
   pivot=findpivot(numbers,front,rear)
   if (値がすべて同じ時):

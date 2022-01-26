@@ -1,27 +1,27 @@
 \section{数の表現}
-\begin{frame}[shrink]
-\frametitle{繰り返しや再帰によるその他の計算}
-  \begin{itemize}
-\item 繰り返しや再帰は自然数 $n$ に対応する解を求めるような感じ
-    \begin{itemize}
-\item 数列は $n$ 番目の数を求める: \(\alpha\colon N\rightarrow N\)
-\item ハノイの塔も $n$ 枚目の解を求める
-    \end{itemize}
-\item これを利用して関数の解を求める計算に利用する
-\item たとえば非線形方程式 \(f(x)=0\) の実根を求める
-\item \href{run:newton.command}{\beamerbutton{ニュートン法}}
-    \begin{itemize}
-\item \(\sqrt{a}\) を求めてみる
-\item \(f(x)=x^2-a\) として \(f(x)=0\) となる $x$ を求める
-\item \(k+1\) 番目の近似値 \(x_{k+1}\) を
-      \begin{displaymath}
-x_{k+1} = x_k-\frac{f(x_k)}{f'(x_k)} = \frac{1}{2}(x_k+\frac{a}{x_k})
-      \end{displaymath}
-で求める
-\item \(x_{k+1}\) と \(x_k\) が十分近くなったら停止
-    \end{itemize}
-  \end{itemize}
-\end{frame}
+%\begin{frame}[shrink]
+%\frametitle{繰り返しや再帰によるその他の計算}
+%  \begin{itemize}
+%\item 繰り返しや再帰は自然数 $n$ に対応する解を求めるような感じ
+%    \begin{itemize}
+%\item 数列は $n$ 番目の数を求める: \(\alpha\colon N\rightarrow N\)
+%\item ハノイの塔も $n$ 枚目の解を求める
+%    \end{itemize}
+%\item これを利用して関数の解を求める計算に利用する
+%\item たとえば非線形方程式 \(f(x)=0\) の実根を求める
+%\item \href{run:newton.command}{\beamerbutton{ニュートン法}}
+%    \begin{itemize}
+%\item \(\sqrt{a}\) を求めてみる
+%\item \(f(x)=x^2-a\) として \(f(x)=0\) となる $x$ を求める
+%\item \(k+1\) 番目の近似値 \(x_{k+1}\) を
+%      \begin{displaymath}
+%x_{k+1} = x_k-\frac{f(x_k)}{f'(x_k)} = \frac{1}{2}(x_k+\frac{a}{x_k})
+%      \end{displaymath}
+%で求める
+%\item \(x_{k+1}\) と \(x_k\) が十分近くなったら停止
+%    \end{itemize}
+%  \end{itemize}
+%\end{frame}
 \subsection{非負整数の表現}
 \begin{frame}[label=Top_Integer]
 \frametitle{非負整数のコンピュータ内での表現}
@@ -63,7 +63,7 @@ x_{k+1} = x_k-\frac{f(x_k)}{f'(x_k)} = \frac{1}{2}(x_k+\frac{a}{x_k})
       \begin{itemize}
 \item Successor (1 足す) でつぎの数になるようになっている
 \item 最上位ビットがサインビットになっている
-\item circulation の実行
+%\item circulation の実行
       \end{itemize}
     \end{example}
   \end{center}
