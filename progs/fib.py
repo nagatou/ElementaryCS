@@ -5,6 +5,8 @@
 
 import timeit
 import cProfile
+import sys
+sys.setrecursionlimit(2000)
 
 def iseven (n):
   if (n%2==0):
@@ -33,7 +35,7 @@ def fib_iter (n):
   return(fib_iter1(1,0,n))
 
 #(3) n 番目のフィボナッチ数を求める効率的なアルゴリズムを調べ，そのプログラムを作成せよ．
-#Hint: fast doubling のキーワードで調べてみよ．
+#Hint: 計算機プログラムの構造と解釈（Google サイトのリンクからたどれます．）の問題 1.19 参照
 #O(log n)
 def fast_fib(n):
   def fast_fib1(n):
