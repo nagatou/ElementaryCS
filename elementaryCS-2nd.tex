@@ -24,6 +24,8 @@
 \usepackage{filecontents}
 \usepackage{bxdpx-beamer}
 \usepackage{listings}
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
 
 %\renewcommand{\ttdefault}{lmtl}
 \newcommand{\jpy}{{{\ooalign{Y\crcr\hss=\hss}}}}
@@ -47,6 +49,15 @@
 %   numberstyle={\tiny},%
    numberblanklines=true,
 %   morekeywords={def, end, while, if, for, in, else, then, return}%
+}%
+
+\pgfplotsset{
+   compat=newest,
+%   width=10cm,
+   tick label style={font=\footnotesize},
+   label style={font=\footnotesize},
+   legend style={font=\footnotesize},
+   every axis/.append style={very thick},
 }%
 
 \title[elementaryCS-2nd]{コンピュータサイエンス入門第二}

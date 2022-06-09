@@ -374,9 +374,29 @@ def fast_power(b,n):
 0\leq n^2+2n+1\leq n^2+n^2+n^2= 3n^2
     \end{displaymath}
   \end{itemize}
-  \begin{center}
-\includegraphics[scale=0.6]{./progs/witness.pdf}
-  \end{center}
+%  \begin{center}
+%\includegraphics[scale=0.6]{./progs/witness.pdf}
+%  \end{center}
+  \begin{tikzpicture}
+    \begin{axis}[axis lines = left,
+%                 stack plots = y,
+                 cycle list name=color list, %linestyles,
+                 xlabel = input size,
+                 ylabel = {\(f(n)\)},
+                 %height=10cm,
+                 xmax=3,
+                 ymax=5, 
+                 xtick={1,...,5},]
+\addplot[domain=0:3, smooth, color=red,] {4*x^2};
+\addlegendentry{\(4n^2\)}
+\addplot[domain=0:3, smooth, color=blue,] {x^2+2*x+1};
+\addlegendentry{\(n^2+2n+1\)}
+\addplot[domain=0:3, smooth, color=green,] {x^2};
+\addlegendentry{\(n^2\)}
+\addplot[domain=0:3, smooth, color=yellow,] {x};
+\addlegendentry{\(n\)}
+    \end{axis}
+  \end{tikzpicture}
 \end{frame}
 \begin{frame}[shrink]
 \frametitle{ユーグリットの互除法とべき乗のアルゴリズムのオーダ}
