@@ -48,7 +48,7 @@
 %   morekeywords={def, end, while, if, for, in, else, then, return}%
 }%
 
-\title[elementaryCS-1st]{コンピュータサイエンス入門第一}
+\title[elementaryCS-1st]{コンピュータサイエンス入門第一\\ \textemdash 3a,4b(CS1)\textemdash}
 \date[3rd quarter]{3rd quarter}
 \author[Naoyuki Nagatou]{永藤 直行}
 \institute[TITECH]{東京工業大学}
@@ -77,20 +77,6 @@
 %\beamerdefaultoverlayspecification{<+->}
 
 \begin{document}
-\begin{frame}
-\frametitle{新型コロナウィルスへの対応}
-  \begin{itemize}
-\item 講義は第一，第二ともオンラインで行います
-\item 何らかの理由で講義に参加できなかったとしても，心配しないでください
-    \begin{itemize}
-\item ネットワークや機器の不調
-\item 自身が感染，などなど
-    \end{itemize}
-\item 何某か対応するので焦らずゆっくり落ち着いて参加してください
-\item PC の記憶領域をかなり圧迫するので講義の録画は各自でする必要はありません
-\item こちらから動画視聴ための URL を別途お送りします．
-  \end{itemize}
-\end{frame}
 \frame{\titlepage}
 %
 %%% PROLOGUE
@@ -105,7 +91,9 @@
 %
 %%% PROGRAMMING ENVIRONMENT
 %
-\input{IL-proenv}
+%\input{IL-proenv}
+\input{IL-FileAndDir-corona}
+\input{elementaryCS-terminal}
 %
 %%% 計算の基本
 %
@@ -118,7 +106,7 @@
 \input{elementaryCS-1st-basic}
 %
 %%% QUIZ 1
-
+%
 \part{CS 第 1\textemdash 課題 1}
 \frame{
   \frametitle{CS 第 1 \textemdash 課題 1}
@@ -126,9 +114,9 @@
   \tableofcontents[part=3]
 }
 \input{elementaryCS-1st-quiz1}
-%
-%%% ARRAY
-%
+
+%% ARRAY
+
 \part{配列}
 \frame{
   \frametitle{配列}
@@ -136,36 +124,36 @@
   \tableofcontents[part=4]
 }
 \input{elementaryCS-1st-array}
+\input{elementaryCS-1st-quizS}
 %
 %%% QUIZ 2
 %
-\part{CS 第 1\textemdash 課題 2}
-\frame{
-  \frametitle{CS 第 1 \textemdash 課題 2}
-\scriptsize
-  \tableofcontents[part=5]
-}
-\input{elementaryCS-1st-quiz2}
-\input{elementaryCS-1st-quizS}
+%\part{CS 第 1\textemdash 課題 2}
+%\frame{
+%  \frametitle{CS 第 1 \textemdash 課題 2}
+%\scriptsize
+%  \tableofcontents[part=5]
+%}
+%\input{elementaryCS-1st-quiz2}
 %%
 %%%% SUBROUTINE and FUNCTION
 %%
-\part{関数とサブルーチン}
-\frame{
-  \frametitle{関数とサブルーチン}
-\scriptsize
-  \tableofcontents[part=6]
-}
-\input{elementaryCS-1st-function}
+%\part{関数とサブルーチン}
+%\frame{
+%  \frametitle{関数とサブルーチン}
+%\scriptsize
+%  \tableofcontents[part=6]
+%}
+%\input{elementaryCS-1st-function}
 %
 %%% QUIZ 3
 %
-\part{CS 第 1\textemdash 課題 3}
-\frame{
-  \frametitle{CS 第 1 \textemdash 課題 3}
-\scriptsize
-  \tableofcontents[part=7]
-}
-\input{elementaryCS-1st-quiz3}
+%\part{CS 第 1\textemdash 課題 3}
+%\frame{
+%  \frametitle{CS 第 1 \textemdash 課題 3}
+%\scriptsize
+%  \tableofcontents[part=7]
+%}
+%\input{elementaryCS-1st-quiz3}
 
 \end{document}

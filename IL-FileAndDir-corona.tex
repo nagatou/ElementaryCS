@@ -1,0 +1,140 @@
+\section{情報の格納}
+\subsection{教育用計算機ステムの利用開始}
+\begin{frame}[shrink]
+\frametitle{教育用システムの利用}
+  \begin{itemize}
+\item \href{http://www.edu.gsic.titech.ac.jp/}{\beamerbutton{教育用電子計算機システム}}のサイトの``アカウント利用開始''を参照
+  \end{itemize}
+  \begin{center}
+\includegraphics[scale=.3]{../InformationLiteracy/Figure/iMac.jpg}
+  \end{center}
+\end{frame}
+\subsection{ファイル}
+\begin{frame}[shrink]
+\frametitle{情報の格納}
+\framesubtitle{ファイルとディレクトリ (フォルダ)}
+  \begin{itemize}
+\item さまざまなタイプの情報をビットの列として記録しいてます
+    \begin{itemize}
+\item 数値，文字，図，表，写真，音声，動画など情報のあらゆるタイプ
+    \end{itemize}
+\item コンピュータの中では情報をファイルやディレクトリ(フォルダ)と云うもので管理しています
+\item ファイル
+    \begin{itemize}
+\item コンピュータ内の情報はファイルという単位で扱われる
+\item e.g. テキストファイル，画像ファイル，音声ファイルなど
+    \end{itemize}
+\item ディレクトリ
+    \begin{itemize}
+\item ファイルの入れ物
+    \end{itemize}
+\item 名前はすきなものをつけられます
+    \begin{itemize}
+\item でも漢字は使わないほうがいいです
+\item アルファベットと記号だけで名前を付けるほうがいいです
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{ファイルの形式}
+  \begin{itemize}
+\item さまざまな情報がビット列であらわされ，コンピュータで編集，加工することができます
+\item 編集，加工するにはプログラムが必要になります
+\item しかし，ビットの列というだけでは何のデータか分かりません
+\item ファイルに納められているデータが何のデータであるか約束が必要です
+\item それがファイル形式ということになります
+\item ファイルの形式は拡張子(suffix)と呼ばれるもので示されていることが多い
+    \begin{itemize}
+\item .csv, .txt, .c, .obj, .pdf, .doc, .mid などなど
+%\item .txt, .c, .obj, .pdf, .doc, \movie[once,externalviewer]{\beamerbutton{.mid}}{./Materials/Gundam.mid}  などなど
+    \end{itemize}
+\item 形式ごとにプログラムが対応づけられています
+  \end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{ファイルに対する操作}
+\scriptsize
+  \begin{tabular}{l|l|lp{4cm}}
+操作 & コマンド & 実行例 & \\\hline
+生成 & touch & touch $name$ & 指定した名前で空のファイルを生成\\
+名前変更 & mv & mv $oldfile\ newfile$ & $oldfile$ という名前を $newfile$ という名前に変更\\
+複製 & cp & cp $srcfile\ dstfile$ & $srcfile$ を複製して $dstfile$ という名前をつける\\
+表示 & less & less $name$ & $name$ の内容を表示\\
+消去 & rm & rm $name$ & 指定した名前のファイルを消去
+  \end{tabular}
+\end{frame}
+\subsection{ディレクトリ (フォルダ)}
+%\begin{frame}
+%\frametitle{ディレクトリ}
+%  \begin{itemize}
+%\item コンピュータを利用しているとファイルはだんだん増えて必要なファイルを探しだすのが難しくなります
+%\item 増えてきたら幾つかのグループに分けて管理すると便利です
+%\item ファイルを入れる箱をディレクトリとよんでいます．
+%\item 箱に箱を入れることができるようにディレクトリにディレクトリを入れることもできます
+%  \end{itemize}
+%  \begin{center}
+%\includegraphics[scale=.3]{../InformationLiteracy/Figure/IL-figDir.pdf}
+%  \end{center}
+%\end{frame}
+\begin{frame}
+\frametitle{ディレクトリの階層}
+  \begin{itemize}
+\footnotesize
+\item ファイルはすべて異なる名前をつけなければなりません
+\item ファイルはだんだん増えて違う名前を考えるのは難しくなるかもしれません
+\item 複数のユーザが利用しているので知らないうちに同じなまえになっているかもしれません
+\item 階層化して管理すると便利です
+\item 特定のディレクトリ内の高々数個のファイルならば違う名前を付けるのは容易なはず
+  \end{itemize}
+  \begin{center}
+\includegraphics[scale=.3]{../InformationLiteracy/Figure/IL-figPath.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}
+\frametitle{作業ディレクトリあるいは current directory}
+  \begin{itemize}
+\item ファイルをディレクトリごとに整理できたら，操作は特定のディレクトリのファイルを対象にするとおもいます
+\item 作業するときには利用者がその場所まで移動します
+    \begin{itemize}
+\item 場所とはいってもコンピュータ内でのこと
+    \end{itemize}
+\item 自分が今いるディレクトリを作業ディレクトリあるいは current directory と呼びます
+  \end{itemize}
+  \begin{center}
+\includegraphics[scale=.3]{../InformationLiteracy/Figure/IL-figPath.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}[containsverbatim]
+\frametitle{パス}
+  \begin{itemize}
+\item コンピュータ内の場所はパス (path) で表します
+\item パス (path) は \slash でディレクトリ名を区切った文字列
+    \begin{itemize}
+\item e.g. \verb|~/literacy| と云ったような文字列
+    \end{itemize}
+\item ディレクトリにはルートディレクトリとホームディレクトリと呼ぶ特別なディレクトリがあります
+\item 絶対パスと相対パス
+  \end{itemize}
+  \begin{center}
+\includegraphics[scale=.3]{../InformationLiteracy/Figure/IL-figPath.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}
+\frametitle{ディレクトリに対する操作}
+\scriptsize
+  \begin{tabular}{l|l|lp{4cm}}
+操作 & コマンド & 実行例 & \\\hline
+作成 & mkdir & mkdir $name$ & 指定した名前で空のディレクトリを生成\\
+一覧 & ls & ls $dir$ & $dir$ の中身一覧を表示\\
+格納 & mv & mv $file\ dir$ & $file$ を消去して $dir$ に格納\\
+     & cp & cp $file\ dir$ & $file$ を複製して $dir$ に格納\\
+名称変更 & mv & mv $olddir\ newdir$ & $olddir$ を $newdir$ に変更\\
+消去 & rmdir & rmdir $dir$ & 空の時には $dir$ を消去\\
+     & rm    & rm -r $dir$ & 中身ごと $dir$ を消去\\
+移動 & cd & cd $dir$ & 作業ディレクトリを移動\\
+     & pushd & pushd $dir$ & 作業ディレクトリを移動して現在のディレクトリを保存\\
+     & popd & popd $dir$ & 作業ディレクトリを保存したディレクトリに移動\\
+表示 & pwd & pwd & 作業ディレクトリを表示\\
+     & dirs & dirs & 保存したディレクトリを表示\\
+  \end{tabular}
+\end{frame}

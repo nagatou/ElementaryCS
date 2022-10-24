@@ -1,56 +1,56 @@
-\section{はじめに}
+\section{CS のこころ}
 %
 %%% GOAL
 %
-\subsection{課題 1 の目標とテーマ}
-\begin{frame}
-\frametitle{課題 1の目標とテーマ}
-  \begin{columns}
-    \begin{column}{0.6\textwidth}
-      \begin{itemize}
-\item 目標
-        \begin{itemize}
-\item 計算の基本要素を知る
-        \end{itemize}
-\item テーマ
-        \begin{itemize}
-\item 四則演算でアニメーション
-\item \movie[once,externalviewer]{\beamerbutton{ひつじさん}}{./Figure/sheep-python.mov}
-        \end{itemize}
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.4\textwidth}
-\includegraphics[scale=0.6]{./Figure/sheep-fixed.pdf}
-    \end{column}
-  \end{columns}
-\end{frame}
-\subsection{CS のこころ}
+%\subsection{課題 1 の目標とテーマ}
+%\begin{frame}
+%\frametitle{課題 1の目標とテーマ}
+%  \begin{columns}
+%    \begin{column}{0.6\textwidth}
+%      \begin{itemize}
+%\item 目標
+%        \begin{itemize}
+%\item 計算の基本要素を知る
+%        \end{itemize}
+%\item テーマ
+%        \begin{itemize}
+%\item 四則演算でアニメーション
+%\item \movie[once,externalviewer]{\beamerbutton{ひつじさん}}{./Figure/sheep-python.mov}
+%        \end{itemize}
+%      \end{itemize}
+%    \end{column}
+%    \begin{column}{0.4\textwidth}
+%\includegraphics[scale=0.6]{./Figure/sheep-fixed.pdf}
+%    \end{column}
+%  \end{columns}
+%\end{frame}
 \begin{frame}
 \frametitle{CS のこころ}
   \begin{itemize}
 \item しつこいようですが，すべては計算
 \item コンピュータに載せるには
     \begin{itemize}
-\item 対象をデータとして表すこと
+\item 対象をデータ（数）として表すこと
 \item 処理を基本演算の組み合わせで表すこと
     \end{itemize}
 \item 処理とはコンピュータのなかの抽象的な世界に存在して
 \item データというもう一つの抽象的な存在を操作する
 \item この処理やデータをプログラミング言語の記号をもちいて注意深く構成したのがプログラム
+\item このプログラムを実行することでコンピュータ上で再現させる
   \end{itemize}
 \end{frame}
 %
 %%% What's DATA
 %
-\section{データは数である}
+\section{コンピュータの中では}
+\subsection{Bit と Byte}
 \begin{frame}
-\frametitle{データは数である}
+\frametitle{データは数}
   \begin{itemize}
-\item データから見ていくことにして
-\item データはすべて 2 進列で表される
+\item データはすべてビットの列として表される
     \begin{itemize}
-\item 自然数，整数，実数: 18, -3, 3.14 など
-\item 文字: 文字コード: ASCII, Unicode など
+\item 自然数，整数，実数; 18, -3, 3.14 など
+\item 文字: 文字コード; ASCII, Unicode など
 \item 画像，映像
 \item 音
 \item におい，味，触覚
@@ -60,12 +60,11 @@
 %
 %%% Number
 %
-\subsection{Bit と Byte}
 \begin{frame}
 \frametitle{情報とは}
   \begin{itemize}
 \item ここで情報とは何か考えてみます
-\item 情報とは"ある物事，事情についてのお知らせ"
+\item 情報とは"ある物事，事象についてのお知らせ"
 \item 情報の価値はどう決まるか?
     \begin{itemize}
 \item 驚きをもって受け止められる情報は価値が高い?
@@ -245,17 +244,17 @@
    \end{example}
   \end{center}
 \end{frame}
-\begin{frame}
-\frametitle{Quiz: 10 進表記$\Leftrightarrow$ 2 進表記 の変換}
-  \begin{block}{Quiz}
-    \begin{enumerate}
-\item 131$_{10}$, 112$_{10}$ を 2 進数に変換してみてください\label{lb:first}
-\item \ref{lb:first}で得られた 2 進数を 10 進表記に戻してください
-\item もとの 10 進数が得られれば正しく変換できています
-\item この数字は東工大に割り当てられた IP アドレスになります
-    \end{enumerate}
-  \end{block}
-\end{frame}
+%\begin{frame}
+%\frametitle{Quiz: 10 進表記$\Leftrightarrow$ 2 進表記 の変換}
+%  \begin{block}{Quiz}
+%    \begin{enumerate}
+%\item 131$_{10}$, 112$_{10}$ を 2 進数に変換してみてください\label{lb:first}
+%\item \ref{lb:first}で得られた 2 進数を 10 進表記に戻してください
+%\item もとの 10 進数が得られれば正しく変換できています
+%\item この数字は東工大に割り当てられた IP アドレスになります
+%    \end{enumerate}
+%  \end{block}
+%\end{frame}
 %\input{elementaryCS-integer}
 %\input{elementaryCS-floatingpoint}
 %
@@ -311,33 +310,35 @@
 %
 %%% COMPUTER
 %
-%\section{コンピュータの中では}
-%\begin{frame}
-%\frametitle{コンピュータの中では}
-%  \begin{itemize}
-%\item コンピュータの命令自体も符号化されてます
-%\item CPU (Central Processing Unit) ごとに命令セットも符号も異なっています
-%\item ここでは CPU が命令を実行するサイクルについて見てみます
-%  \end{itemize}
-%  \begin{center}
-%\includegraphics[scale=0.4]{./Figure/elementaryCS-figCPU}
-%  \end{center}
-%\frametitle{演算のサイクル}
-%  \begin{enumerate}
-%\scriptsize
-%\item instruction に命令をフェッチ
-%\item メインメモリからレジスタにデータを移動
-%\item ALU (Arithmetic and Logic Unit) がレジスタからデータを取り出す
-%\item ALU で演算
-%\item 結果をレジスタに書き込む
-%\item レジスタからメインメモリにデータを移動
-%\item ADD cx dx bx という命令を例にすると下図のようになります
-%  \end{enumerate}
-%  \begin{center}
-%\includegraphics[scale=0.3]{./Figure/elementaryCS-figCycle}
-%  \end{center}
-%\end{frame}
-\section{計算 = \(\pm 1\) と繰り返し}
+\subsection{コンピュータの中での計算}
+\begin{frame}[shrink]
+\frametitle{コンピュータの中では}
+  \begin{itemize}
+\item コンピュータの命令自体も符号化されてます
+\item CPU (Central Processing Unit) ごとに命令セットも符号も異なっています
+\item ここでは CPU が命令を実行するサイクルについて見てみます
+  \end{itemize}
+  \begin{center}
+\includegraphics[scale=0.3]{./Figure/elementaryCS-figCPU}
+  \end{center}
+\end{frame}
+\begin{frame}[shrink]
+\frametitle{演算のサイクル}
+  \begin{enumerate}
+\scriptsize
+\item instruction に命令をフェッチ
+\item メインメモリからレジスタにデータを移動
+\item ALU (Arithmetic and Logic Unit) がレジスタからデータを取り出す
+\item ALU で演算
+\item 結果をレジスタに書き込む
+\item レジスタからメインメモリにデータを移動
+\item ADD cx dx bx という命令を例にすると下図のようになります
+  \end{enumerate}
+  \begin{center}
+\includegraphics[scale=0.3]{./Figure/elementaryCS-figCycle}
+  \end{center}
+\end{frame}
+\section{計算は \(\pm 1\) と繰り返し}
 \subsection{計算とは}
 \begin{frame}
 \frametitle{計算とは}
@@ -346,103 +347,68 @@
 \item 挙句には証明するといったこともしてきた
 \item これらに共通する特徴を捉えて計算というものを体系的に捉えていく
 \item 計算には入力と出力があって入力から出力を生成する
-\item 生成過程を定めたものがアルゴリズム(alghrithm)
+\item 生成過程を定めたものがアルゴリズム(algorithm)
   \end{itemize}
   \begin{example}[最大公約数]
 最大公約数 \(gcd(n,m)\) は \(n, m\) の公約数で最大ものと定義されるが，どう求めるか方法は書いていない
   \end{example}
 \end{frame}
-%\begin{frame}[fragile,shrink]
-%\frametitle{計算の方法}
-%  \begin{itemize}
-%\item 計算の方法について考える
-%\item 計算機科学では関数といった時はこちらの意味
-%\item 計算の方法のことをアルゴリズム (algorithm) といっている
-%\item アルゴリズムとデータを特定の形式で書いたものがプログラム
-%  \end{itemize}
-%  \begin{lstlisting}[caption={最大公約数},label=gcd]
-%# Greatest common divisor
-%# Input: 自然数 x, y
-%# Output: gcd(x,y)
-%###
-%
-%def gcd(x,y):
-%  ans=1
-%  n=min(x,y)
-%  for i in range(1,n):
-%    if (x%i==0) and (y%i==0):
-%      ans=i
-%  return (ans)
-%print(gcd(x,y))
-%  \end{lstlisting}
-%\hfill{\hyperlink{if}{\beamerbutton{Back to if-slide}}}
-%\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{計算の方法}
+  \begin{itemize}
+\item 計算の方法について考える
+\item 計算機科学では関数といった時はこちらの意味
+\item 計算の方法のことをアルゴリズム (algorithm) といっている
+\item アルゴリズムとデータを特定の形式で書いたものがプログラム
+  \end{itemize}
+  \begin{lstlisting}[caption={gcd.py}]
+# Greatest common divisor
+# Input: 自然数 x, y
+# Output: gcd(x,y)
+###
+
+def gcd(x,y):
+  ans=1
+  n=min(x,y)
+  for i in range(1,n):
+    if (x%i==0) and (y%i==0):
+      ans=i
+  return (ans)
+print(gcd(x,y))
+  \end{lstlisting}
+\end{frame}
 \subsection{計算の基本要素}
-\begin{frame}[fragile]
+\begin{frame}[fragile,shrink]
 \frametitle{計算の基本要素}
   \begin{itemize}
-\item では，アルゴリズムを記述するための最も基本となるものは何か？
+\item では，アルゴリズム的に計算可能なものとは何か？
+    \begin{itemize}
+\item Hilbert's Program
+\item 数学基礎論，Computability といったキーワード
+    \end{itemize}
+\item 有限の操作を加算個並べて表せるものをアルゴリズム的に計算可能ということにする
+\item アルゴリズムを記述するための最も基本となるものは何か？
+  \end{itemize}
+  \begin{block}{基本要素}
     \begin{itemize}
 \item ある値に \(\pm 1\) する操作
-\item 値を保持する操作
+\item 値を保持したり読み出す操作
+\item 条件付きジャンプ
+      \begin{itemize}
 \item 繰り返し
 \item 条件分岐
+      \end{itemize}
     \end{itemize}
-\item これらの操作を加算個並べて表す
+  \end{block}
+\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{基本要素だけの四則演算}
+  \begin{itemize}
+\item \(m+n\) は $m$ に \(+1\) を $n$ 回施す
+\item \(m\times n\) は $m$ に \(+1\) を $m$ 回施すことを $n$ 回施す
   \end{itemize}
-  \begin{lstlisting}[caption={加算},label=add]
-# add.py
-# Input: 自然数 a, b
-# Output: a + b
-###
-
-a = int(input("? "))  # 入力された自然数を a に代入
-b = int(input("? "))  # 入力された自然数を b に代入
-wa = a                # a の値を wa に代入
-while b > 0:          # b が 0 より大きい間は end までを繰り返す
-  wa = wa + 1         #   wa + 1 の値を wa に代入
-  b = b - 1           #   b - 1 の値を b に代入
-print(wa)             # wa の値を出力
-  \end{lstlisting}
 \end{frame}
-\begin{frame}[fragile,label=mult,shrink]
-\frametitle{基本要素だけの乗算}
-  \begin{lstlisting}[caption={乗算},label=lst:mult]
-# mult_basiconly.py
-# Input: 自然数 x, y
-# Output: x * y
-###
-
-x = int(input("x? "))       # 入力された自然数を x に代入
-y = int(input("y? "))       # 入力された自然数を y に代入
-seki = 0                    # seki を 0 で初期化
-while y > 0:                # y が 0 より大きい間は end までを繰り返す
-  a = seki
-  b = x
-  wa = a                    # 和のプログラム add.py を挿入
-  while b > 0:
-    wa = wa + 1
-    b = b - 1
-  seki = wa                 # wa の値 (seki + x) を seki に代入
-  y = y - 1                 # y - 1 の値を y に代入
-print(seki)                 # seki の値を出力
-  \end{lstlisting}
-\hfill{\hyperlink{composit}{\beamerbutton{Back to composit-slide}} \hyperlink{while}{\beamerbutton{Back to while-slide}}}
-\end{frame}
-%\section{プログラムの書き方}
-%\subsection{プログラミングのための仕掛け}
-%\begin{frame}[fragile]
-%\frametitle{プログラミングのための仕掛け}
-%  \begin{itemize}
-%\item プログラミング言語にはプログラミングのための 3 つの仕掛けがある
-%    \begin{itemize}
-%\item 基本式: プログラミングに関わる最も単純なもの
-%\item 組合せ法: 単純なものからより複雑なものをつくる (構文として定義されている)
-%\item 抽象化法: 合成物に名前をつけ基本式と同様に扱う
-%    \end{itemize}
-%\item データについても同様
-%  \end{itemize}
-%\end{frame}
+\subsection{Python プログラムの書き方}
 \begin{frame}[fragile]
 \frametitle{Python における基本式}
   \begin{itemize}
@@ -467,38 +433,6 @@ print(seki)                 # seki の値を出力
     \end{itemize}
   \end{itemize}
 \end{frame}
-%\begin{frame}[fragile]
-%\frametitle{Ruby における論理演算子}
-% \begin{center}
-%  \begin{tabular}{c|c|c}
-%算術演算子&使用例&意味\\\hline
-%+& x $+$ y & x と y の足し算\\
-%-& x $-$ y & x と y の引き算\\
-%*& x $*$ y & x と y のかけ算\\
-%$\slash$& x $\slash$ y & x を y 割った商\\
-%\%& x $\%$ y & x を y 割ったあまり\\
-%**& x $**$ y & x の y 乗\\\hline
-%論理演算子&使用例&意味\\\hline
-%==& x == y & x と y が等しいなら真\\
-%!=& x != y & x と y が等しくないなら真\\
-%>=& x >= y & x は y 以上なら真\\
-%<=& x <= y & x は y 以下なら真\\
-%>& x > y & x は y より大きいなら真\\
-%<& x < y & x は y より小さいなら真\\
-%  \end{tabular}
-% \end{center}
-%\end{frame}
-%\begin{frame}[fragile]
-%\frametitle{論理の合成}
-% \begin{center}
-%  \begin{tabular}{c|c|c}
-%論理演算子&使用例&意味\\\hline
-%\&\& & p \&\& q & 論理積: 両方が真なら真\\
-%$\|$ & p $\|$ q & 論理和: いずれかが真なら真\\
-%! & ! p & p の否定\\
-%  \end{tabular}
-% \end{center}
-%\end{frame}
 \begin{frame}[label=composit]
 \frametitle{Python における合成}
   \begin{itemize}
@@ -506,18 +440,107 @@ print(seki)                 # seki の値を出力
 \item 上から下へ順番に実行される
 \item 前に実行された式の結果は変数をもちいて参照
 \item 実行順序を変えたいときは while や if を使う
-\item \hyperlink{mult}{\beamerbutton{Jump to an example}}
   \end{itemize}
 \end{frame}
 \begin{frame}[fragile,label=while]
 \frametitle{繰り返し文}
-\framesubtitle{while 文とfor 文}
+\framesubtitle{while 文}
   \begin{itemize}
-\item 特定の実行列を繰り返し実行
-\item \hyperlink{mult}{\beamerbutton{Jump to an example of while}}
+\item 特定の実行列を条件式が真である間繰り返し実行
 \item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 8.2, 8.3 節}}参照
   \end{itemize}
-  \begin{lstlisting}[caption={gcd.py(for 文の例)},label=gcd]
+  \begin{lstlisting}[caption={while 文}]
+while 条件式 :
+  文または式
+  文または式
+  
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{論理演算子}
+ \begin{center}
+  \begin{tabular}{c|c|c}
+算術演算子&使用例&意味\\\hline
++& x $+$ y & x と y の足し算\\
+-& x $-$ y & x と y の引き算\\
+*& x $*$ y & x と y のかけ算\\
+$\slash\slash$& x $\slash\slash$ y & x を y 割った商\\
+\%& x $\%$ y & x を y 割ったあまり\\
+**& x $**$ y & x の y 乗\\\hline
+論理演算子&使用例&意味\\\hline
+==& x == y & x と y が等しいなら真\\
+!=& x != y & x と y が等しくないなら真\\
+>=& x >= y & x は y 以上なら真\\
+<=& x <= y & x は y 以下なら真\\
+>& x > y & x は y より大きいなら真\\
+<& x < y & x は y より小さいなら真\\
+  \end{tabular}
+ \end{center}
+\end{frame}
+\begin{frame}[fragile]
+\frametitle{論理の合成}
+  \begin{itemize}
+\item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 6.10, 6.11, 6.12 節}}参照
+  \end{itemize}
+  \begin{center}
+    \begin{tabular}{c|c|c}
+論理演算子&使用例&意味\\\hline
+and & $p$ and $q$ & 論理積: 両方が真なら真\\
+or & $p$ or $q$ & 論理和: いずれかが真なら真\\
+not & not $p$ & $p$ の否定\\
+    \end{tabular}
+  \end{center}
+\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{基本要素だけの加算}
+  \begin{lstlisting}[caption={add.py},label=add]
+# add.py
+# Input: 自然数 a, b
+# Output: a + b
+###
+
+a = int(input("? "))  # 入力された自然数を a に代入
+b = int(input("? "))  # 入力された自然数を b に代入
+wa = a                # a の値を wa に代入
+while b > 0:          # b が 0 より大きい間は繰り返す
+  wa = wa + 1         #   wa + 1 の値を wa に代入
+  b = b - 1           #   b - 1 の値を b に代入
+print(wa)             # wa の値を出力
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile,label=mult,shrink]
+\frametitle{基本要素だけの乗算}
+  \begin{lstlisting}[caption={mult\_basiconly.py},label=lst:mult]
+# mult_basiconly.py
+# Input: 自然数 x, y
+# Output: x * y
+###
+
+x = int(input("x? "))       # 入力された自然数を x に代入
+y = int(input("y? "))       # 入力された自然数を y に代入
+seki = 0                    # seki を 0 で初期化
+while y > 0:                # y が 0 より大きい間は end までを繰り返す
+  a = seki
+  b = x
+  wa = a                    # 和のプログラム add.py を挿入
+  while b > 0:
+    wa = wa + 1
+    b = b - 1
+  seki = wa                 # wa の値 (seki + x) を seki に代入
+  y = y - 1                 # y - 1 の値を y に代入
+print(seki)                 # seki の値を出力
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile,label=if]
+\frametitle{条件分岐}
+\framesubtitle{if 文}
+  \begin{itemize}
+\item 条件式が真の場合だけ文や式を実行
+\item else がある場合は条件式が偽のとき実行
+\item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 8.1 節}}参照
+\item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 6.10, 6.11, 6.12 節}}参照
+  \end{itemize}
+  \begin{lstlisting}[caption={gcd.py(if 文と for 文の例)},label=gcd]
 # Greatest common divisor
 # Input: 自然数 x, y
 # Output: gcd(x,y)
@@ -532,16 +555,6 @@ def gcd(x,y):
   return (ans)
 print(gcd(x,y))
   \end{lstlisting}
-\end{frame}
-\begin{frame}[fragile,label=if]
-\frametitle{条件分岐}
-\framesubtitle{if 文}
-  \begin{itemize}
-\item 条件によって実行順序を変更する
-\item \hyperlink{gcd}{\beamerbutton{Jump to an example of if}}
-\item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 8.1 節}}参照
-\item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 6.10, 6.11, 6.12 節}}参照
-  \end{itemize}
 \end{frame}
 %%%
 % Homework 1
