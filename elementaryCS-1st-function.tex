@@ -8,45 +8,46 @@
   \begin{itemize}
 \item 抽象化の方法について触れてきた
     \begin{itemize}
-\item 変数: 計算の結果に名前をつけるということ
-\item 配列: データの集まりを名前をつけて抽象化
+\item 配列: データの集まりに名前をつけて抽象化
     \end{itemize}
-\item 今回は計算を合成する抽象化について見てみます
-\item 合成したものに名前をつけて単一の手続きとして抽象化する方法
+\item 今回は計算の抽象化について見てみます
+\item 合成したものに名前をつけて単一の演算子のように抽象化
   \end{itemize}
 \end{frame}
 \begin{frame}[fragile,shrink]
-\frametitle{Python における合成手続き}
+\frametitle{Python における関数定義}
   \begin{itemize}
-\item Python では {\texttt def} というキーワードをつかって定義します
+\item Python では {\texttt def} というキーワードをつかって関数を定義します
 \item {\texttt def} のあとに関数名と仮引数を書いて，最後にコロン {\texttt :}（忘れずに）
 \item 仮引数は関数を呼び出したときに実引数にバインドされる
 \item 引数はその関数内だけで有効
   \end{itemize}
+\end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{関数定義の例}
   \begin{columns}[t]
-    \begin{column}{0.35\textwidth}
-      \begin{lstlisting}[caption={add.py},label=lst:definefun]
-a = int(input("a? "))
-b = int(input("b? "))
-wa = a
-while b > 0:
-  wa = wa + 1
-  b = b - 1
-print(wa)
+    \begin{column}{0.65\textwidth}
+      \begin{lstlisting}[caption={mult\_basicsonly.py},label=lst:definefun]
+seki = 0        # seki を 0 で初期化
+while y > 0:    # y が 0 より大きい間繰り返す
+  a = seki
+  b = x
+  wa = a        # 和のプログラム add.py を挿入
+  while b > 0:
+    wa = wa + 1
+    b = b - 1
+  seki = wa     # wa の値 (seki + x) を seki に代入
+  y = y - 1     # y - 1 の値を y に代入
       \end{lstlisting}
     \end{column}
     \begin{column}{0.3\textwidth}
-      \begin{lstlisting}[caption={mult\_basicsonly.py},label=lst:definefun2]
+      \begin{lstlisting}[caption={mult\_basicsonly.py},label=lst:definefun2,firstnumber=last]
 def add(x,y):
   wa = x 
   while y > 0:
     wa = wa + 1
     y = y - 1
   return(wa)
-      \end{lstlisting}
-    \end{column}
-    \begin{column}{0.3\textwidth}
-      \begin{lstlisting}[caption={mult\_basicsonly.py},label=lst:definefun3,firstnumber=last]
 def mult(x,y):
   seki = 0
   while y > 0:
