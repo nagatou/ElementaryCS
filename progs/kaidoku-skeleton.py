@@ -29,8 +29,7 @@ def correlation (ciphertext):
   ct  = list(ciphertext.encode("ascii"))
   freq = [0]*len(ALPHABET)
   for i, moji in enumerate(ct): # 頻度配列の作成
-    code = ct[i]                #   i 文字目のコードを得る
-    offset = code - ALPHABET[0] #   文字 a との差分
+    offset = moji - ALPHABET[0] #   文字 a との差分
     #
     # ここに埋め込む
     #

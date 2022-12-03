@@ -94,12 +94,12 @@ def pair2num (num):
 
 ### On Integer
 #(1)
-# 整数の加法は (m-n)+(m'-n')=(m+m'-n+n') と定義する．
+# 整数の加法は (m,n)+(m',n')=(m+m',n+n') と定義する．
 # この演算を整数の加法と呼ぶ．
 def add_on_int(za,zb):
 # ...
 #(2)
-# 乗法は (m-n)(m'-n')=(mm'+nn'-mn'+nm') と定義する．
+# 乗法は (m,n)(m',n')=(mm'+nn',mn'+nm') と定義する．
 # この演算を整数の乗法と呼ぶ．
 def mult_on_int(za,zb):
 # ...
