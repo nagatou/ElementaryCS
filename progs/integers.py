@@ -35,6 +35,8 @@
 #  (4) これらの関数だけを用いて整数上の減算
 
 import os
+import sys
+#sys.setrecursionlimit(10**6)
 
 ### On Natural Number
 def succ(num):

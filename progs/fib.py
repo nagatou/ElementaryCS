@@ -34,14 +34,15 @@ def fib_iter (n):
       return(fib_iter1((a+b), a ,(c-1)))
   return(fib_iter1(1,0,n))
 def fib_while (n):
+  c=n
   a=1
   b=0
   s=0
-  while (n>0):
+  while (c>0):
     s=a
     a=a+b
     b=s
-    n=n-1
+    c=c-1
   return(b)
 
 #(3) n 番目のフィボナッチ数を求める効率的なアルゴリズムを調べ，そのプログラムを作成せよ．
@@ -70,7 +71,7 @@ def fast_fib_tail(n):
         return(fast_fib1((b*q+a*q+a*p),(b*p+a*q),p,q,k-1))
   return(fast_fib1(1,0,0,1,n))
 
-def fast_fib_iter(n):
+def fast_fib_while(n):
   a,b,p,q=1,0,0,1
   while (n != 0):
     if (iseven(n)):
@@ -86,7 +87,7 @@ def fast_fib_iter(n):
 
 # Test Harness
 n = int(input("n(>=0)? "))
-cProfile.run("print(fast_fib_iter(n))")
+cProfile.run("print(fast_fib_while(n))")
 cProfile.run("print(fast_fib_tail(n))")
 cProfile.run("print(fast_fib(n))")
 cProfile.run("print(fib_iter(n))")

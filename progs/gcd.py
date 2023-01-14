@@ -17,12 +17,12 @@ def gcd(x,y):
   return (gcm)
 
 # Euclid's algorithm
-def euclid1(x1,x2):
-  if x2==0:
-    return (x1)
-  else:
-    return (euclid1(x2,x1%x2))
 def euclid(x1,x2):
+  def euclid1(x1,x2):
+    if x2==0:
+      return (x1)
+    else:
+      return (euclid1(x2,x1%x2))
   def swap(x1,x2):
     return x2,x1
   if (x1<x2) :

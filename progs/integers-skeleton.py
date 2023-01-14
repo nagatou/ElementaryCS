@@ -94,6 +94,7 @@ def pair2num (num):
 
 ### On Integer
 #(1)
+# 2 つの整数を (m,n), (m',n')とする．
 # 整数の加法は (m,n)+(m',n')=(m+m',n+n') と定義する．
 # この演算を整数の加法と呼ぶ．
 def add_on_int(za,zb):

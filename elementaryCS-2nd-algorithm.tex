@@ -12,12 +12,10 @@
     \end{itemize}
 \item たとえば，
     \begin{itemize}
-\item $D$ は最小（あるは極小）があって並んでいるという構造を持つ
 \item \(x\in D\) として \(f(x)=G(f\upharpoonright x)\)
-\item $D$ を自然数すれば \((N;0,S,+,-,\times,\div,\mathrm{mod},<)\)
-\item 計算を \(0,S,+,-,\times,\div,\mathrm{mod},<\) を再帰や合成で列として構成
+\item $D$ を自然数とすれば \((N;0,S)\)
+\item  \(+,-,\times,\div,\mathrm{mod},<\) を再帰や合成で構成
     \end{itemize}
-\item 別の方法として Turing machine を紹介（ホワイトボードに書きます）
 \item 計算可能な関数のクラスも理論的に興味深いが，それは別の機会
   \end{itemize}
 \end{frame}
@@ -36,7 +34,7 @@
 \begin{frame}
 \frametitle{まずは最大公約数}
   \begin{itemize}
-\item 関数 GCD をふたつの自然数の公約数のうち最大のもの
+\item 関数 GCD をふたつの自然数の公約数のうち最大のものを求める関数とする
 \item アルゴリズムでは具体的に最大公約数をもとめる計算の仕方を議論する
 \item 計算の仕方はいくつか考えられる
     \begin{itemize}
@@ -72,9 +70,8 @@ x_3 &=& n_3 x_4 + x_5\\
   \begin{itemize}
 \item それぞれの実行時間を比較するので見ていてください
     \begin{itemize}
-\item 適当な数字思いつかないので
-\item 10000000 と 10203040 の最大公約数
-\item 62979284285501 と 62873258567731 の最大公約数
+\item 32204 と 14744 の最大公約数
+\item 34 と 21 の最大公約数
     \end{itemize}
   \end{itemize}
   \begin{columns}[t]
@@ -96,12 +93,12 @@ def gcd(x,y):
     \end{column}
     \begin{column}{0.45\textwidth}
       \begin{lstlisting}[caption={gcd.py},label=lst:euclid]
-def euclid1(x1,x2):
-  if x2==0:
-    return (x1)
-  else:
-    return (euclid1(x2,x1%x2))
 def euclid(x1,x2):
+  def euclid1(x1,x2):
+    if x2==0:
+      return (x1)
+    else:
+      return (euclid1(x2,x1%x2))
   def swap(x1,x2):
     return x2,x1
   if (x1<x2) :
@@ -116,8 +113,8 @@ def euclid(x1,x2):
   \begin{itemize}
 \item Naive な方法
     \begin{itemize}
-\item mod や比較の回数を数えてみる
-\item $n$ 回で $n$ は $x$ か $y$ の小さい方になっている
+\item 割り算の回数を数えてみる
+\item $2n$ 回で $n$ は $x$ か $y$ の小さい方になっている
     \end{itemize}
 \item ユーグリッドの互除法
     \begin{itemize}
@@ -129,13 +126,12 @@ def euclid(x1,x2):
       \begin{itembox}{euclid(32204,14744)}
 \scriptsize
         \begin{verbatim}
-  euculid(32204,14744)
-=>euclid1(14744,2656)
-=>euclid1(2656,1162)
-=>euclid1(1162,332)
-=>euclid1(332,166)
-=>euclid1(166,0)
-=>166
+  euclid(32204,14744)
+=>euclid1(14744,2716)
+=>euclid1(2716,1164)
+=>euclid1(1164,388)
+=>euclid1(388,0)
+=>388
         \end{verbatim}
       \end{itembox}
     \end{column}
@@ -143,7 +139,7 @@ def euclid(x1,x2):
       \begin{itembox}{euclid(34,21)}
 \scriptsize
         \begin{verbatim}
-  euculid(34,21)
+  euclid(34,21)
 =>euclid1(21,13)
 =>euclid1(13,8)
 =>euclid1(8,5)
@@ -170,13 +166,13 @@ def euclid(x1,x2):
 \centering
       \begin{math}
         \begin{array}{rcl}
-r_0 &=& q_1 r_1 + r_2\\
-r_1 &=& q_2 r_2 + r_3\\
-r_2 &=& q_3 r_3 + r_4\\
+r_0 &=& q_1 r_1 + r_2, (r_2<r_1)\\
+r_1 &=& q_2 r_2 + r_3, (r_3<r_2)\\
+r_2 &=& q_3 r_3 + r_4, (r_4<r_3)\\
 &\vdots&\\
-r_{n-2} &=& q_{n-1}r_{n-1} + r_{n}\\
+r_{n-2} &=& q_{n-1}r_{n-1} + r_{n}, (r_n<r_{n-1})\\
 r_{n-1} &=& q_{n}r_{n}\\
-&&\mbox{where } r_0=x_1>r_1=x_2
+&&\mbox{where } r_0(=x_1)>r_1(=x_2)
         \end{array}
       \end{math}
     \end{column}
@@ -203,7 +199,7 @@ r_{n-1} &=& q_{n}r_{n}\\
 \item 小さい方の数 \(r_1\)は \(n+1\) 番目の Fibonacci 数 \(f_{n+1}\) であるかそれより大きい
   \end{itemize}
   \begin{columns}[t]
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.35\textwidth}
 \centering
       \begin{math}
         \begin{array}{rcl}
@@ -217,18 +213,16 @@ r_{n-1} &=& q_{n}r_{n}\\
         \end{array}
       \end{math}
     \end{column}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.65\textwidth}
 \centering
       \begin{math}
-        \begin{array}{rcl}
+        \begin{array}{rclcl}
 r_n     &\ge& 1(=f_2)\\
-r_{n-1} &\ge& 2(=f_3)\\
-r_{n-2} &\ge& f_3+f_2(=f_4)\\
+r_{n-1} &\ge&2r_n&\ge& 2(=f_3)\\
+r_{n-2} &\ge&r_{n-1}+r_{n}&\ge& f_3+f_2(=f_4)\\
  &\vdots& \\
- r_{n-(l-1)}&\ge& f_l+f_{l-1}\\
- &\vdots& \\
-r_{2} &\ge& f_{n-1}+f_{n-2}(=f_n)\\
-r_{1} &\ge& f_n+f_{n-1}(=f_{n+1})\\
+r_{2} &\ge&r_{3}+r_{4}&\ge& f_{n-1}+f_{n-2}(=f_n)\\
+r_{1} &\ge&r_{2}+r_{3}&\ge& f_n+f_{n-1}(=f_{n+1})\\
         \end{array}
       \end{math}
     \end{column}
@@ -646,25 +640,6 @@ def quick_sort1(numbers,front,rear):
     \end{column}
   \end{columns}
 \end{frame}
-\begin{frame}[containsverbatim, shrink]
-\frametitle{Master Theorem}
-  \begin{theorem}
-漸化式が \(T(n)=aT(\frac{n}{b})+cn^d\) の形をしているときのオーダは以下のようになる
-    \begin{displaymath}
-T(n) = \left\{
-      \begin{array}{ll}
-\displaystyle
-O(n^d)&\mbox{if } a<b^d \\
-O(n^d\log(n))&\mbox{if } a=b^d \\
-O(n^{\log_b(a)})&\mbox{if } a>b^d \\
-      \end{array} \right.
-    \end{displaymath}
-  \end{theorem}
-  \begin{itemize}
-\item \(aT(\frac{n}{b})\) は大きさ $n$ の問題を \(\frac{n}{b}\) の大きさで $a$ 個に分けるという意味
-\item \(cn^d\) は再帰以外の計算量の意味
-  \end{itemize}
-\end{frame}
 %\begin{frame}[containsverbatim, shrink]
 %\frametitle{ハノイの塔の場合}
 %  \begin{itemize}
@@ -672,23 +647,37 @@ O(n^{\log_b(a)})&\mbox{if } a>b^d \\
 %  \end{itemize}
 %\end{frame}
 
-\section{Search Alogorithms}
-\begin{frame}[containsverbatim,shrink]
-\frametitle{宿題 3}
-\framesubtitle{Search}
-  \begin{itemize}
-\item 余裕のある人は search algorithms に挑戦してみてください
-\item Linear search と binary search の計算量を求める
-\item Linear search と binary search のプログラムを作成し実行時間を比べる
-\item 参考までに binary search のソースコード (search.py) を
-\href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS/}} に置いておきます
-\item 提出の必要はありません
-  \end{itemize}
-\end{frame}
+%\section{Search Alogorithms}
+%\begin{frame}[containsverbatim,shrink]
+%\frametitle{宿題 3}
+%\framesubtitle{Search}
+%  \begin{itemize}
+%\item 余裕のある人は search algorithms に挑戦してみてください
+%\item Linear search と binary search の計算量を求める
+%\item Linear search と binary search のプログラムを作成し実行時間を比べる
+%\item 参考までに binary search のソースコード (search.py) を
+%\href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS/}} に置いておきます
+%\item 提出の必要はありません
+%  \end{itemize}
+%\end{frame}
 %%% Shortest Path Problem
 %
 %\input{elementaryCS-SPP}
 \section{計算の複雑さのクラス}
+\begin{frame}[containsverbatim, shrink]
+\frametitle{よくみる時間計算量}
+  \begin{tabular}{l|l|l}
+時間計算量 & 呼び方 & 例\\
+\hline
+\(O(1)\)& Constant complexity & hash-table,\\
+\(O(\log{}n)\)& Logarithmic complexity & binary search \\
+\(O(n)\)& Linear complexity & loops \\
+\(O(n\log{}n)\)& n \(\log{}n\) complexity & quick sort\\
+\(O(n^b)\)& Polynomial complexity & bubble sort,\\&& insertion sort\\
+\(O(b^n)\), {\scriptsize where \(b>1\)}& Exponential complexity & {\scriptsize tower of Hanoi}\\
+\(O(n!)\) & Factorial complexity & {\scriptsize travelling-}\\&&{\scriptsize salesman problem}\\
+  \end{tabular}
+\end{frame}
 \begin{frame}[shrink]
 \frametitle{計算の複雑さのクラス}
   \begin{itemize}

@@ -158,10 +158,11 @@ def fact (n):
     \begin{tabular}{ccccc}
 月&生後 0 ヶ月&生後 2 ヶ月以下&合計\\
 \hline
+0&0&1&1\\
 1&0&1&1\\
-2&0&1&1\\
-3&1&1&2\\
-4&1&2&3\\
+2&1&1&2\\
+3&1&2&3\\
+4&2&3&5\\
     \end{tabular}
   \end{center}
 \end{frame}
@@ -182,7 +183,7 @@ def fact (n):
       \begin{lstlisting}[caption={フィボナッチ数},label=fib-rec]
 def fib (n):
   if (n==0):
-    return(0)
+    return(1)
   else:
     if (n==1):
       return(1)
@@ -446,7 +447,7 @@ def fact (n):
 \item 柱から柱への移動は一度に 1 枚だけ
 \item 大きい円盤をそれより小さい円盤の上にのせてはいけない
     \end{itemize}
-\item 4b(CS2) クラスのサイト: \href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS}} 
+\item 3a, 4b(CS2) クラスのサイト: \href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS}} 
 から hanoi-skeleton.py をダウンロードして使ってください
   \end{itemize}
   \begin{center}
@@ -470,8 +471,9 @@ def fact (n):
 \begin{frame}[fragile,shrink]
 \frametitle{繰り返しプログラムと再帰プログラム}
   \begin{itemize}
-\item 以前，繰り返しでいろいろな計算を実現しました
-\item ここでは繰り返しと再帰の関係について見ていきます
+\item 第１ではレジスタマシンでいろいろな計算を実現しました
+\item ここではレジスタマシンと再帰関数の関係について見ていきます
+\item レジスタマシンと同様に再帰関数でも計算可能とみなす計算のクラスを考えてみます
 \item \(\operatorname{succ}(y)\) は $y$ のつぎの数という意味で CS 入門第一の\(+1\) に対応
 \item \(\operatorname{0}\) は定数 (引数なしの特別な関数)
 \item これら初期関数から再帰と関数合成で繰り返しプログラムと同じものが作れます
@@ -488,11 +490,11 @@ def fact (n):
 \item \lstref{fact-rec1} は fact(n) を得るために fact(n-1) の後の計算 (n  $\times\,\Box$) を覚えてなければならない
 \item \lstref{fact-iter} はその必要はなく，計算の状態``カウンタと途中までの積''を覚えておくだけで良い
 \item \lstref{fact-iter} のような形を末尾再帰的といいます
-  \end{itemize}
+　 \end{itemize}
 \vspace{-2em}
   \begin{columns}[t]
     \begin{column}{0.45\textwidth}
-      \begin{lstlisting}[caption={再帰プロセス版},label=fact-rec1]
+      \begin{lstlisting}[caption={fact.py},label=fact-rec1]
 # Factorial
 def fact (n):
   if (n == 1):
@@ -502,7 +504,7 @@ def fact (n):
       \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \begin{lstlisting}[firstnumber=16,caption={繰り返しプロセス版},label=fact-iter]
+      \begin{lstlisting}[firstnumber=13,caption={fact.py},label=fact-iter]
 # Factorial
 def fact_iter (n):
   def fact_iter1 (prod, cnt, max):
@@ -521,6 +523,8 @@ def fact_iter (n):
 \item 末尾再帰は繰り返し {\tt while, for} に書き換えられます
 \item 繰り返しは再帰関数の特別な場合と見なせる
 \item 再帰は関数を呼び出すたびに資源を消費するが，繰り返しは一定
+\item \href{https://sites.google.com/presystems.xyz/elementaryCS/}{\beamerbutton{https://sites.google.com/presystems.xyz/elementaryCS}} 
+の four-ops-rec.py も参考にしてみてください．
   \end{itemize}
   \begin{columns}
     \begin{column}{0.5\textwidth}

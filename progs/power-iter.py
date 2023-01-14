@@ -31,7 +31,6 @@ def is_even(n):
   else:
     return(False)
 def fast_power(b,n):
-  print(n)
   if (n==0):
     return(1) 
   else:
@@ -67,14 +66,14 @@ def fast_power_iter(b,n):
 os.system('clear')
 x = int(input("x(>0)?; (x^y) "))
 y = int(input("y(>0)? "))
-#start_time = time.perf_counter_ns()
-#print("x to the power of y is {0},\n processing time(Fast_Iter): {1:20f} nsec\n".format(fast_power_iter(x,y),time.perf_counter_ns()-start_time))
+start_time = time.perf_counter_ns()
+print("x to the power of y is {0},\n processing time(Fast_Iter): {1:20f} nsec\n".format(fast_power_iter(x,y),time.perf_counter_ns()-start_time))
 #start_time = time.perf_counter_ns()
 #print("x to the power of y is {0},\n processing time(Fast CPS): {1:10f} nsec\n".format(fast_power_tail(x,y),time.perf_counter_ns()-start_time))
-start_time = time.perf_counter_ns()
-print("x to the power of y is {0},\n processing time(Fast): {1:10f} nsec\n".format(fast_power(x,y),time.perf_counter_ns()-start_time))
 #start_time = time.perf_counter_ns()
-#print("x to the power of y is {0},\n processing time(Iterate): {1:10f} nsec\n".format(power_iter(x,y),time.perf_counter_ns()-start_time))
+#print("x to the power of y is {0},\n processing time(Fast): {1:10f} nsec\n".format(fast_power(x,y),time.perf_counter_ns()-start_time))
+start_time = time.perf_counter_ns()
+print("x to the power of y is {0},\n processing time(Iterate): {1:10f} nsec\n".format(power_iter(x,y),time.perf_counter_ns()-start_time))
 #start_time = time.perf_counter_ns()
 #print("x to the power of y is {0},\n processing time(CPS): {1:10f} nsec\n".format(power_tail(x,y),time.perf_counter_ns()-start_time))
 #start_time = time.perf_counter_ns()
