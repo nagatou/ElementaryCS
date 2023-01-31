@@ -3,6 +3,7 @@
 
 DIR=/Users/nagatou/Jobs/Lecturer/TITECH/ElementaryCS/progs
 Target=newton.py
-Prog=/Users/nagatou/bin/mvim
+#Prog=/Users/nagatou/bin/mvim
+Prog='open -a MacVim'
 
 ${Prog} ${DIR}/${Target}

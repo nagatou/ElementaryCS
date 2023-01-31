@@ -55,6 +55,28 @@ def quick_sort(numbers,cmp_fun):
       return(numbers)
   return(quick_sort1(numbers,0,len(numbers)-1))
 
+def merge_sort(numbers,cmp_fun):
+  def merge(numbers,left,right,middle):
+    left_ls = numbers[left:middle]
+    right_ls = numbers[middle:right]
+    for i in range(left,right):
+      if (len(left_ls)==0):
+         numbers[i] = right_ls.pop(0)
+      elif (len(right_ls)==0):
+         numbers[i] = left_ls.pop(0)
+      elif (cmp_fun(left_ls[0],right_ls[0])):
+         numbers[i] = left_ls.pop(0)
+      else:
+         numbers[i] = right_ls.pop(0)
+    return(numbers)
+  def merge_sort1(numbers,left,right):
+    if ((len(numbers[left:right]))>1):
+      middle = (left+right)//2
+      merge_sort1(numbers,left,middle)
+      merge_sort1(numbers,middle,right)
+      return(merge(numbers,left,right,middle))
+  return(merge_sort1(numbers,0,len(numbers)))
+
 #
 ## Test Harness
 #
@@ -63,6 +85,8 @@ numbers = [0]*size
 for i in range(0,len(numbers)):
   random.seed(None,2)
   numbers[i]=random.randint(0,size)
+start_time = time.perf_counter_ns()
+print("{0},\n processing time(merge sort): {1:10f} nsec\n".format(merge_sort(numbers[:],comp),time.perf_counter_ns()-start_time))
 start_time = time.perf_counter_ns()
 print("{0},\n processing time(quick sort): {1:10f} nsec\n".format(quick_sort(numbers[:],comp),time.perf_counter_ns()-start_time))
 start_time = time.perf_counter_ns()

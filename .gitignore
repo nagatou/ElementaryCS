@@ -29,6 +29,8 @@
 *.bcf # biblatex control file.
 *.run.xml # biber XML file.
 *-blx.bib # biblatex control file.
+# vi
+*.swp
 # hyperref:
 # python
 __pycache__/

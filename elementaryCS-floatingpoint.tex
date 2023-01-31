@@ -5,7 +5,7 @@
   \begin{itemize}
 \item 浮動小数 \(ab^{e}\)
     \begin{itemize}
-\item $a$ は係数 (coefficient) ，$b$ は底 (base)，$e$ は指数 (exponent) と呼ぶ
+\item $a$ は仮数 (significand or coefficient) ，$b$ は底 (base)，$e$ は指数 (exponent) と呼ぶ
     \end{itemize}
 \item \(\frac{1}{b}\leq|a|<1\) のとき正規浮動小数 (normalized floating point number) と云う
 \item 上のような変換を正規化(normalizaiton) と云う
@@ -73,7 +73,7 @@
 \item これを 32 ビットで表す
 \item 右に小数点を一つ移動
 \item 最上位ビットは必ず 1 になるので省略
-\item \href{http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=2355}{\beamerbutton{IEEE 754}}はもうひと段階
+\item 規格 \href{http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=2355}{\beamerbutton{IEEE 754}} はもうひと段階
   \end{itemize}
   \begin{center}
     \begin{example}[指数部，仮数部]
@@ -82,7 +82,7 @@
         \begin{itemize}
 \item 符号 (sign): +
 \item 指数 (exponent): 3
-\item 仮数 (fraction): 1.1011011
+\item 仮数 (significand): 1.1011011
         \end{itemize}
       \end{itemize}
     \end{example}
@@ -117,7 +117,7 @@
 \begin{frame}[shrink,fragile]
 \frametitle{浮動小数演算の変な現象}
   \begin{itemize}
-\item machine\_epsilon.py を実行してみます．
+\item machine\_epsilon.py を実行してみます
 \item 結果が予測と少し違うことになります
 \item この原因についてみていきます
   \end{itemize}
@@ -137,16 +137,16 @@ print("Calculated machine epsilon:",old)
 print("System information in Python:",sys.float_info.epsilon)
   \end{lstlisting}
 \end{frame}
-\begin{frame}
+\begin{frame}[shrink]
 \frametitle{浮動小数数の算術演算}
   \begin{itemize}
-\item 正規化した 2 つの浮動小数数 \(X, Y\) を \(X=F_x\cdot 10^{e_x}, Y=F_y\cdot 10^{e_y}\) とする
-\item 乗算: \(XY=(F_x\cdot 10^{e_x})(F_y\cdot 10^{e_y})=F_xF_y\cdot 10^{e_x+e_y}\)
-\item 除算: \(\frac{X}{Y}=\frac{(F_x\cdot 10^{e_x})}{(F_y\cdot 10^{e_y})}=\frac{F_x}{F_y}\cdot 10^{e_x-e_y}\)
-\item 加算\(\cdot\)減算: \(X\pm Y=(F_x\cdot 10^{e_x})\pm(F_y\cdot 10^{e_y})=(F_x\pm F_y\cdot 10^{e_y-e_x})\cdot 10^{e_x}\)
+\item 正規化した 2 つの浮動小数 \(X, Y\) を \(X=F_x\times 10^{e_x}, Y=F_y\times 10^{e_y}\) とする
+\item 乗算: \(XY=(F_x\times 10^{e_x})(F_y\times 10^{e_y})=F_xF_y\times 10^{e_x+e_y}\)
+\item 除算: \(\frac{X}{Y}=\frac{(F_x\times 10^{e_x})}{(F_y\times 10^{e_y})}=\frac{F_x}{F_y}\times 10^{e_x-e_y}\)
+\item 加算\(\cdot\)減算: \(X\pm Y=(F_x\times 10^{e_x})\pm(F_y\times 10^{e_y})=(F_x\pm F_y\cdot 10^{e_y-e_x})\times 10^{e_x}\)
     \begin{itemize}
 \item ただし，\(e_x\geq e_y\)
-\item \(F_y\cdot 10^{e_y-e_x}\) は指数を大きい方に揃える動作
+\item \(F_y\cdot 10^{e_y-e_x}\) は指数を大きい方に揃えたときの $Y$ の仮数
     \end{itemize}
 \item 演算結果も正規化するので指数は調整が必要
   \end{itemize}
@@ -363,7 +363,8 @@ print("System information in Python:",sys.float_info.epsilon)
   \end{example}
   \begin{example}[平方の計算]
     \begin{itemize}
-\item \href{run:newton.command}{\beamerbutton{ニュートン法}}
+%\item \href{run:newton.command}{\beamerbutton{ニュートン法}}
+\item newton.py を参照
 \item \(\sqrt{a}\) を求めてみる
 \item \(f(x)=x^2-a\) として \(f(x)=0\) となる $x$ を求める
 \item \(k+1\) 番目の近似値 \(x_{k+1}\) を

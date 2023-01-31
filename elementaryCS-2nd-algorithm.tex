@@ -241,7 +241,7 @@ N&\ge& \phi^{n-1}&(\mbox{by }f_{n+1}>\phi^{n-1} \mbox{ for }n>2\\
                 &&&\mbox{where }\phi=\frac{(1+\sqrt{5})}{2})\\
 \log_{10}N&\ge&(n-1)\log_{10}\phi\\
 \log_{10}N&\ge&(n-1)\log_{10}\phi>\frac{n-1}{5}\\
-n&<&5\cdot\log_{10}N+1\\
+n&<&5\cdot\lceil\log_{10}N\rceil+1\\
       \end{array}
     \end{math}
   \end{center}
@@ -315,6 +315,88 @@ def fast_power(b,n):
     \end{column}
   \end{columns}
 \end{frame}
+\begin{frame}[fragile,shrink]
+\frametitle{べき乗計算の掛け算の回数}
+  \begin{itemize}
+\scriptsize
+\item 各呼び出しで掛け算の回数は 1 回
+\item 偶数は何回出てくるか，奇数は何回出てくるかを数える
+\item \(T(n)\) を $n$ 乗の計算に必要な掛け算の回数とする
+\item \(T(n) = T(\lfloor\frac{n}{2}\rfloor)+g(n)\) である，g(n) は奇数が出現した回数
+\item \(T(n) =
+    \begin{cases}
+0 & n=0\\
+T(\lfloor\frac{n}{2}\rfloor)+1 & n\geq 1
+    \end{cases}\)
+\item \(n\geq 1\) の場合について考える
+  \end{itemize}
+  \begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+\centering
+      \begin{math}
+        \begin{array}{rcl}
+T(n) &=& T(\lfloor\frac{n}{2}\rfloor)+1\\
+     &=& T(\lfloor\frac{n}{2^2}\rfloor)+1+1\\
+     &=& T(\lfloor\frac{n}{2^3}\rfloor)+1+1+1\\
+&\vdots&\\
+     &=& T(\lfloor\frac{n}{2^k}\rfloor)+1+\cdots+1\\
+     &=& T(\lfloor\frac{n}{2^k}\rfloor)+k\\
+     && \text{\(\frac{n}{2^k}=1\)から\(k=\log_2 n\),}\\
+     && \text{\(T(1)=1\)より}\\
+     &=& 1+\log_2 n\\
+        \end{array}
+      \end{math}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{math}
+        \begin{array}{rcl}
+     && \text{ゆえに全体で}\\
+T(n) &=& 1+\log_2 n + g(n)
+        \end{array}
+      \end{math}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}[containsverbatim,shrink]
+\frametitle{べき乗 (Power) の演算回数}
+\frametitle{べき乗計算の掛け算の回数 \textemdash 奇数の出現回数}
+  \begin{itemize}
+\item 何回奇数が出てくるかは $n$ を二進表記した時の 1 の数による
+    \begin{itemize}
+\item \(\frac{1}{2}\) するとは右に 1 ビットシフト
+\item 最下位ビットが 1 のとき奇数
+    \end{itemize}
+\item \(\lfloor\log_2 1000\rfloor+5\)=14 回
+  \end{itemize}
+  \begin{columns}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{偶数の出現回数}
+        \begin{math}
+          \begin{array}{c}
+\lfloor\log_2 1000\rfloor = 9
+          \end{array}
+        \end{math}
+      \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{奇数の出現回数}
+\scriptsize
+        \begin{math}
+          \begin{array}{cl}
+(1000)_{10}=&(1111101000)_{2}\\
+&\Rightarrow_{\frac{1}{2}}0111110100\\
+&\Rightarrow_{\frac{1}{2}}0011111010\\
+&\Rightarrow_{\frac{1}{2}}0000111101\\
+&\Rightarrow_{-1}0000111100\\
+&\Rightarrow_{\frac{1}{2}}0000011110\\
+&\cdots\\
+&\Rightarrow_{\frac{1}{2}}0000000001
+          \end{array}
+        \end{math}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
 \section{時間計算量}
 \subsection{Big\textendash O Notation}
 \begin{frame}[shrink]
@@ -324,10 +406,10 @@ def fast_power(b,n):
 \item 良し悪しの基準
     \begin{itemize}
 \item 良いアルゴリズム，わるいアルゴリズムを実行時間を計測して比較
-\item 入力に対し結果を得るまでの演算 (四則演算や比較演算) の実行回数を見積もって比較
+\item 入力に対し結果を得るまでの必要な演算 (四則演算や比較演算) の回数を数え上げて比較
     \end{itemize}
 \item 実行時間は CPU や演算の実現方式に依存し計算しようとすると複雑な式になってしまう
-\item 演算回数 (時間計算量という)をもとに単純な式で見積もることにする
+\item 演算回数 (時間計算量という)をもとに単純化して見積もることにする
     \begin{itemize}
 \item CPU や実現方式といったものは無視
     \end{itemize}
@@ -398,69 +480,14 @@ def fast_power(b,n):
     \begin{itemize}
 \item Lame の定理: 割り算の回数は，小さい数 $n$ の桁数の 5 倍以下である
     \end{itemize}
-よって，\(\forall n\ge 10:(5(\log_{10}n)+1<(5+1)\log_{10} n)\Rightarrow O(\log n)\)
+\(\forall n\ge 10:5(\lceil\log_{10}n\rceil)+1<(5+1)\log_{10} n\) よって \(O(\log n)\)
   \end{example}
   \begin{example}[べき乗]
     \begin{itemize}
-\item 指数を $n$，2 進表記の 1 の数 $j$，偶数のときはいつも半分になるので $m$ 回偶数が出現するとして，
+\item $j$ を奇数の出現回数として，
     \end{itemize}
-    \begin{center}
-      \begin{math}
-        \begin{array}{rcl}
-n&=&2^m\\
-\log_2 n &=& m
-        \end{array}
-      \end{math}
-    \end{center}
-よって， \(\forall n\ge2:((\log_2 n)+(j-1)<(1+(j-1))\log_2 n)\Rightarrow O(\log n)\)．
+\(\forall n\ge2:(\log_2 n)+j<(1+j)\log_2 n\) よって \(O(\log n)\)．
   \end{example}
-\end{frame}
-\begin{frame}[containsverbatim,shrink]
-\frametitle{べき乗 (Power) の演算回数の見積もり}
-  \begin{itemize}
-\scriptsize
-\item 各繰り返しで掛け算の回数は 1 回
-\item 偶数は何回出てくるか，奇数は何回出てくるかを数える
-\item $n$ を指数， $m$ を\(\frac{1}{2}\) する回数として \(\frac{n}{2^m}=1\)
-\item そのうち，何回奇数が出てくるかは $n$ を二進表記した時の 1 の数による
-    \begin{itemize}
-\scriptsize
-\item \(\frac{1}{2}\) するとは右に 1 ビットシフト
-\item 最下位ビットが 1 のとき奇数
-\item 最後 0 乗は計算しないので(1 の数)-1
-    \end{itemize}
-\item \(\lfloor\log_2 1000\rfloor+5\)=14 回
-  \end{itemize}
-  \begin{columns}
-    \begin{column}{0.45\textwidth}
-      \begin{block}{偶数の出現回数}
-        \begin{math}
-          \begin{array}{c}
-\frac{n}{2^m}=1\\
-n=2^m\\
-\lfloor\log_2 n\rfloor = m
-          \end{array}
-        \end{math}
-      \end{block}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{block}{奇数の出現回数}
-\scriptsize
-        \begin{math}
-          \begin{array}{cl}
-(1000)_{10}=&(1111101000)_{2}\\
-&\Rightarrow_{\frac{1}{2}}0111110100\\
-&\Rightarrow_{\frac{1}{2}}0011111010\\
-&\Rightarrow_{\frac{1}{2}}0000111101\\
-&\Rightarrow_{-1}0000111100\\
-&\Rightarrow_{\frac{1}{2}}0000011110\\
-&\cdots\\
-&\Rightarrow_{\frac{1}{2}}0000000001
-          \end{array}
-        \end{math}
-      \end{block}
-    \end{column}
-  \end{columns}
 \end{frame}
 %\begin{frame}[shrink]
 %\frametitle{Big\textendash$\Omega$}
@@ -512,10 +539,11 @@ def bubble_sort(numbers):
         \begin{itemize}
 \tiny
 \item 配列のサイズを $n$ として
-\item 4-5 行は入力サイズによらず一定; $c$
-\item 3-6 行の演算回数は各繰り返しの演算回数の和; $c$ を \(n-i\) 回繰り返すので \(c(n-i)\)
-\item 2-6 行の演算回数は各繰り返しで \(c(n-i)\) を \((n-1)\) 回繰り返すので
-\item 全体で \(\sum_{i=1}^{n-1} c(n-i)=\frac{cn(n-1)}{2}=c(\frac{n^2}{2}-\frac{n}{2})\)
+\item 4-5 行で比較と入れ替えは 1 回ずつ
+\item 3 行の演算回数は各繰り返しの演算回数の和; \(n-i\) 回繰り返すので \((n-i)\)
+\item 2 行の演算回数は各繰り返しで \(n-i\) を \((n-1)\) 回繰り返すので
+\item 全体で \(\sum_{i=1}^{n-1} n-i=\frac{n(n-1)}{2}=(\frac{n^2}{2}-\frac{n}{2})<n^2\)
+\item よって \(O(n^2)\)
         \end{itemize}
       \end{itembox}
     \end{column}
@@ -589,13 +617,10 @@ def insertion_sort(numbers):
 \end{frame}
 \begin{frame}[containsverbatim, shrink]
 \frametitle{Quick Sort の計算量}
-  \begin{itemize}
-\item 再帰関数の計算量の計算方法について見ていきます
-  \end{itemize}
-\vspace{-5mm}
+%\vspace{-5mm}
   \begin{columns}[t,onlytextwidth]
     \begin{column}{0.45\linewidth}
-      \begin{lstlisting}[caption={擬似コード},label=insertion_sort]
+      \begin{lstlisting}[caption={擬似コード},label=quick_sort]
 def partition(numbers,left,right,pivot):
   while left<=right:
     numbers[left],numbers[right] を入替え
