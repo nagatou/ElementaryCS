@@ -3,20 +3,15 @@
 %
 \subsection{Terminal について}
 \begin{frame}[containsverbatim]
-\frametitle{Terminal の起動}
-  \begin{itemize}
-\item Launchpad からターミナルのアイコンをクリックして起動
-\item これで shell が起動しファイル，ディレクトリの操作とプログラムの起動，終了ができます
-  \end{itemize}
-  \begin{center}
-\includegraphics[scale=0.5]{./Figure/elementaryCS-figTermIcon.jpg}
-  \end{center}
-\end{frame}
-\begin{frame}[containsverbatim]
 \frametitle{プログラム開発の流れ}
   \begin{center}
 \includegraphics[scale=0.3]{./Figure/CS-figEditAndRun.pdf}
   \end{center}
+  \begin{enumerate}
+\item テキストエディタを使ってソースファイルを作成
+\item ソースファイルを Python インタプリタの上で実行
+\item 実行結果が意図したものであるかどうかテスト
+  \end{enumerate}
 \end{frame}
 \begin{frame}[fragile]
 \frametitle{ターミナルを使ってみよう}
@@ -24,17 +19,14 @@
 \item ターミナルを使ってプログラムを実行してみよう
 \item Terminal を起動
 \item コマンドプロンプト \verb|>| が表示されたらホームディレクトリの下に適当なディレクトリ (例えば CS1) を作成
-\item \href{https://sites.google.com/presystems.xyz/elementarycs/top}{\beamerbutton{https://sites.google.com/presystems.xyz/elementarycs/top}} から必要なファイル (gcd.py) を作成したディレクトリにダウンロード
-    \begin{itemize}
-\item ホームディレクトリの下の Downloads に保存されるかも
-    \end{itemize}
+\item 作成したディレクトリに cd コマンドで移動してプログラムを実行
   \end{itemize}
   \begin{itembox}{準備}
 \scriptsize
     \begin{verbatim}
-> mkdir CS1       # 課題用のディレクトリを作成
-> cd CS1          # 課題用ディレクトリに移動
-> python3 gcd.py  # プログラムを実行
+> mkdir CS1           # 課題用のディレクトリを作成
+> cd CS1              # 課題用ディレクトリに移動
+> python3 confirm.py  # プログラムを実行
     \end{verbatim}
   \end{itembox}
 \end{frame}
@@ -47,16 +39,21 @@
   \begin{itemize}
 \item テキストエディタと呼ばれるソフトウェアを使って編集
     \begin{itemize}
-\item vim, emacs など
+\item vim, emacs, idle など
     \end{itemize}
-\item ターミナルからコマンド入力して起動
+\item \href{https://sites.google.com/presystems.xyz/elementarycs/top}{\beamerbutton{https://sites.google.com/presystems.xyz/elementarycs/top}} から動作確認用コードをコピー
+\item ターミナルからコマンド入力してエディタを起動
+\item 起動したらペイスト
+\item 先ほど作成したディレクトリの下にファイルを保存
   \end{itemize}
   \begin{itembox}{editor の起動}
 \scriptsize
     \begin{verbatim}
-> open -a Emacs gcd.py
+> open -a Emacs
 あるいは
-> open -a Macvim gcd.py
+> open -a Macvim
+あるいは
+> open -a Idle
     \end{verbatim}
   \end{itembox}
 \end{frame}

@@ -24,6 +24,7 @@
 \usepackage{filecontents}
 \usepackage{bxdpx-beamer}
 \usepackage{listings}
+\usepackage{pdfpages}
 
 %\renewcommand{\ttdefault}{lmtl}
 \newcommand{\jpy}{{{\ooalign{Y\crcr\hss=\hss}}}}
@@ -48,7 +49,7 @@
 %   morekeywords={def, end, while, if, for, in, else, then, return}%
 }%
 
-\title[elementaryCS-1st]{コンピュータサイエンス入門第一\\ \textemdash 3a,4b(CS1)\textemdash}
+\title[elementaryCS-1st]{コンピュータサイエンス入門第一\\ \textemdash 4b(CS1)\textemdash}
 \date[3rd quarter]{3rd quarter}
 \author[Naoyuki Nagatou]{永藤 直行}
 \institute[TITECH]{東京工業大学}
@@ -77,6 +78,17 @@
 %\beamerdefaultoverlayspecification{<+->}
 
 \begin{document}
+\begin{frame}[shrink]
+\frametitle{4b(CS1) クラス (担当: 永藤)}
+  \begin{center}
+\includegraphics[scale=.13]{./Figure/classgae.png}
+  \end{center}
+  \begin{itemize}
+\item U55\textendash U60 の方が該当します．
+\item それ以外の方正しいクラスに移動してください．
+  \end{itemize}
+\end{frame}
+
 \frame{\titlepage}
 %
 %%% PROLOGUE
@@ -92,7 +104,11 @@
 %%% PROGRAMMING ENVIRONMENT
 %
 %\input{IL-proenv}
-\input{IL-FileAndDir-corona}
+%\input{IL-FileAndDir-corona}
+\section{情報の格納}
+\subsection{ファイルシステムについて}
+\includepdf[page={12-17}]{../InformationLiteracy/IL-2nd.pdf}
+\includepdf[page={19-21}]{../InformationLiteracy/IL-2nd.pdf}
 \input{elementaryCS-terminal}
 %
 %%% 計算の基本
@@ -115,7 +131,9 @@
 }
 \input{elementaryCS-1st-quiz1}
 
-%% ARRAY
+%%
+%%%% ARRAY
+%%
 
 \part{配列}
 \frame{
@@ -125,9 +143,9 @@
 }
 \input{elementaryCS-1st-array}
 \input{elementaryCS-1st-quizS}
-%
-%%% QUIZ 2
-%
+
+%% QUIZ 2
+
 \part{CS 第 1\textemdash 課題 2}
 \frame{
   \frametitle{CS 第 1 \textemdash 課題 2}
@@ -135,6 +153,7 @@
   \tableofcontents[part=5]
 }
 \input{elementaryCS-1st-quiz2}
+
 %%
 %%%% SUBROUTINE and FUNCTION
 %%

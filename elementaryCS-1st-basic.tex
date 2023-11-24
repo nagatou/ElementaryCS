@@ -48,8 +48,9 @@
 \frametitle{データは数}
   \begin{itemize}
 \item データはすべてビットの列として表される
+\item ビットの列の解釈の仕方によって
     \begin{itemize}
-\item 自然数，整数，実数; 18, -3, 3.14 など
+\item 数: 自然数，整数，実数; 18, -3, 3.14 など
 \item 文字: 文字コード; ASCII, Unicode など
 \item 画像，映像
 \item 音
@@ -63,7 +64,7 @@
 \begin{frame}
 \frametitle{情報とは}
   \begin{itemize}
-\item ここで情報とは何か考えてみます
+\item ここでデータに乗っている情報とは何か考えてみます
 \item 情報とは"ある物事，事象についてのお知らせ"
 \item 情報の価値はどう決まるか?
     \begin{itemize}
@@ -366,15 +367,18 @@
 # Input: 自然数 x, y
 # Output: gcd(x,y)
 ###
-
-def gcd(x,y):
-  ans=1
-  n=min(x,y)
-  for i in range(1,n):
-    if (x%i==0) and (y%i==0):
-      ans=i
-  return (ans)
-print(gcd(x,y))
+# Euclid's algorithm
+def euclid(x1,x2):
+  def euclid1(x1,x2):
+    if x2==0:
+      return (x1)
+    else:
+      return (euclid1(x2,x1%x2))
+  def swap(x1,x2):
+    return x2,x1
+  if (x1<x2) :
+     x1,x2 = swap(x1,x2)
+  return(euclid1(x1,x2))
   \end{lstlisting}
 \end{frame}
 \subsection{計算の基本要素}
@@ -386,7 +390,7 @@ print(gcd(x,y))
 \item Hilbert's Program
 \item 数学基礎論，Computability といったキーワード
     \end{itemize}
-\item 有限の操作を加算個並べて表せるものをアルゴリズム的に計算可能ということにする
+\item 有限の操作を有限個並べて表せるものをアルゴリズム的に計算可能ということにする
 \item アルゴリズムを記述するための最も基本となるものは何か？
   \end{itemize}
   \begin{block}{基本要素}
@@ -406,6 +410,7 @@ print(gcd(x,y))
   \begin{itemize}
 \item \(m+n\) は $m$ に \(+1\) を $n$ 回施す
 \item \(m\times n\) は $m$ に \(+1\) を $m$ 回施すことを $n$ 回施す
+\item ペアノの公理からこのことを説明してみます(板書)
   \end{itemize}
 \end{frame}
 \subsection{Python プログラムの書き方}
@@ -447,13 +452,38 @@ print(gcd(x,y))
 \framesubtitle{while 文}
   \begin{itemize}
 \item 特定の実行列を条件式が真である間繰り返し実行
-\item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 8.2, 8.3 節}}参照
+\item 詳細は \href{https://docs.python.org/ja/3/reference/compound_stmts.html#the-while-statement}{\beamerbutton{Python 言語レファレンス 8.2 節}}参照
   \end{itemize}
   \begin{lstlisting}[caption={while 文}]
 while 条件式 :
   文または式
   文または式
   
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile,label=if]
+\frametitle{条件分岐}
+\framesubtitle{if 文}
+  \begin{itemize}
+\item 条件式が真の場合だけ文や式を実行
+\item else がある場合は条件式が偽のとき実行
+\item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python 言語レファレンス 8.1 節}}参照
+\item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python 言語レファレンス 6.13 節}}参照
+  \end{itemize}
+  \begin{lstlisting}[caption={gcd.py(if 文と for 文の例)},label=gcd]
+# Greatest common divisor
+# Input: 自然数 x, y
+# Output: gcd(x,y)
+###
+
+def gcd(x,y):
+  ans=1
+  n=min(x,y)
+  for i in range(1,n):
+    if (x%i==0) and (y%i==0):
+      ans=i
+  return (ans)
+print(gcd(x,y))
   \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]
@@ -480,7 +510,7 @@ $\slash\slash$& x $\slash\slash$ y & x を y 割った商\\
 \begin{frame}[fragile]
 \frametitle{論理の合成}
   \begin{itemize}
-\item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 6.10, 6.11, 6.12 節}}参照
+\item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python 言語レファレンス 6.13 節}}参照
   \end{itemize}
   \begin{center}
     \begin{tabular}{c|c|c}
@@ -529,31 +559,6 @@ while y > 0:                # y が 0 より大きい間は end までを繰り�
   seki = wa                 # wa の値 (seki + x) を seki に代入
   y = y - 1                 # y - 1 の値を y に代入
 print(seki)                 # seki の値を出力
-  \end{lstlisting}
-\end{frame}
-\begin{frame}[fragile,label=if]
-\frametitle{条件分岐}
-\framesubtitle{if 文}
-  \begin{itemize}
-\item 条件式が真の場合だけ文や式を実行
-\item else がある場合は条件式が偽のとき実行
-\item 詳細は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 8.1 節}}参照
-\item 条件式は \href{https://docs.python.org/ja/3/reference/index.html}{\beamerbutton{Python ドキュメント 6.10, 6.11, 6.12 節}}参照
-  \end{itemize}
-  \begin{lstlisting}[caption={gcd.py(if 文と for 文の例)},label=gcd]
-# Greatest common divisor
-# Input: 自然数 x, y
-# Output: gcd(x,y)
-###
-
-def gcd(x,y):
-  ans=1
-  n=min(x,y)
-  for i in range(1,n):
-    if (x%i==0) and (y%i==0):
-      ans=i
-  return (ans)
-print(gcd(x,y))
   \end{lstlisting}
 \end{frame}
 %%%
