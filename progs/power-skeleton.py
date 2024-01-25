@@ -29,8 +29,8 @@ def is_even(n):
   else:
     return(False)
 def fast_power(b,n):
-  if (n==1):
-    return(b) 
+  if (n==0):
+    return(1) 
   else:
     if (is_even(n)):
       return(square(fast_power(b,n//2)))

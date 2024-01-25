@@ -72,7 +72,7 @@ a(n) = \left\{ \begin{array}{ll}
 \item G に相当するのが \(\operatorname{succ}\)
 \item Basic step に近づけるように recursive step を定義
      \begin{itemize}
-\item \(a+\operatorname{succ}(b)=\)
+\item \(a+b=\)
      \end{itemize}
   \end{itemize}
 \vspace{-1em}
@@ -80,7 +80,7 @@ a(n) = \left\{ \begin{array}{ll}
   \begin{math}
     \begin{array}{lll}
 \mbox{Basic step:}& a+0 & \mbox{if }b=0 \\
-\mbox{Recusive step:}& \operatorname{succ}(a+b) & \mbox{otherwise}
+\mbox{Recusive step:}& \operatorname{succ}(a+\operatorname{pred}(b)) & \mbox{otherwise}
     \end{array}
   \end{math}  
   \end{center}
@@ -103,7 +103,7 @@ def add (a,b):
       \end{lstlisting}
     \end{column}
     \begin{column}[t]{0.55\textwidth}
-      \begin{lstlisting}[firstnumber=15,caption={乗算},label=mult-rec]
+      \begin{lstlisting}[firstnumber=13,caption={乗算},label=mult-rec]
 # Multiplication
 #
 def mult (a,b):
@@ -242,13 +242,14 @@ def fib (n):
 \begin{frame}[fragile]
 \frametitle{宿題 1}
   \begin{itemize}
-\item 自然数上の四則演算を再帰で定義せよ(four-ops-rec.py 参照)
-\item 先の文字列の集合を参考に文字列の長さを求める関数を再帰的に定義せよ(str\_len.py 参照)
-    \begin{itemize}
-\item Hint: Basic step を空列は長さ 0 として，recursive step は一文字短い文字列より 1 長い
-\item Python では str[1:] とすると文字列の 2 番目以降の文字列を得ることができる
-\item 空列は not str で判定
-    \end{itemize}
+\item まずは\href{https://sites.google.com/presystems.xyz/elementarycs/top}{\beamerbutton{https://sites.google.com/presystems.xyz/elementarycs/top}} から four-ops-rec-skeleton.py をダウンロード
+\item 自然数上の引き算，商を求める関数，余りを求める関数を再帰で定義せよ
+%\item [OPT]: 先の文字列の集合を参考に文字列の長さを求める関数を再帰的に定義せよ(str\_len.py 参照)
+%    \begin{itemize}
+%\item Hint: Basic step を空列は長さ 0 として，recursive step は一文字短い文字列より 1 長い
+%\item Python では str[1:] とすると文字列の 2 番目以降の文字列を得ることができる
+%\item 空列は not str で判定
+%    \end{itemize}
   \end{itemize}
 \end{frame}
 \section{プログラムとしての再帰}
@@ -305,6 +306,7 @@ def sqroot (n):
       \end{lstlisting}
     \end{column}
   \end{columns}
+\hyperlink{sl:back}{\beamerbutton{Back}}
 \end{frame}
 \subsection{再帰プログラム}
 \begin{frame}[fragile]

@@ -90,29 +90,30 @@
   \end{center}
 \end{frame}
 \begin{frame}
-\frametitle{Quiz: 浮動小数}
+\frametitle{宿題 3: 浮動小数}
   \begin{itemize}
 \item 実数の浮動小数表現をやってみてください
   \end{itemize}
-  \begin{block}{宿題}
+  \begin{block}{宿題 3}
     \begin{itemize}
 \item 35.75 を浮動小数で表現してみてください
+\item T2Schola に小テストがあるのでそれに答えてください
     \end{itemize}
   \end{block}
 \end{frame}
-\begin{frame}
-\frametitle{Quiz: 回答}
-  \begin{itemize}
-\item 2 進へ変換: 100011.11
-\item 正規化: 1.0001111$\times 2^5$
-\item 32 bit 形式に: {\scriptsize 0 0000 0101 0001 1110 0000 0000 0000 000}
-    \begin{itemize}
-\item 1. は省略
-    \end{itemize}
-\item 規格\href{http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=2355}{\beamerbutton{IEEE 754}}では下駄 (bais) をはかせるので\(5+127=132\Rightarrow\) 1000 0100
-\item 32 bit 形式に: {\scriptsize 0 1000 0100 0001 1110 0000 0000 0000 000}
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+%\frametitle{宿題 3: 回答}
+%  \begin{itemize}
+%\item 2 進へ変換: 100011.11
+%\item 正規化: 1.0001111$\times 2^5$
+%\item 32 bit 形式に: {\scriptsize 0 0000 0101 0001 1110 0000 0000 0000 000}
+%    \begin{itemize}
+%\item 1. は省略
+%    \end{itemize}
+%\item 規格\href{http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=2355}{\beamerbutton{IEEE 754}}では下駄 (bais) をはかせるので\(5+127=132\Rightarrow\) 1000 0100
+%\item 32 bit 形式に: {\scriptsize 0 1000 0100 0001 1110 0000 0000 0000 000}
+%  \end{itemize}
+%\end{frame}
 \subsection{浮動小数の算術演算}
 \begin{frame}[shrink,fragile]
 \frametitle{浮動小数演算の変な現象}
@@ -348,7 +349,7 @@ print("System information in Python:",sys.float_info.epsilon)
 %  \end{example}
 %\end{frame}
 \subsection{打ち切り誤差 (truncation error)}
-\begin{frame}[shrink]
+\begin{frame}[shrink]\label{sl:back}
 \frametitle{打ち切り誤差 (truncation error)}
   \begin{itemize}
 \item コンピュータでは無限に繰り返して値をもとめることはできない
@@ -361,10 +362,10 @@ print("System information in Python:",sys.float_info.epsilon)
 \item gnuplot で試してみてください
     \end{itemize}
   \end{example}
-  \begin{example}[平方の計算]
+  \begin{example}[平方根の計算]
     \begin{itemize}
 %\item \href{run:newton.command}{\beamerbutton{ニュートン法}}
-\item newton.py を参照
+\item newton.py を参照\hyperlink{newton-is_enough-rec}{\beamerbutton{プログラム例}}
 \item \(\sqrt{a}\) を求めてみる
 \item \(f(x)=x^2-a\) として \(f(x)=0\) となる $x$ を求める
 \item \(k+1\) 番目の近似値 \(x_{k+1}\) を
