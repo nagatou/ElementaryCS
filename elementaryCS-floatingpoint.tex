@@ -101,28 +101,42 @@
     \end{itemize}
   \end{block}
 \end{frame}
-%\begin{frame}
-%\frametitle{宿題 3: 回答}
-%  \begin{itemize}
-%\item 2 進へ変換: 100011.11
-%\item 正規化: 1.0001111$\times 2^5$
-%\item 32 bit 形式に: {\scriptsize 0 0000 0101 0001 1110 0000 0000 0000 000}
-%    \begin{itemize}
-%\item 1. は省略
-%    \end{itemize}
-%\item 規格\href{http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=2355}{\beamerbutton{IEEE 754}}では下駄 (bais) をはかせるので\(5+127=132\Rightarrow\) 1000 0100
-%\item 32 bit 形式に: {\scriptsize 0 1000 0100 0001 1110 0000 0000 0000 000}
-%  \end{itemize}
-%\end{frame}
+\begin{frame}
+\frametitle{宿題 3: 回答}
+  \begin{itemize}
+\item 2 進へ変換: 100011.11
+\item 正規化: 1.0001111$\times 2^5$
+\item 32 bit 形式に: {\scriptsize 0 0000 0101 0001 1110 0000 0000 0000 000}
+    \begin{itemize}
+\item 1. は省略
+    \end{itemize}
+\item 規格\href{http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=2355}{\beamerbutton{IEEE 754}}では下駄 (bais) をはかせるので\(5+127=132\Rightarrow\) 1000 0100
+\item 32 bit 形式に: {\scriptsize 0 1000 0100 0001 1110 0000 0000 0000 000}
+  \end{itemize}
+\end{frame}
 \subsection{浮動小数の算術演算}
 \begin{frame}[shrink,fragile]
-\frametitle{浮動小数演算の変な現象}
+\frametitle{浮動小数演算の変な現象 1}
+  \begin{itemize}
+\item roundoff.py を実行してみます
+\item 結果が予測と少し違うことになります
+\item \(0.6_{(10)}\) は \((0.1001\ldots)_{(2)}\), \(0.4_{(10)}\) は \((0.0110\ldots)_{(2)}\), \(0.2_{(10)}\) は \((0.0011\ldots)_{(2)}\) となります
+  \end{itemize}
+  \begin{lstlisting}[caption={roundoff.py},label=lst:roundoff]
+if (float(0.6)-float(0.4)==float(0.2)):
+   print("is equal")
+else:
+   print("not equal")
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[shrink,fragile]
+\frametitle{浮動小数演算の変な現象 2}
   \begin{itemize}
 \item machine\_epsilon.py を実行してみます
 \item 結果が予測と少し違うことになります
 \item この原因についてみていきます
   \end{itemize}
-  \begin{lstlisting}[caption={machine\_epsilon.py}]
+  \begin{lstlisting}[caption={machine\_epsilon.py},label=lst:epsilon]
 # Machine epsilon
 import sys
 
@@ -223,9 +237,9 @@ print("System information in Python:",sys.float_info.epsilon)
 \begin{frame}[shrink]
 \frametitle{丸め誤差 (roundoff error)}
   \begin{itemize}
-\item 表現可能な範囲に丸めることを丸め誤差という
+\item 表現可能な範囲に丸めることを丸め誤差という(\lstref{lst:roundoff}参照)
 \item 演算結果も丸める
-\item $Z$ を \(X\oplus Y\) の演算結果とする
+\item $Z$ を演算結果とする
 \item $d$ 桁だけ記憶できるとして，先頭の $d$ 桁を $F$，残りを $f$ とすると，\(Z=F\cdot 10^{e_z}+f\cdot 10^{e_z-d}\)
 \item $f$ の値で四捨五入することにして
     \begin{displaymath}
@@ -348,6 +362,14 @@ print("System information in Python:",sys.float_info.epsilon)
 %    \end{itemize}
 %  \end{example}
 %\end{frame}
+\subsection{情報落ち誤差}
+\begin{frame}[shrink]
+\frametitle{情報落ち誤差(loss of trailing digits)}
+  \begin{itemize}
+\item 絶対値が大きく異なる 2 つの数の加減算では小さい数が無視されることがある
+\item \lstref{lst:epsilon} で見たような場合
+  \end{itemize}
+\end{frame}
 \subsection{打ち切り誤差 (truncation error)}
 \begin{frame}[shrink]\label{sl:back}
 \frametitle{打ち切り誤差 (truncation error)}
