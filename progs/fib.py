@@ -84,6 +84,7 @@ def fast_fib_while(n):
 
 
 # (4) (1,2,3) のプログラムは n が大きくなるとの実行時間に差が出てくる．その理由を Big-O 記法を用いて説明せよ．
+#O(log n)
 
 # Test Harness
 n = int(input("n(>=0)? "))
