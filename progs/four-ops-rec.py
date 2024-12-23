@@ -96,7 +96,10 @@ def remainder (a,b):
 # Set the sign bit to 1, else zero.
 def comp (a,b):
   if (b==0):
-    return(0)
+    if (a==0):
+       return(1)
+    else:
+       return(0)
   else:
     if ((a==0) and (b>=0)):
       return(1)
